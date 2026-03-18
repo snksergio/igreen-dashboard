@@ -506,6 +506,34 @@ Quando a tabela não tem dados ou o filtro não retorna resultados:
 
 ---
 
+## Status Chip Auto Dot Colors
+
+Status chips usam a classe `.s-dot` para o indicador circular. As cores são **automáticas via CSS** — nunca use inline `style="background:..."`.
+
+```css
+/* Auto-coloring — definido em components.css */
+.status-chip.completed .s-dot { background: var(--fg-ghost); }
+.status-chip.pending .s-dot   { background: var(--warning); }
+.status-chip.failed .s-dot    { background: var(--destructive); }
+```
+
+| Status | Classe no `.status-chip` | Cor do `.s-dot` |
+|--------|--------------------------|-----------------|
+| Completed | `.completed` | `var(--fg-ghost)` |
+| Pending | `.pending` | `var(--warning)` |
+| Failed | `.failed` | `var(--destructive)` |
+
+**Anti-pattern:**
+```html
+<!-- ❌ ERRADO — inline style no dot -->
+<span class="s-dot" style="background:var(--fg-ghost)"></span>
+
+<!-- ✅ CORRETO — CSS auto-color via parent class -->
+<span class="status-chip completed"><span class="s-dot"></span>Completed</span>
+```
+
+---
+
 ## Transition Timing Reference
 
 | Interação | Duração | Exemplo |

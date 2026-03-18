@@ -21,8 +21,8 @@ const RESOURCES = {
   colors: { content: loadResource("colors.md"), name: "Color tokens", description: "Paleta de cores, superfícies, foregrounds (14 níveis), bordas, overlays, status, sombras, --on-solid" },
   typography: { content: loadResource("typography.md"), name: "Typography", description: "Escala tipográfica (9 tokens: 11-28px), pesos 400-700, regras de uso de fonte Inter" },
   layout: { content: loadResource("layout.md"), name: "Layout & Spacing", description: "Spacing scale, border radius, grid patterns, z-index, glass effect, scroll, responsive, transitions" },
-  rules: { content: loadResource("rules.md"), name: "Rules & Principles", description: "12 regras obrigatórias, 6 princípios, z-index system, naming dictionary (incluindo .od-*, .ch-*, .ch-lg-*), icon sizes, checklist" },
-  states: { content: loadResource("states.md"), name: "States & Interactions", description: "Hover, active, focus, disabled, loading, open/closed, collapsed, empty/error states" },
+  rules: { content: loadResource("rules.md"), name: "Rules & Principles", description: "15 regras obrigatórias, 6 princípios, z-index system, naming dictionary, icon size hierarchy, anti-patterns de inline style, checklist" },
+  states: { content: loadResource("states.md"), name: "States & Interactions", description: "Hover, active, focus, disabled, loading, open/closed, collapsed, empty/error, form validation, status chip auto-color states" },
   // Components
   "components-overview": { content: loadResource("components-overview.md"), name: "Components Overview", description: "Catálogo completo de componentes com referências cruzadas entre folders e MCP resources" },
   "component-card": { content: loadResource("component-card.md"), name: "Card Component", description: "Card base, KPI card, stat sub-cards, allocation list, chart containers, padrões de uso" },
@@ -192,7 +192,7 @@ const TOKEN_DB = {
 // ── Create MCP Server ────────────────────────────────────────────────
 const server = new McpServer({
   name: "iGreenMCP Design System",
-  version: "2.2.1",
+  version: "2.3.0",
   description: "Style guide MCP server para garantir consistência visual em projetos criados com IA. 19 resources, 6 tools, 3 prompts. Transport: stdio (IDEs) + HTTP (deploy)."
 });
 
@@ -1258,7 +1258,7 @@ TEMPLATES DE REFERÊNCIA (consulte resources):
 - 'page-templates': 4 templates HTML completos (base, tabela, detalhe, gráficos)
 - 'component-navigation': HTML copiável da sidebar+topbar
 - 'system-instructions': Regras completas do design system
-- 'rules': 12 regras obrigatórias + naming conventions
+- 'rules': 15 regras obrigatórias + naming conventions + anti-patterns
 
 PÁGINAS DE REFERÊNCIA (padrões reais):
 - analytics.html: KPI grid + tabela + drawer + chart cards
@@ -1347,7 +1347,7 @@ if (useHttp) {
   app.get("/", (req, res) => {
     res.json({
       name: "iGreenMCP Design System MCP",
-      version: "2.2.1",
+      version: "2.3.0",
       status: "running",
       transport: "http",
       resources: Object.keys(RESOURCES).length,

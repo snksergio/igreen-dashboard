@@ -9,10 +9,10 @@
 | Button | `.btn` | `components/button/` | — | Simples |
 | Card | `.card`, `.ca-`, `.pstat-`, `.pl-`, `.al-` | `components/card/` | `component-card.md` | Médio |
 | KPI Card | `.kpi-` | `components/kpi-card/` | `component-card.md` | Simples |
-| Badge | `.badge`, `.status-chip`, `.chg-`, `.al-chg`, `.seg-chg` | `components/badge/` | — | Simples |
-| Pagination | `.pagination`, `.pb`, `.page-` | `components/pagination/` | — | Simples |
-| Table | `.tbl-`, `.filter-chip`, `.fc-`, `.asset-cell`, `.coin-` | `components/table/` | `component-table.md` | Complexo |
-| Filter Bar | `.filter-bar`, `.preset`, `.ftag`, `.icon-btn`, `.export-btn` | `components/filter-bar/` | — | Médio |
+| Badge | `.badge`, `.status-chip`, `.s-dot` (auto-color), `.chg-`, `.al-chg`, `.seg-chg` | `components/badge/` | — | Simples |
+| Pagination | `.pagination`, `.pb`, `.pb--ellipsis`, `.page-` | `components/pagination/` | — | Simples |
+| Table | `.tbl-`, `.tbl-date`, `.tbl-col-check`, `.tbl-col-actions`, `.filter-chip`, `.fc-`, `.asset-cell`, `.coin-` | `components/table/` | `component-table.md` | Complexo |
+| Filter Bar | `.filter-bar`, `.preset`, `.ftag`, `.ftag-close`, `.icon-btn`, `.export-btn` | `components/filter-bar/` | — | Médio |
 | Drawer | `.dw-`, `.drawer` | `components/drawer/` | `component-drawer.md` | Complexo |
 | Sidebar | `.sidebar`, `.nav-item`, `.ni-`, `.sec-`, `.uc-` | — | `component-navigation.md` | Médio |
 | Topbar | `.topbar`, `.t-icon-btn`, `.bc-`, `.wallet-`, `.user-` | — | `component-navigation.md` | Médio |
@@ -38,7 +38,7 @@
 | `colors.md` | Paleta completa de tokens: surfaces, foreground (14 níveis), brand, status, overlays, shadows, `--on-solid` |
 | `typography.md` | Escala tipográfica (9 tokens), pesos, font features, padrões de uso |
 | `layout.md` | Spacing scale, border radius, grid patterns, z-index, glass effect, scroll, responsive |
-| `rules.md` | 12 regras obrigatórias, 6 princípios, z-index system, naming dictionary, icon sizes |
+| `rules.md` | 15 regras obrigatórias, 6 princípios, z-index system, naming dictionary, icon sizes, anti-patterns |
 | `states.md` | Hover, active, focus, disabled, loading, open/closed, collapsed, empty/error states |
 
 ### Components
@@ -84,10 +84,11 @@ components/
 | `.card` / `.ca-` | Card | ~15 |
 | `.kpi-` | KPI Card | ~10 |
 | `.badge` | Badge | ~5 |
-| `.status-chip` / `.s-dot` | Status chip | ~5 |
+| `.status-chip` / `.s-dot` | Status chip (auto-color) | ~8 |
 | `.chg-` / `.al-chg` / `.seg-chg` | Change indicators | ~8 |
-| `.tbl-` | Table toolbar | ~15 |
+| `.tbl-` / `.tbl-date` / `.tbl-col-check` / `.tbl-col-actions` | Table toolbar + utility | ~20 |
 | `.filter-chip` / `.fc-` | Filter chips | ~12 |
+| `.ftag` / `.ftag-close` | Filter tags | ~4 |
 | `.dw-` | Drawer | ~35 |
 | `.ao-` | Asset Overview | ~8 |
 | `.tc-` | Traffic/Countries | ~10 |
@@ -98,7 +99,7 @@ components/
 | `.pl-` / `.perf-` / `.pstat-` | Performance stats | ~10 |
 | `.dist-` | Distribution | ~6 |
 | `.al-` | Allocation | ~8 |
-| `.pb` / `.pagination` / `.page-` | Pagination | ~4 |
+| `.pb` / `.pb--ellipsis` / `.pagination` / `.page-` | Pagination | ~6 |
 | `.od-` | Order Detail page | ~20 |
 | `.od-detail-` | Detail sections | ~12 |
 | `.od-comment-` | Comments tab | ~10 |
@@ -109,11 +110,11 @@ components/
 | `.sales-` | Sales progress bar | ~4 |
 | `.tbl-action` | Table action buttons | ~3 |
 | `.tbl-check` | Table checkbox | ~3 |
-| `.ch-` | Chart cards/grids | ~15 |
+| `.ch-` / `.ch-canvas-wrap--sm/--md/--gauge` | Chart cards/grids/canvas | ~20 |
 | `.ch-lg-` | Chart legends | ~12 |
 | `.ch-stat-` | Chart stat rows | ~6 |
 
-**Total:** ~340+ classes documentadas.
+**Total:** ~360+ classes documentadas.
 
 ## Como Usar Este Sistema
 

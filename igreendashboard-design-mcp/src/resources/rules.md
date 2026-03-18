@@ -50,14 +50,43 @@
 - Usar legendas HTML custom: Rich (`.ch-lg-rich`), Value (`.ch-lg-vals`), Simple (`.ch-lg-simple`)
 - Nunca usar a legenda built-in do Chart.js
 
-### 11. Ícones SVG inline
+### 11. Ícones SVG inline — tamanhos por contexto
 - Use SVGs inline para ícones (não icon fonts)
-- Tamanho padrão: 20px para navegação, 16px para inline, 24px para destaque
-- Cor herda do texto pai ou usa currentColor
+- O CSS controla o tamanho de ícones automaticamente por contexto — **nunca** force tamanho via atributo `width`/`height` no `<svg>` quando a classe pai já define
+- Cor herda do texto pai ou usa `currentColor`
+- Anti-pattern: `<svg width="15" height="15">` dentro de `.t-icon-btn` — o CSS já define 16px
 
 ### 12. Hover via overlays
 - Hover em superfícies usa overlays: `--overlay-5` a `--overlay-12`
 - Nunca mude a cor de fundo diretamente no hover (exceto botões com variante específica)
+
+### 13. Status chip dots — cores automáticas
+- `.s-dot` dentro de `.status-chip` recebe cor automaticamente via CSS:
+  - `.status-chip.completed .s-dot` → `var(--fg-ghost)`
+  - `.status-chip.pending .s-dot` → `var(--warning)`
+  - `.status-chip.failed .s-dot` → `var(--destructive)`
+- **Nunca** use `style="background:var(--warning)"` inline no `.s-dot`
+
+### 14. Inline styles proibidos — use classes CSS
+Nunca use inline styles para estes padrões — classes CSS já existem:
+
+| Anti-pattern (❌) | Classe correta (✅) |
+|-------------------|---------------------|
+| `style="color:var(--fg-muted)"` em `<td>` | `class="tbl-date"` |
+| `style="width:40px"` em `<th>` checkbox | `class="tbl-col-check"` |
+| `style="width:80px"` em `<th>` actions | `class="tbl-col-actions"` |
+| `style="background:transparent"` em `.pb` ellipsis | `class="pb pb--ellipsis"` |
+| `style="opacity:.5;margin-left:2px"` em `.ftag` close | `class="ftag-close"` |
+| `style="max-width:260px;margin:0 auto"` em `.ch-canvas-wrap` | `class="ch-canvas-wrap--sm"` |
+| `style="max-width:320px;margin:0 auto"` em `.ch-canvas-wrap` | `class="ch-canvas-wrap--md"` |
+| `style="max-width:160px;margin:0 auto"` em `.ch-canvas-wrap` | `class="ch-canvas-wrap--gauge"` |
+| `style="margin-top:var(--space-xl)"` entre grids | CSS automático via adjacent sibling (`.ch-grid + .ch-grid-4`) |
+| `style="margin-bottom:0"` em `.od-detail-tags` | CSS automático via `:last-child` |
+
+### 15. Botões no mesmo grupo = mesmo tamanho
+- Botões dentro do mesmo container (`.form-actions`, `.od-actions`, toolbar) **devem** usar o mesmo size class
+- Anti-pattern: `btn` (36px) ao lado de `btn btn--lg` (44px) no mesmo grupo
+- Use a hierarquia de tamanhos: `btn--xs` (26px), `btn--sm` (32px), `btn` (36px), `btn--lg` (44px)
 
 ---
 
@@ -131,7 +160,7 @@ No dark theme, a hierarquia é criada por luminosidade crescente:
 | Prefixo | Significado | Exemplos de classes |
 |---------|-------------|---------------------|
 | `.kpi-` | KPI cards (métricas principais) | `.kpi-grid`, `.kpi-card`, `.kpi-label`, `.kpi-value`, `.kpi-badge`, `.kpi-spark`, `.kpi-footer`, `.kpi-sub` |
-| `.tbl-` | Table (tabela de transações) | `.tbl-topbar`, `.tbl-title-row`, `.tbl-tabs`, `.tbl-tab`, `.tbl-filters`, `.tbl-search`, `.tbl-filter-btn`, `.tbl-export-btn`, `.tbl-refresh-btn`, `.tbl-badge` |
+| `.tbl-` | Table (tabela de transações) | `.tbl-topbar`, `.tbl-title-row`, `.tbl-tabs`, `.tbl-tab`, `.tbl-filters`, `.tbl-search`, `.tbl-filter-btn`, `.tbl-export-btn`, `.tbl-refresh-btn`, `.tbl-badge`, `.tbl-date`, `.tbl-col-check`, `.tbl-col-actions` |
 | `.dw-` | Drawer (modal lateral de detalhe) | `.dw-header`, `.dw-close`, `.dw-coin-icon`, `.dw-title-*`, `.dw-meta`, `.dw-row`, `.dw-label`, `.dw-value`, `.dw-tabs`, `.dw-tab`, `.dw-body`, `.dw-panel`, `.dw-comment-*`, `.dw-attachment`, `.dw-timeline`, `.dw-tl-*` |
 | `.ao-` | Asset Overview (visão geral de ativos) | `.ao-row`, `.ao-info-wrap`, `.ao-info`, `.ao-label`, `.ao-value`, `.ao-chart` |
 | `.tc-` | Traffic/Conversion (mapa + funnel) | `.tc-section`, `.tc-map-dot`, `.tc-item`, `.tc-label`, `.tc-value`, `.tc-bar` |
@@ -144,7 +173,7 @@ No dark theme, a hierarquia é criada por luminosidade crescente:
 | `.pl-` | Performance Legend | `.pl-item`, `.pl-dot`, `.pl-label`, `.pl-value` |
 | `.od-` | Order Detail (página de detalhe) | `.od-header`, `.od-tabs`, `.od-tab`, `.od-grid`, `.od-col`, `.od-card`, `.od-payment-*` |
 | `.od-detail-` | Detail Sections (dentro de od) | `.od-detail-header`, `.od-detail-icon`, `.od-detail-title`, `.od-detail-action`, `.od-detail-grid`, `.od-detail-label`, `.od-detail-value` |
-| `.ch-` | Chart (cards e containers) | `.ch-card`, `.ch-card-sm`, `.ch-grid`, `.ch-grid-3`, `.ch-grid-4`, `.ch-canvas-wrap`, `.ch-stat-row`, `.ch-stat`, `.ch-stat-val` |
+| `.ch-` | Chart (cards e containers) | `.ch-card`, `.ch-card-sm`, `.ch-grid`, `.ch-grid-3`, `.ch-grid-4`, `.ch-canvas-wrap`, `.ch-canvas-wrap--sm`, `.ch-canvas-wrap--md`, `.ch-canvas-wrap--gauge`, `.ch-stat-row`, `.ch-stat`, `.ch-stat-val` |
 | `.ch-lg-` | Chart Legends (custom HTML) | `.ch-lg-rich`, `.ch-lg-row`, `.ch-lg-dot`, `.ch-lg-name`, `.ch-lg-pct`, `.ch-lg-badge`, `.ch-lg-vals`, `.ch-lg-val-item`, `.ch-lg-simple` |
 
 ### Para componentes isolados (BEM-like)
@@ -176,15 +205,39 @@ No dark theme, a hierarquia é criada por luminosidade crescente:
 
 ---
 
-## Icon Sizes
+## Icon Sizes — Hierarquia por Contexto
+
+O CSS define tamanho de ícone automaticamente por classe do container. Use `viewBox` no SVG e deixe o CSS controlar o tamanho.
+
+### Botões (via `.btn svg` e variantes)
+
+| Classe do botão | Tamanho ícone | Regra CSS |
+|----------------|---------------|-----------|
+| `.btn--xs` | 12px | `.btn--xs svg { width: 12px; }` |
+| `.btn--sm` | 14px | `.btn--sm svg { width: 14px; }` |
+| `.btn` (default) | 16px | `.btn svg { width: 16px; }` |
+| `.btn--lg` | 18px | `.btn--lg svg { width: 18px; }` |
+
+### Toolbar (via classe do container)
+
+| Componente | Tamanho ícone | Regra CSS |
+|-----------|---------------|-----------|
+| `.tbl-search` | 14px | `.tbl-search svg { width: 14px; }` |
+| `.tbl-filter-btn` | 14px | `.tbl-filter-btn svg { width: 14px; }` |
+| `.tbl-export-btn` | 14px | `.tbl-export-btn svg { width: 14px; }` |
+| `.tbl-refresh-btn` | 14px | `.tbl-refresh-btn svg { width: 14px; }` |
+
+### Topbar e Navegação
+
+| Componente | Tamanho ícone | Regra CSS |
+|-----------|---------------|-----------|
+| `.t-icon-btn` | 16px | `.t-icon-btn svg { width: 16px; }` |
+| `.ni-icon` (sidebar) | 20px | `.ni-icon { width: 20px; height: 20px; }` |
+
+### Outros contextos
 
 | Contexto | Tamanho | Uso |
 |----------|---------|-----|
-| Tiny inline | 12px | Indicadores mínimos (setas de sort) |
-| Small inline | 14px | Dentro de badges, chips, botões xs/sm |
-| Default inline | 16px | Ícones dentro de texto, botões, inputs |
-| Navigation | 18–20px | Sidebar nav items (`.ni-icon` = 20px) |
-| Topbar actions | 20px | Ícones do topbar (notificação, tema, usuário) |
 | Feature/highlight | 24px | Ícones de destaque em cards, KPIs |
 | Empty state | 48px | Ilustrações de empty/error state |
 
@@ -192,7 +245,8 @@ No dark theme, a hierarquia é criada por luminosidade crescente:
 - Ícones SVG inline, nunca icon fonts
 - `color: currentColor` para herdar cor do contexto
 - `flex-shrink: 0` para evitar compressão em containers flex
-- `viewBox` deve estar presente para escalabilidade
+- `viewBox` DEVE estar presente — permite que o CSS controle o tamanho
+- Atributos `width`/`height` no `<svg>` são fallback apenas — o CSS sempre vence
 
 ---
 
@@ -208,7 +262,11 @@ Antes de entregar qualquer componente, verifique:
 - [ ] Border-radius usa tokens?
 - [ ] Estados hover/focus/active/disabled implementados?
 - [ ] Transições usam `--ease-out`?
-- [ ] Ícones são SVG inline?
+- [ ] Ícones são SVG inline com `viewBox`?
+- [ ] Ícones usam tamanho correto por contexto (btn=16, toolbar=14, topbar=16)?
+- [ ] Status chip `.s-dot` sem inline style (CSS auto-color)?
+- [ ] Botões no mesmo grupo com mesmo size class?
+- [ ] Nenhum inline style para padrões cobertos por classes CSS?
 - [ ] Layout é responsivo?
 
 ---
@@ -241,3 +299,6 @@ Ao iniciar qualquer projeto novo, o PRIMEIRO passo é:
 - ❌ Tokens duplicados em cada arquivo de componente
 - ❌ Valores hex hardcoded em vez de var(--token)
 - ❌ Arquivo de tokens misturado com estilos de componente
+- ❌ Inline styles para padrões que já têm classes CSS (ver Regra 14)
+- ❌ SVG width/height forçado quando o CSS do container já define (ver Regra 11)
+- ❌ Botões com tamanhos diferentes no mesmo grupo (ver Regra 15)

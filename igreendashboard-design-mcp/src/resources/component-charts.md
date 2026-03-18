@@ -326,13 +326,51 @@ Boxes com background `var(--muted)` contendo label + valor + variação. **OBRIG
 ### Small Chart Card (`.ch-card-sm`)
 Versão compacta para grids de 3-4 colunas. Menos padding, canvas menor.
 
+### Canvas Wrap Size Variants
+
+Use para centralizar e limitar o tamanho de gráficos circulares:
+
+| Classe | Max-width | Uso |
+|--------|-----------|-----|
+| `.ch-canvas-wrap--sm` | 260px | Doughnut/polar compactos em grids 3-4 colunas |
+| `.ch-canvas-wrap--md` | 320px | Radar e doughnut em grids 2 colunas |
+| `.ch-canvas-wrap--gauge` | 160px | Gauge/half-donut mini |
+
+```html
+<!-- Doughnut compacto -->
+<div class="ch-canvas-wrap ch-canvas-wrap--sm">
+  <canvas id="chartDoughnut"></canvas>
+  <div class="ch-donut-center">...</div>
+</div>
+
+<!-- Radar -->
+<div class="ch-canvas-wrap ch-canvas-wrap--md">
+  <canvas id="chartRadar"></canvas>
+</div>
+
+<!-- Gauge mini -->
+<div class="ch-canvas-wrap ch-canvas-wrap--gauge">
+  <canvas id="chartGauge"></canvas>
+</div>
+```
+
+**Anti-pattern:** Nunca use `style="max-width:260px;margin:0 auto"` — use a classe `--sm/--md/--gauge`.
+
 ### Grid Layouts
 ```css
 .ch-grid   { display: grid; gap: var(--space-2xl); }
 .ch-grid-2 { grid-template-columns: repeat(2, 1fr); }  /* 2 colunas */
 .ch-grid-3 { grid-template-columns: repeat(3, 1fr); }  /* 3 colunas */
 .ch-grid-4 { grid-template-columns: repeat(4, 1fr); }  /* 4 colunas — apenas sparklines/mini */
+
+/* Espaçamento automático entre grids adjacentes */
+.ch-grid + .ch-grid-3,
+.ch-grid + .ch-grid-4,
+.ch-grid-3 + .ch-grid-3,
+.ch-grid-4 + .ch-grid-4 { margin-top: var(--space-xl); }
 ```
+
+**Nota:** Grids adjacentes recebem `margin-top` automaticamente via CSS. Não adicione `style="margin-top:..."` manualmente.
 
 ---
 
@@ -398,3 +436,5 @@ document.querySelector('.theme-toggle').addEventListener('click', () => {
 - [ ] Sparklines sem axes, legend, ou tooltip
 - [ ] Donut usa `cutout: '72%'` e `borderRadius: 4`
 - [ ] Cores atualizam quando tema muda
+- [ ] Canvas wrap usa size modifier (`--sm`, `--md`, `--gauge`) em vez de inline max-width
+- [ ] Grids adjacentes sem `margin-top` manual (CSS automático via adjacent sibling)

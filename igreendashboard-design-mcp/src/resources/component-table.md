@@ -130,8 +130,11 @@ tbody td { padding: var(--space-md); font-size: var(--text-body); }
 | Badge | `.badge.buy` / `.badge.sell` | Pill verde (buy) ou vermelho (sell) |
 | Numeric | `td.mono` | `font-variant-numeric: tabular-nums` |
 | Change | `.chg-pos` / `.chg-neg` / `.chg-nil` | Verde/vermelho/ghost para variação percentual |
-| Status | `.status-chip` + `.s-dot` | Chip com dot colorido (.completed/.pending/.failed) |
+| Status | `.status-chip` + `.s-dot` | Chip com dot colorido (.completed/.pending/.failed) — dot cor automática via CSS |
+| Date | `td.tbl-date` | `color: var(--fg-muted)` para colunas de data |
 | Right-align | `td.r` / `th.r` | `text-align: right` para colunas numéricas |
+| Col Check | `th.tbl-col-check` | Coluna checkbox com `width: 40px` |
+| Col Actions | `th.tbl-col-actions` | Coluna de ações com `width: 80px` |
 
 ### Coin icon colors (referência)
 ```html
@@ -153,6 +156,12 @@ tbody td { padding: var(--space-md); font-size: var(--text-body); }
 | `.tbl-filter-btn.active` | — | `var(--primary-8)` | `border-color: var(--primary-20)` |
 | `.tbl-export-btn` | h: 36px | `var(--secondary)` | `var(--overlay-10)` |
 | `.tbl-refresh-btn` | 36×36px | `var(--secondary)` | `var(--overlay-10)` |
+
+**Ícones nos toolbar buttons (CSS automático — não use atributos inline no SVG):**
+- `.tbl-search svg` → 14px
+- `.tbl-filter-btn svg` → 14px
+- `.tbl-export-btn svg` → 14px
+- `.tbl-refresh-btn svg` → 14px
 
 ---
 
@@ -241,7 +250,7 @@ tbody td { padding: var(--space-md); font-size: var(--text-body); }
         <td class="r mono">$43,250.00</td>
         <td class="r mono">$19,553.23</td>
         <td class="r"><span class="chg-pos">+2.41%</span></td>
-        <td><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-secondary)"></span>Completed</span></td>
+        <td><span class="status-chip completed"><span class="s-dot"></span>Completed</span></td>
         <td class="r">Jan 15, 2024</td>
       </tr>
       <!-- more rows -->
@@ -372,7 +381,7 @@ Custom checkbox em header e rows:
 ```html
 <thead>
   <tr>
-    <th style="width:40px"><input type="checkbox" class="tbl-check" /></th>
+    <th class="tbl-col-check"><input type="checkbox" class="tbl-check" /></th>
     <th>Product</th>
     <th class="r">Price</th>
     <!-- ... -->
@@ -467,12 +476,12 @@ Dropdown para items por página na pagination bar:
   <table>
     <thead>
       <tr>
-        <th style="width:40px"><input type="checkbox" class="tbl-check" /></th>
+        <th class="tbl-col-check"><input type="checkbox" class="tbl-check" /></th>
         <th>Product</th>
         <th class="r">Price</th>
         <th class="r">Quantity</th>
         <th>Sales</th>
-        <th class="r" style="width:80px"></th>
+        <th class="r tbl-col-actions"></th>
       </tr>
     </thead>
     <tbody>
@@ -544,5 +553,12 @@ Dropdown para items por página na pagination bar:
 - [ ] Product cells usam `.asset-cell` wrapper com `.prod-img` + `.prod-name` + `.prod-id`
 - [ ] Sales bar usa `.sales-bar-fill` com width dinâmico e cores por token
 - [ ] Action buttons usam `.tbl-action-btn` (32×32px) com `.destructive` variant
+- [ ] Toolbar SVGs sem `width`/`height` inline — CSS controla (14px)
+- [ ] Status chip `.s-dot` sem inline style — cor automática via CSS
+- [ ] Pagination ellipsis usa `.pb--ellipsis` (não `.pb` com inline style)
+- [ ] Checkbox column usa `.tbl-col-check` (não `style="width:40px"`)
+- [ ] Actions column usa `.tbl-col-actions` (não `style="width:80px"`)
+- [ ] Date cells usam `.tbl-date` (não `style="color:var(--fg-muted)"`)
+- [ ] Botões na mesma toolbar com mesmo tamanho (todos 36px default)
 - [ ] Checkboxes usam `.tbl-check` com `appearance: none`
 - [ ] Funciona em dark e light theme

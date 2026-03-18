@@ -115,6 +115,7 @@
 
 /* Tags */
 .od-detail-tags    { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.od-detail-tags:last-child { margin-bottom: 0; }  /* auto-flush no último elemento */
 .od-detail-tag     { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--text-caption); font-weight: 500; }
 .od-detail-tag.green  { background: var(--primary-10); color: var(--primary); }
 .od-detail-tag.blue   { background: var(--info-8); color: var(--info); }
@@ -319,7 +320,7 @@
 
 <!-- ═══ Details Panel ═══ -->
 <div class="od-panel" data-panel="details">
-  <div class="od-detail-tags" style="margin-bottom:var(--space-xl)">
+  <div class="od-detail-tags">
     <span class="od-detail-tag green">Verified</span>
     <span class="od-detail-tag blue">Premium</span>
     <span class="od-detail-tag orange">Priority</span>

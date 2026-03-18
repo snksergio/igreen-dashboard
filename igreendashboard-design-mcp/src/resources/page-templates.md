@@ -123,7 +123,7 @@
       </div>
       <div class="topbar-right">
         <div class="t-icon-btn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           <div class="notif-badge"></div>
         </div>
         <div class="t-icon-btn" id="themeToggle" title="Toggle theme">
@@ -224,7 +224,7 @@ Dentro de `<div class="body">`:
         Filter
       </button>
       <button class="tbl-export-btn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Export
       </button>
     </div>
@@ -259,7 +259,7 @@ Dentro de `<div class="body">`:
       <button class="pb active">1</button>
       <button class="pb">2</button>
       <button class="pb">3</button>
-      <button class="pb">...</button>
+      <button class="pb pb--ellipsis">...</button>
       <button class="pb">25</button>
       <button class="pb" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
@@ -596,8 +596,8 @@ Dentro de `<div class="body">`:
   <div class="ch-card-head">
     <div><div class="ch-card-title">Allocation</div></div>
   </div>
-  <div class="ch-canvas-wrap" style="position:relative">
-    <canvas id="chartDonut" height="220"></canvas>
+  <div class="ch-canvas-wrap ch-canvas-wrap--sm">
+    <canvas id="chartDonut"></canvas>
     <div class="ch-donut-center">
       <div class="ch-donut-val">$458K</div>
       <div class="ch-donut-sub">Total Value</div>

@@ -55,16 +55,19 @@ Container de busca com ícone + input:
   width: 180px; font-family: inherit;
 }
 .tbl-search input::placeholder { color: var(--fg-ghost); }
+.tbl-search svg { width: 14px; height: 14px; }  /* ícone controlado por CSS */
 ```
 
 ```html
 <div class="tbl-search">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
   </svg>
   <input type="text" placeholder="Search..." />
 </div>
 ```
+
+> **Nota:** O SVG não precisa de `width`/`height` — o CSS `.tbl-search svg` define 14px automaticamente.
 
 ---
 
@@ -401,7 +404,7 @@ input[disabled], select[disabled], textarea[disabled] {
 
 ```html
 <!-- Header: select all -->
-<th style="width:40px"><input type="checkbox" class="tbl-check" /></th>
+<th class="tbl-col-check"><input type="checkbox" class="tbl-check" /></th>
 <!-- Row: per-item -->
 <td><input type="checkbox" class="tbl-check" /></td>
 ```
@@ -543,3 +546,5 @@ Toggle on/off com transição animada:
 - [ ] Toggle usa `.form-toggle` com `::after` pseudo-element
 - [ ] Checkbox usa `.tbl-check` com `appearance: none`
 - [ ] Funciona em dark e light theme
+- [ ] Search icon SVG sem `width`/`height` inline — CSS `.tbl-search svg` controla (14px)
+- [ ] Checkbox column usa `.tbl-col-check` (não `style="width:40px"`)
