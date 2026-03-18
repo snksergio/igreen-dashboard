@@ -191,7 +191,7 @@ const TOKEN_DB = {
 
 // ── Create MCP Server ────────────────────────────────────────────────
 const server = new McpServer({
-  name: "CryptoVault Design System",
+  name: "iGreenMCP Design System",
   version: "2.2.1",
   description: "Style guide MCP server para garantir consistência visual em projetos criados com IA. 19 resources, 6 tools, 3 prompts. Transport: stdio (IDEs) + HTTP (deploy)."
 });
@@ -1236,7 +1236,7 @@ server.prompt(
       role: "user",
       content: {
         type: "text",
-        text: `Crie uma nova página chamada "${page_name}" para o dashboard CryptoVault.
+        text: `Crie uma nova página chamada "${page_name}" para o dashboard iGreenMCP.
 
 REGRAS OBRIGATÓRIAS:
 1. Copie o HTML da sidebar+topbar do resource 'component-navigation' (seção "HTML Template Copiável") — EXATAMENTE como está
@@ -1279,7 +1279,7 @@ server.prompt(
       role: "user",
       content: {
         type: "text",
-        text: `Crie o componente "${component_name}" seguindo o CryptoVault Design System.
+        text: `Crie o componente "${component_name}" seguindo o iGreenMCP Design System.
 
 REGRAS:
 1. Consulte os resources do MCP para tokens e padrões existentes
@@ -1310,7 +1310,7 @@ server.prompt(
       role: "user",
       content: {
         type: "text",
-        text: `Revise o seguinte código/componente contra o CryptoVault Design System:
+        text: `Revise o seguinte código/componente contra o iGreenMCP Design System:
 
 ${code_description}
 
@@ -1346,7 +1346,7 @@ if (useHttp) {
 
   app.get("/", (req, res) => {
     res.json({
-      name: "CryptoVault Design System MCP",
+      name: "iGreenMCP Design System MCP",
       version: "2.2.1",
       status: "running",
       transport: "http",
@@ -1371,7 +1371,7 @@ if (useHttp) {
 
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
-    console.error(`🎨 CryptoVault Design MCP running on port ${PORT} (HTTP mode)`);
+    console.error(`🎨 iGreenMCP Design MCP running on port ${PORT} (HTTP mode)`);
     console.error(`   Health: http://localhost:${PORT}/`);
     console.error(`   MCP:    http://localhost:${PORT}/mcp`);
   });
@@ -1380,5 +1380,5 @@ if (useHttp) {
   // ── stdio mode (default — for Claude Code, Cursor, Antigravity, etc.) ──
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("🎨 CryptoVault Design MCP running (stdio mode)");
+  console.error("🎨 iGreenMCP Design MCP running (stdio mode)");
 }

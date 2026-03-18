@@ -1,4 +1,4 @@
-# System Instructions — CryptoVault Design System
+# System Instructions — iGreenMCP Design System
 
 > ESTAS REGRAS SE APLICAM AUTOMATICAMENTE A TODA CRIAÇÃO DE UI.
 > O usuário NÃO precisa pedir para "seguir o design system" — isso é o padrão.

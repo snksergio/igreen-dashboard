@@ -1,6 +1,6 @@
 # Component Patterns
 
-> Padrões de componentes do CryptoVault Design System. Estes são padrões visuais e estruturais — implemente na tecnologia que preferir, mantendo a aparência consistente.
+> Padrões de componentes do iGreenMCP Design System. Estes são padrões visuais e estruturais — implemente na tecnologia que preferir, mantendo a aparência consistente.
 
 ## Princípio: Agnóstico de tecnologia
 

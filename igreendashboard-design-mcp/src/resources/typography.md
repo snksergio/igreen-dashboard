@@ -1,6 +1,6 @@
 # Typography
 
-> Escala tipográfica e regras de uso de fonte do CryptoVault Design System.
+> Escala tipográfica e regras de uso de fonte do iGreenMCP Design System.
 
 ## Fonte
 

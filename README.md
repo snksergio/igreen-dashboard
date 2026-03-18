@@ -1,18 +1,18 @@
-# iGreen Dashboard — CryptoVault Design System
+# iGreen Dashboard — iGreenMCP Design System
 
-A production-ready crypto dashboard built with a complete design system and an **MCP Server** that enables AI agents to generate pixel-perfect, consistent UI pages autonomously.
+Dashboard completo com design system e **servidor MCP** que permite agentes de IA gerarem paginas consistentes e pixel-perfect de forma autonoma.
 
-> **Live Demo:** [View on Vercel](https://igreen-dashboard.vercel.app)
+> **Demo ao vivo:** [Ver no Vercel](https://igreen-dashboard.vercel.app)
 
 ---
 
 ## Preview
 
-| Dashboard / Analytics | Product List |
+| Dashboard / Analytics | Lista de Produtos |
 |:---:|:---:|
 | ![Analytics](prints/Analytics.png) | ![List](prints/list.png) |
 
-| Order Detail | Edit / Forms |
+| Detalhe do Pedido | Formularios / Edicao |
 |:---:|:---:|
 | ![Details](prints/details.png) | ![Forms](prints/forms.png) |
 
@@ -22,210 +22,215 @@ A production-ready crypto dashboard built with a complete design system and an *
 
 ---
 
-## Pages
+## Paginas
 
-| Page | File | Description |
-|------|------|-------------|
-| Dashboard | `dashboard.html` | KPI cards, analytics charts, segmentation, activity, revenue |
-| Analytics | `analytics.html` | Same as Dashboard (canonical source) |
-| Products | `products.html` | KPI grid + full data table with filters, sort, pagination |
-| Order Detail | `order-detail.html` | 5-tab detail page: Overview, Details, Activity, Comments, Attachments |
-| New Order | `order.html` | Step-nav form page with validation, toggles, action footer |
-| Market Trends | `market-trends.html` | Filter bar + chart grid (line, bar, doughnut, radar) |
+| Pagina | Arquivo | Descricao |
+|--------|---------|-----------|
+| Dashboard | `dashboard.html` | KPI cards, graficos analytics, segmentacao, atividade, receita |
+| Analytics | `analytics.html` | Mesma do Dashboard (fonte canonica) |
+| Produtos | `products.html` | Grid de KPIs + tabela completa com filtros, ordenacao, paginacao |
+| Detalhe do Pedido | `order-detail.html` | Pagina com 5 tabs: Overview, Details, Activity, Comments, Attachments |
+| Novo Pedido | `order.html` | Formulario com navegacao por steps, validacao, toggles, footer de acoes |
+| Market Trends | `market-trends.html` | Barra de filtros + grid de graficos (line, bar, doughnut, radar) |
 
-All pages share:
-- Sidebar navigation (expandable/collapsible)
-- Glass-effect topbar with theme toggle (dark/light)
-- Responsive layout with CSS custom properties (190+ design tokens)
-- Chart.js 4.4.0 with custom legends
+Todas as paginas compartilham:
+- Sidebar de navegacao (expansivel/colapsavel)
+- Topbar com efeito glass e toggle de tema (dark/light)
+- Layout responsivo com CSS custom properties (190+ design tokens)
+- Chart.js 4.4.0 com legendas customizadas
 
 ---
 
-## Design System (CSS Architecture)
+## Design System (Arquitetura CSS)
 
 ```
 theme/
 ├── dark.css        ← 190+ tokens (surfaces, foreground, brand, status, overlays, shadows)
-├── light.css       ← Light theme overrides
-├── components.css  ← 340+ classes (all components, states, validation)
-├── tokens.css      ← Shared tokens (spacing, radius, typography, z-index)
-└── main.css        ← Tailwind v4 entry point (imports all above)
+├── light.css       ← Overrides do tema claro
+├── components.css  ← 340+ classes (todos os componentes, estados, validacao)
+├── tokens.css      ← Tokens compartilhados (spacing, radius, tipografia, z-index)
+└── main.css        ← Entry point do Tailwind v4 (importa todos acima)
 
 dist/
-└── styles.css      ← Compiled + minified output (loaded by all pages)
+└── styles.css      ← CSS compilado + minificado (carregado por todas as paginas)
 ```
 
 ---
 
-## MCP Server (v2.2.1)
+## Servidor MCP (v2.2.1)
 
-The `igreendashboard-design-mcp/` folder contains a **Model Context Protocol server** that exposes the entire design system to AI agents.
+A pasta `igreendashboard-design-mcp/` contem um **servidor Model Context Protocol** que expoe todo o design system para agentes de IA.
 
-### What the MCP provides
+### O que o MCP oferece
 
-| Category | Count | Examples |
-|----------|-------|---------|
-| **Resources** | 19 | Colors, typography, layout, states, rules, component docs, page templates |
+| Categoria | Qtde | Exemplos |
+|-----------|------|---------|
+| **Resources** | 19 | Cores, tipografia, layout, estados, regras, docs de componentes, templates de paginas |
 | **Tools** | 6 | `get_token`, `list_tokens`, `validate_css`, `suggest_component`, `generate_theme_css`, `get_file_structure` |
 | **Prompts** | 3 | `new-page`, `new-component`, `review-ui` |
-| **Component types** | 24 | card, button, table, drawer, badge, chart, detail-page, edit-page, etc. |
+| **Tipos de componente** | 24 | card, button, table, drawer, badge, chart, detail-page, edit-page, etc. |
 
-### Install on Claude Desktop
+---
 
-Add to your `claude_desktop_config.json`:
+## Instalacao
+
+### Claude Desktop
+
+Adicione ao seu `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "igreen-design": {
       "command": "node",
-      "args": ["C:/FULL/PATH/TO/igreendashboard-design-mcp/src/index.js"]
+      "args": ["C:/CAMINHO/COMPLETO/igreendashboard-design-mcp/src/index.js"]
     }
   }
 }
 ```
 
-> **Tip:** Replace `C:/FULL/PATH/TO/` with the actual absolute path to the cloned repo.
+> **Dica:** Substitua `C:/CAMINHO/COMPLETO/` pelo caminho absoluto real do repo clonado.
 
-### Install on Claude Code (CLI)
+### Claude Code (CLI)
 
 ```bash
-# Local project (stdio transport)
-claude mcp add igreen-design -- node /path/to/igreendashboard-design-mcp/src/index.js
+# Projeto local (transporte stdio)
+claude mcp add igreen-design -- node /caminho/para/igreendashboard-design-mcp/src/index.js
 
-# Or via HTTP (if deployed)
-claude mcp add igreen-design --transport http --url https://YOUR-DEPLOY-URL/mcp
+# Ou via HTTP (se deployado)
+claude mcp add igreen-design --transport http --url https://SUA-URL-DEPLOY/mcp
 ```
 
-### Install on Cursor IDE
+### Cursor IDE
 
-Add to `.cursor/mcp.json` in your project:
+Adicione ao `.cursor/mcp.json` do seu projeto:
 
 ```json
 {
   "mcpServers": {
     "igreen-design": {
       "command": "node",
-      "args": ["/path/to/igreendashboard-design-mcp/src/index.js"]
+      "args": ["/caminho/para/igreendashboard-design-mcp/src/index.js"]
     }
   }
 }
 ```
 
-### Install on Windsurf / Cline / Other IDEs
+### Windsurf / Cline / Outras IDEs
 
-Most MCP-compatible editors support either **stdio** or **HTTP** transport:
+A maioria dos editores compativeis com MCP suportam transporte **stdio** ou **HTTP**:
 
 **Stdio (local):**
 ```json
 {
   "command": "node",
-  "args": ["/path/to/igreendashboard-design-mcp/src/index.js"]
+  "args": ["/caminho/para/igreendashboard-design-mcp/src/index.js"]
 }
 ```
 
-**HTTP (deployed):**
+**HTTP (deployado):**
 ```
-URL: https://YOUR-DEPLOY-URL/mcp
-```
-
----
-
-## Usage Examples
-
-### Example 1: Create a new page from scratch
-
-```
-Prompt to AI:
-"Create a new 'Customers' page with a KPI grid showing total customers,
-active users, churn rate, and revenue per user. Below the KPIs, add a
-data table with columns: Name, Email, Status, Plan, Last Active, Actions.
-Follow the iGreen design system."
-
-The AI will automatically:
-1. Read page-templates.md → copy Template 2 (table page)
-2. Read component-card.md → build KPI cards with correct tokens
-3. Read component-table.md → build the table with toolbar, filters, pagination
-4. Use suggest_component("table") → get exact CSS classes and structure
-5. Use generate_theme_css() → ensure all tokens are available
-6. Apply rules.md → consistent naming, spacing, states
-```
-
-### Example 2: Duplicate and customize an existing page
-
-```
-Prompt to AI:
-"Duplicate the order-detail.html page to create an 'Invoice Detail' page.
-Change the tabs to: Summary, Line Items, Payment History, Notes.
-Replace the products list with an invoice line items table.
-Follow the iGreen design system."
-
-The AI will:
-1. Read order-detail.html as reference
-2. Read component-detail-page.md → understand .od-* patterns
-3. Adapt the 5-tab structure to 4 custom tabs
-4. Reuse .od-grid, .od-card, .od-detail-section patterns
-5. Add a table inside the "Line Items" tab using component-table.md patterns
-6. Validate with validate_css() → ensure no design violations
-```
-
-### Example 3: Build a form/edit page
-
-```
-Prompt to AI:
-"Create an 'Edit Product' page with a step navigation (Basic Info,
-Pricing, Inventory, Images) and form fields for each section.
-Include toggles for 'Published' and 'Featured'. Add Save/Cancel buttons."
-
-The AI will:
-1. Read component-edit-page.md → get .form-layout, .form-nav patterns
-2. Read component-forms.md → get input, select, toggle, validation CSS
-3. Use suggest_component("edit-page") → get complete spec
-4. Build the page with .form-section cards and .form-row grids
-5. Apply states.md → focus, validation, disabled states
-```
-
-### Example 4: Create a chart dashboard
-
-```
-Prompt to AI:
-"Create a 'Market Analysis' page with a filter bar (7D/30D/90D/1Y presets),
-two line charts comparing BTC and ETH prices, a doughnut chart for portfolio
-allocation, and a stat row showing total value, 24h change, and volume."
-
-The AI will:
-1. Read page-templates.md Template 4 → chart page structure
-2. Read component-charts.md → Chart.js config, palette, tooltip styling
-3. Read component-legends.md → custom legend patterns (rich, value, simple)
-4. Use suggest_component("chart") → get palette and container classes
-5. Use suggest_component("filter-bar") → get preset/date-range structure
+URL: https://SUA-URL-DEPLOY/mcp
 ```
 
 ---
 
-## Project Structure
+## Exemplos de Uso
+
+### Exemplo 1: Criar uma pagina nova do zero
+
+```
+Prompt para IA:
+"Crie uma pagina de 'Clientes' com um grid de KPIs mostrando total de
+clientes, usuarios ativos, churn rate e receita por usuario. Abaixo dos
+KPIs, adicione uma tabela com colunas: Nome, Email, Status, Plano,
+Ultimo Acesso, Acoes. Siga o design system iGreenMCP."
+
+A IA vai automaticamente:
+1. Ler page-templates.md → copiar Template 2 (pagina com tabela)
+2. Ler component-card.md → montar KPI cards com tokens corretos
+3. Ler component-table.md → montar tabela com toolbar, filtros, paginacao
+4. Usar suggest_component("table") → obter classes CSS e estrutura exata
+5. Usar generate_theme_css() → garantir que todos os tokens estao disponiveis
+6. Aplicar rules.md → naming, spacing e estados consistentes
+```
+
+### Exemplo 2: Duplicar e customizar uma pagina existente
+
+```
+Prompt para IA:
+"Duplique a pagina order-detail.html para criar uma pagina de 'Detalhe
+de Fatura'. Mude as tabs para: Resumo, Itens, Historico de Pagamento,
+Notas. Substitua a lista de produtos por uma tabela de itens da fatura.
+Siga o design system iGreenMCP."
+
+A IA vai:
+1. Ler order-detail.html como referencia
+2. Ler component-detail-page.md → entender padroes .od-*
+3. Adaptar a estrutura de 5 tabs para 4 tabs customizadas
+4. Reutilizar .od-grid, .od-card, .od-detail-section
+5. Adicionar tabela na tab "Itens" usando padroes de component-table.md
+6. Validar com validate_css() → garantir zero violacoes de design
+```
+
+### Exemplo 3: Criar pagina de formulario/edicao
+
+```
+Prompt para IA:
+"Crie uma pagina de 'Editar Produto' com navegacao por steps (Info Basica,
+Precos, Estoque, Imagens) e campos de formulario para cada secao.
+Inclua toggles para 'Publicado' e 'Destaque'. Adicione botoes Salvar/Cancelar."
+
+A IA vai:
+1. Ler component-edit-page.md → obter padroes .form-layout, .form-nav
+2. Ler component-forms.md → input, select, toggle, validacao CSS
+3. Usar suggest_component("edit-page") → spec completo
+4. Montar a pagina com .form-section cards e .form-row grids
+5. Aplicar states.md → focus, validacao, disabled
+```
+
+### Exemplo 4: Criar dashboard de graficos
+
+```
+Prompt para IA:
+"Crie uma pagina de 'Analise de Mercado' com barra de filtros
+(presets 7D/30D/90D/1Y), dois graficos de linha comparando BTC e ETH,
+um grafico doughnut para alocacao do portfolio, e uma stat row com
+valor total, variacao 24h e volume."
+
+A IA vai:
+1. Ler page-templates.md Template 4 → estrutura de pagina com graficos
+2. Ler component-charts.md → config Chart.js, paleta, tooltip styling
+3. Ler component-legends.md → padroes de legenda (rich, value, simple)
+4. Usar suggest_component("chart") → paleta e classes de container
+5. Usar suggest_component("filter-bar") → estrutura preset/date-range
+```
+
+---
+
+## Estrutura do Projeto
 
 ```
 igreen-dashboard/
-├── index.html              ← Entry point (redirects to dashboard)
-├── dashboard.html          ← Main dashboard page
-├── analytics.html          ← Analytics (same as dashboard)
-├── products.html           ← Product list with data table
-├── order-detail.html       ← Order detail (5 tabs)
-├── order.html              ← New order form page
-├── market-trends.html      ← Charts and market analysis
+├── index.html              ← Entry point (redireciona para dashboard)
+├── dashboard.html          ← Pagina principal do dashboard
+├── analytics.html          ← Analytics (mesmo que dashboard)
+├── products.html           ← Lista de produtos com tabela
+├── order-detail.html       ← Detalhe do pedido (5 tabs)
+├── order.html              ← Formulario de novo pedido
+├── market-trends.html      ← Graficos e analise de mercado
 │
 ├── dist/
-│   └── styles.css          ← Compiled CSS (Tailwind v4 output)
+│   └── styles.css          ← CSS compilado (saida do Tailwind v4)
 │
-├── theme/                  ← Design system source
-│   ├── dark.css            ← Dark theme tokens
-│   ├── light.css           ← Light theme overrides
-│   ├── components.css      ← All component styles (340+ classes)
-│   ├── tokens.css          ← Shared tokens
-│   └── main.css            ← Tailwind entry point
+├── theme/                  ← Fonte do design system
+│   ├── dark.css            ← Tokens do tema escuro
+│   ├── light.css           ← Overrides do tema claro
+│   ├── components.css      ← Todos os estilos de componentes (340+ classes)
+│   ├── tokens.css          ← Tokens compartilhados
+│   └── main.css            ← Entry point do Tailwind
 │
-├── components/             ← 8 standalone component showcases
+├── components/             ← 8 showcases de componentes standalone
 │   ├── button/
 │   ├── card/
 │   ├── kpi-card/
@@ -235,41 +240,41 @@ igreen-dashboard/
 │   ├── filter-bar/
 │   └── drawer/
 │
-├── prints/                 ← Dashboard preview screenshots
+├── prints/                 ← Screenshots de preview do dashboard
 │
-├── igreendashboard-design-mcp/   ← MCP Server
+├── igreendashboard-design-mcp/   ← Servidor MCP
 │   ├── src/
-│   │   ├── index.js              ← Server (stdio + HTTP transport)
-│   │   └── resources/            ← 19 markdown design docs
+│   │   ├── index.js              ← Servidor (stdio + HTTP transport)
+│   │   └── resources/            ← 19 documentos markdown do design
 │   ├── Dockerfile
 │   └── package.json
 │
-└── package.json            ← Root (Tailwind build scripts)
+└── package.json            ← Root (scripts de build do Tailwind)
 ```
 
 ---
 
-## Development
+## Desenvolvimento
 
 ```bash
-# Clone the repo
+# Clonar o repo
 git clone https://github.com/snksergio/igreen-dashboard.git
 cd igreen-dashboard
 
-# Install dependencies
+# Instalar dependencias
 npm install
 cd igreendashboard-design-mcp && npm install && cd ..
 
-# Watch CSS changes (dev mode)
+# Assistir mudancas CSS (modo dev)
 npm run dev
 
-# Build CSS (production)
+# Build CSS (producao)
 npm run build
 
-# Run MCP server locally (stdio)
+# Rodar servidor MCP localmente (stdio)
 npm run mcp:start
 
-# Run MCP server (HTTP on port 3000)
+# Rodar servidor MCP (HTTP na porta 3000)
 npm run mcp:http
 ```
 
@@ -277,38 +282,38 @@ npm run mcp:http
 
 ## Deploy
 
-### Vercel (Static Dashboard)
+### Vercel (Dashboard Estatico)
 
-1. Push this repo to GitHub
-2. Import the repo on [Vercel](https://vercel.com)
+1. Faca push deste repo para o GitHub
+2. Importe o repo no [Vercel](https://vercel.com)
 3. Framework preset: **Other**
 4. Build command: `npm run build`
-5. Output directory: `.` (root — static HTML files)
+5. Output directory: `.` (root — arquivos HTML estaticos)
 6. Deploy
 
-All HTML pages will be served as static files. The `index.html` redirects to `dashboard.html`.
+Todas as paginas HTML serao servidas como arquivos estaticos. O `index.html` redireciona para `dashboard.html`.
 
-### MCP Server (Railway / Render)
+### Servidor MCP (Railway / Render)
 
-The MCP server can be deployed separately for remote AI agent access:
+O servidor MCP pode ser deployado separadamente para acesso remoto de agentes IA:
 
-1. Deploy the `igreendashboard-design-mcp/` folder to Railway or Render
-2. Use the Dockerfile included
-3. Set `PORT` env var if needed (default: 3000)
-4. Connect via HTTP: `https://your-deploy-url/mcp`
+1. Faca deploy da pasta `igreendashboard-design-mcp/` no Railway ou Render
+2. Use o Dockerfile incluido
+3. Configure a env var `PORT` se necessario (padrao: 3000)
+4. Conecte via HTTP: `https://sua-url-deploy/mcp`
 
 ---
 
-## Tech Stack
+## Stack Tecnica
 
 - **CSS:** Tailwind CSS v4 + Custom Properties (190+ design tokens)
-- **Charts:** Chart.js 4.4.0 with custom legend system
-- **Fonts:** Inter (Google Fonts)
-- **MCP:** @modelcontextprotocol/sdk + Express (dual transport)
-- **Theme:** Dark/Light with localStorage persistence
+- **Graficos:** Chart.js 4.4.0 com sistema de legendas customizado
+- **Fontes:** Inter (Google Fonts)
+- **MCP:** @modelcontextprotocol/sdk + Express (transporte duplo: stdio + HTTP)
+- **Tema:** Dark/Light com persistencia via localStorage
 
 ---
 
-## License
+## Licenca
 
 MIT

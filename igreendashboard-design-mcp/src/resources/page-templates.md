@@ -11,7 +11,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PAGE_TITLE — CryptoVault</title>
+  <title>PAGE_TITLE — iGreenMCP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
         </svg>
       </div>
       <div class="brand-text">
-        <div class="brand-name">CryptoVault</div>
+        <div class="brand-name">iGreenMCP</div>
         <div class="brand-sub">Pro Account</div>
       </div>
     </div>
@@ -645,7 +645,7 @@ function valLegend(id, items) {
 
 | Propriedade | Onde mudar |
 |-------------|-----------|
-| Título da aba | `<title>PAGE — CryptoVault</title>` |
+| Título da aba | `<title>PAGE — iGreenMCP</title>` |
 | Nav ativo | Adicionar `class="active"` no `.nav-item` correto |
 | Breadcrumb | `.bc-parent` (link) e `.bc-current` (nome) |
 | Grid de charts | `.ch-grid` (2col), `.ch-grid-3` (3col), `.ch-grid-4` (4col) |

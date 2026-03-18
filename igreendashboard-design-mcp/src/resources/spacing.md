@@ -1,6 +1,6 @@
 # Spacing & Layout
 
-> Sistema de espaçamento baseado em grid de 8px e regras de layout do CryptoVault Design System.
+> Sistema de espaçamento baseado em grid de 8px e regras de layout do iGreenMCP Design System.
 
 ## Escala de Espaçamento
 

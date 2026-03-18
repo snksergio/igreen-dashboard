@@ -1,7 +1,7 @@
 {
   "name": "igreen-dashboard",
   "version": "1.0.0",
-  "description": "CryptoVault Dashboard — Design System with MCP Server for AI-assisted development",
+  "description": "iGreenMCP Dashboard — Design System with MCP Server for AI-assisted development",
   "main": "index.js",
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./theme/main.css -o ./dist/styles.css --watch",

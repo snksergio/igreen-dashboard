@@ -1,11 +1,11 @@
-# CryptoVault Design System
+# iGreenMCP Design System
 
 > Regras obrigatórias para qualquer criação de UI neste projeto.
 > Claude Code carrega este arquivo automaticamente.
 
 ## Regra fundamental
 
-**TODA interface criada neste projeto DEVE seguir o CryptoVault Design System.**
+**TODA interface criada neste projeto DEVE seguir o iGreenMCP Design System.**
 Isso não precisa ser pedido — é o padrão. Prompts como "crie uma página com tabela" ou "adicione um card" já implicam uso completo de tokens, classes e padrões existentes.
 
 ## Tokens obrigatórios

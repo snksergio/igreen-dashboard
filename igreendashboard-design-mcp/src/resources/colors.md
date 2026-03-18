@@ -1,6 +1,6 @@
 # Color Tokens
 
-> Paleta de cores do CryptoVault Design System. Todas as cores devem ser usadas via CSS custom properties (variáveis). Nunca use valores hex hardcoded nos componentes.
+> Paleta de cores do iGreenMCP Design System. Todas as cores devem ser usadas via CSS custom properties (variáveis). Nunca use valores hex hardcoded nos componentes.
 
 ## Regra principal
 - Todas as cores devem ser referenciadas via tokens (CSS variables)

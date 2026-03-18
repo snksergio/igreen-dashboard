@@ -1,6 +1,6 @@
 # Rules & Principles
 
-> Regras obrigatórias e princípios de design que devem ser seguidos em todo projeto que use o CryptoVault Design System.
+> Regras obrigatórias e princípios de design que devem ser seguidos em todo projeto que use o iGreenMCP Design System.
 
 ## Regras Obrigatórias (DEVE seguir)
 

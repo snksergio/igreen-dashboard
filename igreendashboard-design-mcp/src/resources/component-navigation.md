@@ -211,7 +211,7 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
       </svg>
     </div>
     <div class="brand-text">
-      <div class="brand-name">CryptoVault</div>
+      <div class="brand-name">iGreenMCP</div>
       <div class="brand-sub">Pro Account</div>
     </div>
   </div>

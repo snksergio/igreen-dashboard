@@ -1,6 +1,6 @@
 # Responsive System
 
-> Breakpoints e media queries para o CryptoVault Design System.
+> Breakpoints e media queries para o iGreenMCP Design System.
 > Abordagem: desktop-first com `max-width` breakpoints.
 
 ## Breakpoints

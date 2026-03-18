@@ -1,4 +1,4 @@
-# CryptoVault — Project Context Document
+# iGreenMCP — Project Context Document
 
 > Documento de referencia completo para entender a arquitetura, estrutura, tokens, classes e convenções do projeto.
 > Destinado a ser usado como contexto em sessões de IA (Claude, etc.).
@@ -7,7 +7,7 @@
 
 ## 1. Visao Geral
 
-**Projeto:** CryptoVault — Dashboard de analytics para criptomoedas.
+**Projeto:** iGreenMCP — Dashboard de analytics para criptomoedas.
 **Stack:** HTML puro + CSS custom properties + Tailwind CSS v4 + Chart.js + JavaScript vanilla.
 **Sem framework JS** — todo o projeto e stateless, com componentes CSS puros.
 **Tema:** Dark (default) e Light, alternados via `data-theme` no `<html>`.
@@ -374,7 +374,7 @@ O arquivo `tokens.css` mapeia CSS vars para o namespace `@theme inline` do Tailw
 | `.sidebar-brand` | Logo + nome da marca |
 | `.s-logo` | Container do logo SVG |
 | `.brand-text` | Container de texto do logo |
-| `.brand-name` | Nome "CryptoVault" |
+| `.brand-name` | Nome "iGreenMCP" |
 | `.brand-sub` | Subtitulo "Pro Account" |
 | `.sidebar-section` | Grupo de navegacao |
 | `.sec-label` | Label da secao ("Main Menu", "Manage") |
@@ -700,7 +700,7 @@ Classes podem ser combinadas livremente:
     <div class="app">                      ← Flex container (100vw x 100vh)
 
       <aside class="sidebar">              ← 248px fixo
-        .sidebar-brand                      ← Logo + CryptoVault
+        .sidebar-brand                      ← Logo + iGreenMCP
         .sidebar-section (Main Menu)        ← Dashboard, Portfolio, Swap, Market Trends
         .sidebar-section (Manage)           ← Analytics (active), Wallets, History, Settings
         .sidebar-gap                        ← Flex spacer

@@ -1,6 +1,6 @@
 # Components Overview
 
-> Catálogo completo de componentes do CryptoVault Design System com referências cruzadas entre standalone folders e MCP resources.
+> Catálogo completo de componentes do iGreenMCP Design System com referências cruzadas entre standalone folders e MCP resources.
 
 ## Índice de Componentes
 
