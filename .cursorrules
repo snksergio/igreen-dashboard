@@ -1,0 +1,42 @@
+You are working on the CryptoVault crypto dashboard project.
+This project has a complete design system with CSS custom properties (tokens).
+ALL UI creation MUST follow these rules — they are implicit in every request.
+
+# Mandatory Rules
+
+1. ALL colors via CSS tokens from theme/dark.css + theme/light.css — NEVER hardcoded hex
+2. ALL components use existing classes from theme/components.css (~1700 lines)
+3. Every page uses the sidebar+topbar layout from existing pages (analytics.html, products.html, etc.)
+4. Dark theme is default (data-theme="dark"), light theme MUST also work
+5. Font: Inter (Google Fonts), weights 400-700
+6. Typography scale: --text-display(28), --text-lg(22), --text-title(20), --text-heading(18), --text-subheading(15), --text-body(14), --text-sm(13), --text-caption(12), --text-xs(11)
+7. Spacing scale: --space-xs(4) through --space-3xl(32) — no arbitrary values
+8. Border radius: --radius-xs(6) through --radius-pill(9999)
+9. Transitions: var(--ease-out) — never ease, linear, etc.
+10. White text on solid backgrounds: var(--on-solid) — never #fff
+11. SVG icons inline with currentColor
+12. Chart legends: always custom HTML (legend: { display: false } in Chart.js)
+13. Stat indicator rows: always with background var(--muted)
+14. Focus visible: outline 2px solid var(--ring), offset 2px
+
+# CSS Prefixes
+
+- .kpi- (KPI cards) | .tbl- (tables) | .dw- (drawer) | .ch- (charts)
+- .od- (order detail) | .od-detail- (detail sections) | .ch-lg- (legends)
+- .btn / .btn--* (buttons) | .badge / .status-chip (badges)
+
+# Reference Pages
+
+- analytics.html: KPI grid, table+drawer, chart cards, stat sub-cards
+- products.html: Table with toolbar (tabs, search, filter, export), pagination
+- order-detail.html: Tabs, 2-column grid, detail sections, field grids, tags, timeline
+- market-trends.html: Chart cards, stat rows, 3 legend types, filter bar, sparklines
+
+# Build
+
+npx @tailwindcss/cli -i theme/main.css -o dist/styles.css --minify
+
+# MCP Server
+
+The project includes a design system MCP server at igreendashboard-design-mcp/.
+Use it for token lookup, CSS validation, component specs, and page templates.

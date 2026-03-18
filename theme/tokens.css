@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS → TAILWIND @theme
+   Maps CSS variables to Tailwind utility namespaces.
+   Generates: bg-background, text-foreground, border-border,
+   rounded-md, shadow-card, p-xl, etc.
+═══════════════════════════════════════════════ */
+
+@theme inline {
+  /* ── Colors: Semantic ── */
+  --color-background:           var(--background);
+  --color-background-glass:     var(--background-glass);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-popover-border:       var(--popover-border);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-input:                var(--input);
+  --color-input-border:         var(--input-border);
+  --color-border:               var(--border);
+  --color-ring:                 var(--ring);
+  --color-sidebar:              var(--sidebar);
+  --color-sidebar-foreground:   var(--sidebar-foreground);
+  --color-sidebar-muted:        var(--sidebar-muted);
+  --color-sidebar-accent:       var(--sidebar-accent);
+  --color-sidebar-border:       var(--sidebar-border);
+
+  /* ── Colors: Brand / Semantic status ── */
+  --color-primary:     var(--primary);
+  --color-primary-fg:  var(--primary-fg);
+  --color-destructive: var(--destructive);
+  --color-warning:     var(--warning);
+  --color-info:        var(--info);
+  --color-chart-2:     var(--chart-2);
+
+  /* ── Colors: Foreground scale ── */
+  --color-fg:           var(--fg);
+  --color-fg-strong:    var(--fg-strong);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-tertiary:  var(--fg-tertiary);
+  --color-fg-muted:     var(--fg-muted);
+  --color-fg-dim:       var(--fg-dim);
+  --color-fg-faint:     var(--fg-faint);
+  --color-fg-ghost:     var(--fg-ghost);
+  --color-fg-whisper:   var(--fg-whisper);
+  --color-fg-disabled:  var(--fg-disabled);
+
+  /* ── Colors: Border scale ── */
+  --color-border-structural: var(--border-structural);
+  --color-border-subtle:     var(--border-subtle);
+  --color-border-soft:       var(--border-soft);
+  --color-border-separator:  var(--border-separator);
+  --color-border-strong:     var(--border-strong);
+
+  /* ── Colors: Overlay scale ── */
+  --color-overlay-3:  var(--overlay-3);
+  --color-overlay-4:  var(--overlay-4);
+  --color-overlay-5:  var(--overlay-5);
+  --color-overlay-6:  var(--overlay-6);
+  --color-overlay-7:  var(--overlay-7);
+  --color-overlay-8:  var(--overlay-8);
+  --color-overlay-10: var(--overlay-10);
+  --color-overlay-12: var(--overlay-12);
+  --color-overlay-22: var(--overlay-22);
+
+  /* ── Border Radius ── */
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-pill: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-card:       var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-popover:    var(--shadow-popover);
+
+  /* ── Font Sizes ── */
+  --text-display: var(--text-display);
+  --text-title:   var(--text-title);
+  --text-body:    var(--text-body);
+  --text-sm:      var(--text-sm);
+  --text-caption: var(--text-caption);
+  --text-xs:      var(--text-xs);
+
+  /* ── Spacing ── */
+  --spacing-xs:  var(--space-xs);
+  --spacing-sm:  var(--space-sm);
+  --spacing-md:  var(--space-md);
+  --spacing-lg:  var(--space-lg);
+  --spacing-xl:  var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+}

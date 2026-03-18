@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════
+   FILTER BAR — CryptoVault Design System
+   Top-level filter bar with presets,
+   date range, tags, and action buttons
+═══════════════════════════════════ */
+
+/* ═══════════════════════════════════
+   CONTAINER
+═══════════════════════════════════ */
+.filter-bar {
+  background: var(--card); border-radius: var(--radius-md); padding: var(--space-md) var(--space-xl);
+  display: flex; align-items: center; gap: var(--space-md); flex-shrink: 0;
+  box-shadow: var(--shadow-card);
+}
+
+/* ═══════════════════════════════════
+   FILTER LABEL
+═══════════════════════════════════ */
+.filter-label {
+  font-size: var(--text-caption); font-weight: 500; color: var(--fg-muted); white-space: nowrap;
+}
+
+/* ═══════════════════════════════════
+   PRESET PILLS (period selector)
+═══════════════════════════════════ */
+.presets {
+  display: flex; gap: 2px; background: var(--muted);
+  border-radius: var(--radius-sm); padding: 3px;
+}
+.preset {
+  min-height: 30px; padding: 0 12px; border-radius: var(--radius-xs); border: none;
+  background: transparent; color: var(--fg-muted); font-size: var(--text-caption);
+  cursor: pointer; transition: all .2s var(--ease-out); font-family: inherit; font-weight: 500;
+}
+.preset.active {
+  background: var(--surface-raised); color: var(--foreground); font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.preset:hover:not(.active) { color: var(--fg-secondary); }
+
+/* ═══════════════════════════════════
+   VERTICAL DIVIDER
+═══════════════════════════════════ */
+.vdiv { width: 1px; height: 22px; background: var(--border-separator); flex-shrink: 0; }
+
+/* ═══════════════════════════════════
+   DATE RANGE BUTTON
+═══════════════════════════════════ */
+.date-range-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--secondary); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  min-height: 32px; height: 32px; padding: 0 12px; font-size: var(--text-caption); color: var(--secondary-foreground); cursor: pointer;
+  white-space: nowrap; transition: all .2s var(--ease-out); font-weight: 500;
+  touch-action: manipulation;
+}
+.date-range-btn:hover { border-color: var(--ring); color: var(--foreground); background: var(--accent); }
+
+/* ═══════════════════════════════════
+   SPACER
+═══════════════════════════════════ */
+.filter-spacer { flex: 1; }
+
+/* ═══════════════════════════════════
+   FILTER TAGS (right side)
+═══════════════════════════════════ */
+.filter-tags { display: flex; gap: 6px; align-items: center; }
+.ftag {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--overlay-8); border: none;
+  border-radius: var(--radius-pill); min-height: 30px; height: 30px; padding: 0 12px;
+  font-size: var(--text-caption); color: var(--fg-secondary); cursor: pointer;
+  font-weight: 500; transition: all .2s var(--ease-out);
+}
+.ftag:hover { background: var(--overlay-12); color: var(--foreground); }
+
+/* ═══════════════════════════════════
+   ACTION BUTTONS
+═══════════════════════════════════ */
+.icon-btn {
+  width: 36px; height: 36px; background: var(--secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--secondary-foreground); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s var(--ease-out); touch-action: manipulation;
+}
+.icon-btn:hover { color: var(--fg-muted); background: var(--overlay-8); }
+
+.export-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  min-height: 36px; height: 36px; padding: 0 16px; color: var(--secondary-foreground); font-size: var(--text-sm); font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: all .2s var(--ease-out); white-space: nowrap;
+  touch-action: manipulation;
+}
+.export-btn:hover { color: var(--fg-secondary); background: var(--overlay-5); border-color: var(--border-soft); }

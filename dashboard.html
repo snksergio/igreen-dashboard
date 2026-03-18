@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — CryptoVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    // Apply saved theme immediately to prevent flash
+    (function(){var t=localStorage.getItem('cv-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+  <link href="./dist/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="s-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <rect x="2" y="12" width="3.5" height="8" rx="1.2"/>
+          <rect x="7.5" y="7" width="3.5" height="13" rx="1.2"/>
+          <rect x="13" y="3" width="3.5" height="17" rx="1.2"/>
+          <rect x="18.5" y="9" width="3.5" height="11" rx="1.2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CryptoVault</div>
+        <div class="brand-sub">Pro Account</div>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="sidebar-section">
+      <div class="sec-label">Main Menu</div>
+      <a class="nav-item" href="dashboard.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Portfolio</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <span class="nav-label">Swap</span>
+      </a>
+      <a class="nav-item" href="market-trends.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Market Trends</span>
+      </a>
+    </div>
+
+    <!-- Manage -->
+    <div class="sidebar-section">
+      <div class="sec-label">Manage</div>
+      <a class="nav-item active" href="analytics.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="13" width="3" height="9" rx="1"/>
+            <rect x="7" y="8" width="3" height="14" rx="1"/>
+            <rect x="12" y="3" width="3" height="19" rx="1"/>
+            <rect x="17" y="10" width="3" height="12" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-label">Analytics</span>
+      </a>
+      <a class="nav-item" href="products.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="nav-label">Calendar</span>
+      </a>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-section">
+      <div class="sec-label">Settings</div>
+      <a class="nav-item" href="order.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Settings</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Security</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+
+    <div class="sidebar-gap"></div>
+
+    <!-- Upgrade Card -->
+    <div class="upgrade-card">
+      <div class="uc-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="uc-title">Upgrade To Pro</div>
+      <div class="uc-sub">Unlock real-time signals and advanced analytics.</div>
+      <button class="uc-btn">Get Started</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+      </button>
+      <div class="topbar-divider"></div>
+      <div class="breadcrumb">
+        <span class="bc-parent" onclick="location.href='dashboard.html'">Overview</span>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">Analytics</span>
+      </div>
+
+      <div class="topbar-center">
+        <div class="wallet-tag"><div class="dot dot-gray"></div>Main-coin wallet</div>
+        <div class="wallet-tag"><div class="dot dot-green"></div>All Wallet (08)</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="t-icon-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <div class="notif-badge"></div>
+        </div>
+        <div class="t-icon-btn" id="themeToggle" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="user-chip">
+          <div class="avatar">S</div>
+          <div class="user-meta">
+            <div class="user-name">Simson wili</div>
+            <div class="user-url">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Simsonwit.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BODY (scrollable) -->
+    <div class="body">
+
+      <!-- ── FILTER BAR ── -->
+      <div class="filter-bar">
+        <span class="filter-label">Period</span>
+        <div class="presets">
+          <button class="preset">Today</button>
+          <button class="preset">7D</button>
+          <button class="preset active">30D</button>
+          <button class="preset">90D</button>
+          <button class="preset">1Y</button>
+        </div>
+        <div class="vdiv"></div>
+        <div class="date-range-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Feb 10, 2026 — Mar 12, 2026
+        </div>
+        <div class="filter-spacer"></div>
+        <div class="filter-tags">
+          <div class="ftag">BTC <span style="opacity:.5;margin-left:2px">✕</span></div>
+          <div class="ftag">ETH <span style="opacity:.5;margin-left:2px">✕</span></div>
+        </div>
+        <div class="vdiv"></div>
+        <button class="icon-btn" aria-label="Filtros avançados">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Atualizar dados">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+        </button>
+        <button class="export-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export CSV
+        </button>
+      </div>
+
+      <!-- ── KPI GRID ── -->
+      <div class="kpi-grid">
+
+        <!-- Total Volume -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Total Volume</div>
+            <div class="kpi-value">$2.84M</div>
+            <div class="kpi-footer">
+              <span class="kpi-sub">+$340K</span>
+              <span class="kpi-badge up">+14.2%</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="90" height="52" viewBox="0 0 90 52">
+              <rect x="2"  y="36" width="8" height="14" rx="2" fill="var(--primary)" opacity=".25"/>
+              <rect x="14" y="28" width="8" height="22" rx="2" fill="var(--primary)" opacity=".30"/>
+              <rect x="26" y="32" width="8" height="18" rx="2" fill="var(--primary)" opacity=".35"/>
+              <rect x="38" y="22" width="8" height="28" rx="2" fill="var(--primary)" opacity=".45"/>
+              <rect x="50" y="18" width="8" height="32" rx="2" fill="var(--primary)" opacity=".55"/>
+              <rect x="62" y="10" width="8" height="40" rx="2" fill="var(--primary)" opacity=".70"/>
+              <rect x="74" y="2"  width="8" height="48" rx="2" fill="var(--primary)" opacity="1"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Active Trades -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Active Trades</div>
+            <div class="kpi-value">1,247</div>
+            <div class="kpi-footer">
+              <span class="kpi-sub">+104</span>
+              <span class="kpi-badge up">+8.3%</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="90" height="52" viewBox="0 0 90 52">
+              <rect x="2"  y="24" width="8" height="26" rx="2" fill="var(--primary)" opacity=".35"/>
+              <rect x="14" y="14" width="8" height="36" rx="2" fill="var(--primary)" opacity=".45"/>
+              <rect x="26" y="20" width="8" height="30" rx="2" fill="var(--primary)" opacity=".40"/>
+              <rect x="38" y="30" width="8" height="20" rx="2" fill="var(--primary)" opacity=".30"/>
+              <rect x="50" y="8"  width="8" height="42" rx="2" fill="var(--primary)" opacity=".60"/>
+              <rect x="62" y="16" width="8" height="34" rx="2" fill="var(--primary)" opacity=".50"/>
+              <rect x="74" y="4"  width="8" height="46" rx="2" fill="var(--primary)" opacity="1"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Portfolio Return -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Portfolio Return</div>
+            <div class="kpi-value" style="color:var(--primary)">+18.7%</div>
+            <div class="kpi-footer">
+              <span class="kpi-sub">+2.3 pts</span>
+              <span class="kpi-badge up">+34.2% yr</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="90" height="52" viewBox="0 0 90 52">
+              <defs>
+                <linearGradient id="sg-ret" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M2,40 C12,38 18,36 28,32 C38,28 42,30 50,24 C58,18 64,14 72,10 C78,7 84,5 88,3" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M2,40 C12,38 18,36 28,32 C38,28 42,30 50,24 C58,18 64,14 72,10 C78,7 84,5 88,3 L88,52 L2,52 Z" fill="url(#sg-ret)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Net P&L -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Net P&amp;L</div>
+            <div class="kpi-value" style="color:var(--primary)">+$24,891</div>
+            <div class="kpi-footer">
+              <span class="kpi-sub">+$1,493</span>
+              <span class="kpi-badge up">+6.4%</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="90" height="52" viewBox="0 0 90 52">
+              <defs>
+                <linearGradient id="sg-pnl" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.20"/>
+                  <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M2,36 C10,34 16,30 24,32 C32,34 36,28 44,22 C52,16 58,20 66,14 C72,10 80,6 88,4" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M2,36 C10,34 16,30 24,32 C32,34 36,28 44,22 C52,16 58,20 66,14 C72,10 80,6 88,4 L88,52 L2,52 Z" fill="url(#sg-pnl)"/>
+            </svg>
+          </div>
+        </div>
+
+      </div><!-- /kpi-grid -->
+
+      <!-- ── MID ROW ── -->
+      <div class="mid-row">
+
+        <!-- Portfolio Performance -->
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Portfolio Performance</div>
+              <div class="card-sub">Daily NAV · Last 30 days</div>
+            </div>
+            <div class="card-actions">
+              <div class="perf-legend">
+                <div class="pl-item">
+                  <div class="pl-line" style="background:var(--primary)"></div>Portfolio
+                </div>
+                <div class="pl-item">
+                  <div class="pl-line" style="background:var(--chart-2);opacity:.6"></div>Benchmark
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="perf-stats">
+            <div class="pstat-card">
+              <div class="pstat-label">Current NAV</div>
+              <div class="pstat-val">$458,320</div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-label">Period Return</div>
+              <div class="pstat-val green">+$48,320 <span class="pstat-pct">(11.8%)</span></div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-label">Max Drawdown</div>
+              <div class="pstat-val red">-3.4%</div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-label">Sharpe Ratio</div>
+              <div class="pstat-val">2.14</div>
+            </div>
+          </div>
+          <div class="chart-area">
+            <canvas id="perfChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Asset Allocation -->
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Asset Allocation</div>
+              <div class="card-sub">Portfolio distribution</div>
+            </div>
+            <span class="more-dots">⋮</span>
+          </div>
+          <div class="donut-area">
+            <canvas id="allocChart"></canvas>
+          </div>
+          <div class="alloc-list">
+            <div class="al-row">
+              <div class="al-left"><div class="al-pip" style="background:#f7931a"></div><span class="al-name">Bitcoin</span></div>
+              <div class="al-right">
+                <div class="al-bar-bg"><div class="al-bar" style="width:42%;background:#f7931a"></div></div>
+                <span class="al-pct">42%</span><span class="al-chg up">+5.2%</span>
+              </div>
+            </div>
+            <div class="al-row">
+              <div class="al-left"><div class="al-pip" style="background:#627eea"></div><span class="al-name">Ethereum</span></div>
+              <div class="al-right">
+                <div class="al-bar-bg"><div class="al-bar" style="width:28%;background:#627eea"></div></div>
+                <span class="al-pct">28%</span><span class="al-chg up">+2.8%</span>
+              </div>
+            </div>
+            <div class="al-row">
+              <div class="al-left"><div class="al-pip" style="background:#f3ba2f"></div><span class="al-name">BNB</span></div>
+              <div class="al-right">
+                <div class="al-bar-bg"><div class="al-bar" style="width:15%;background:#f3ba2f"></div></div>
+                <span class="al-pct">15%</span><span class="al-chg dn">-1.1%</span>
+              </div>
+            </div>
+            <div class="al-row">
+              <div class="al-left"><div class="al-pip" style="background:#9945ff"></div><span class="al-name">Solana</span></div>
+              <div class="al-right">
+                <div class="al-bar-bg"><div class="al-bar" style="width:10%;background:#9945ff"></div></div>
+                <span class="al-pct">10%</span><span class="al-chg up">+8.4%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mid-row -->
+
+      <!-- ── INSIGHTS ROW ── -->
+      <div class="insights-row">
+
+        <!-- Customer Segmentation -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Customer Segmentation</div>
+          </div>
+          <div class="seg-donut-wrap">
+            <canvas id="segChart"></canvas>
+          </div>
+          <div class="seg-legend">
+            <div class="seg-row">
+              <div class="seg-dot" style="background:var(--primary)"></div>
+              <span class="seg-name">Small Business</span>
+              <span class="seg-val">2,310</span>
+              <span class="seg-chg up">+2.1%</span>
+            </div>
+            <div class="seg-row">
+              <div class="seg-dot" style="background:#f6b51e"></div>
+              <span class="seg-name">Enterprise</span>
+              <span class="seg-val">800</span>
+              <span class="seg-chg up">+4.2%</span>
+            </div>
+            <div class="seg-row">
+              <div class="seg-dot" style="background:var(--primary-70)"></div>
+              <span class="seg-name">Individuals</span>
+              <span class="seg-val">310</span>
+              <span class="seg-chg dn">-1.8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Overview -->
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Order Overview</div>
+            </div>
+            <select class="ov-year-select">
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+            </select>
+          </div>
+          <div class="ov-stats">
+            <div class="ov-stat">
+              <div class="ov-stat-label">Total Sales</div>
+              <div class="ov-stat-val">$47,890</div>
+            </div>
+            <div class="ov-stat">
+              <div class="ov-stat-label">Orders</div>
+              <div class="ov-stat-val">1,680</div>
+            </div>
+          </div>
+          <div class="ov-chart">
+            <canvas id="orderChart"></canvas>
+          </div>
+        </div>
+
+        <!-- User Activity -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">User Activity</div>
+          </div>
+          <div class="ua-chart">
+            <canvas id="activityChart"></canvas>
+          </div>
+          <div class="ua-legend">
+            <div class="ua-legend-item">
+              <div class="ua-legend-label"><div class="ua-legend-dot" style="background:var(--primary)"></div>Viewed</div>
+              <div class="ua-legend-val">678,900</div>
+            </div>
+            <div class="ua-legend-item">
+              <div class="ua-legend-label"><div class="ua-legend-dot" style="background:var(--primary-70)"></div>Checkout</div>
+              <div class="ua-legend-val">312,420</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /insights-row -->
+
+      <!-- ── GEO ROW ── -->
+      <div class="geo-row">
+
+        <!-- Top Countries -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Top Countries</div>
+          </div>
+          <div class="tc-body">
+            <div class="tc-map">
+              <!-- Dotted world map (2790 dots, public domain) -->
+              <svg id="worldDotMap" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg"></svg>
+              <!-- Country pins -->
+              <div class="tc-map-dot" data-country="us" style="left:22%;top:22%"></div>
+              <div class="tc-map-dot" data-country="br" style="left:29%;top:64%"></div>
+              <div class="tc-map-dot sm" data-country="in" style="left:72%;top:35%"></div>
+              <div class="tc-map-dot sm" data-country="gb" style="left:52%;top:15%"></div>
+              <div class="tc-map-dot sm" data-country="tr" style="left:57%;top:26%"></div>
+            </div>
+            <div class="tc-list">
+              <div class="tc-item" data-country="us">
+                <div class="tc-flag">🇺🇸</div>
+                <div class="tc-info">
+                  <div class="tc-name">United States</div>
+                  <div class="tc-bar-wrap"><div class="tc-bar-bg"><div class="tc-bar" style="width:85%"></div></div></div>
+                </div>
+                <span class="tc-pct">38.61%</span>
+              </div>
+              <div class="tc-item" data-country="br">
+                <div class="tc-flag">🇧🇷</div>
+                <div class="tc-info">
+                  <div class="tc-name">Brazil</div>
+                  <div class="tc-bar-wrap"><div class="tc-bar-bg"><div class="tc-bar" style="width:72%"></div></div></div>
+                </div>
+                <span class="tc-pct">32.79%</span>
+              </div>
+              <div class="tc-item" data-country="in">
+                <div class="tc-flag">🇮🇳</div>
+                <div class="tc-info">
+                  <div class="tc-name">India</div>
+                  <div class="tc-bar-wrap"><div class="tc-bar-bg"><div class="tc-bar" style="width:58%"></div></div></div>
+                </div>
+                <span class="tc-pct">26.42%</span>
+              </div>
+              <div class="tc-item" data-country="gb">
+                <div class="tc-flag">🇬🇧</div>
+                <div class="tc-info">
+                  <div class="tc-name">United Kingdom</div>
+                  <div class="tc-bar-wrap"><div class="tc-bar-bg"><div class="tc-bar" style="width:38%"></div></div></div>
+                </div>
+                <span class="tc-pct">17.42%</span>
+              </div>
+              <div class="tc-item" data-country="tr">
+                <div class="tc-flag">🇹🇷</div>
+                <div class="tc-info">
+                  <div class="tc-name">Turkey</div>
+                  <div class="tc-bar-wrap"><div class="tc-bar-bg"><div class="tc-bar" style="width:28%"></div></div></div>
+                </div>
+                <span class="tc-pct">12.85%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Channel Revenue -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Channel Revenue</div>
+            <select class="ov-year-select">
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>Yearly</option>
+            </select>
+          </div>
+          <div class="cr-growth">
+            <span class="cr-growth-val">3.4%</span>
+            <span class="cr-growth-label">Growth<br>Rate</span>
+          </div>
+          <div class="cr-seg-bar">
+            <div class="cr-seg" style="flex:28;background:#5b8bd4"></div>
+            <div class="cr-seg" style="flex:32;background:#c4a962"></div>
+            <div class="cr-seg" style="flex:40;background:var(--fg-tertiary)"></div>
+          </div>
+          <div class="cr-seg-labels">
+            <span class="cr-seg-label">28%</span>
+            <span class="cr-seg-label">32%</span>
+            <span class="cr-seg-label">40%</span>
+          </div>
+          <div class="cr-channels">
+            <div class="cr-channel">
+              <div class="cr-ch-icon" style="background:rgba(91,139,212,0.15);color:#5b8bd4">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              </div>
+              <span class="cr-ch-val">$2.9K</span>
+              <span class="cr-ch-name">Online store</span>
+            </div>
+            <div class="cr-channel">
+              <div class="cr-ch-icon" style="background:rgba(196,169,98,0.15);color:#c4a962">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <span class="cr-ch-val">$2.6K</span>
+              <span class="cr-ch-name">Physical store</span>
+            </div>
+            <div class="cr-channel">
+              <div class="cr-ch-icon" style="background:rgba(142,142,154,0.15);color:var(--fg-tertiary)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              </div>
+              <span class="cr-ch-val">$2.1K</span>
+              <span class="cr-ch-name">Social Media</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /geo-row -->
+
+      <!-- ── TRANSACTION TABLE ── -->
+      <div class="table-section">
+        <div class="tbl-topbar">
+
+          <!-- Row 1: Title + Badge -->
+          <div class="tbl-title-row">
+            <div class="tbl-title-left">
+              <span class="card-title">Recent Transactions</span>
+              <span class="tbl-badge" id="tblCount">247</span>
+            </div>
+          </div>
+
+          <!-- Row 2: Tabs + Actions -->
+          <div class="tbl-toolbar-row">
+            <div class="tbl-tabs">
+              <button class="tbl-tab active" data-status="all">All</button>
+              <button class="tbl-tab" data-status="completed">Completed</button>
+              <button class="tbl-tab" data-status="pending">Pending</button>
+              <button class="tbl-tab" data-status="failed">Failed</button>
+            </div>
+            <div class="tbl-toolbar-spacer"></div>
+            <div class="tbl-search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input type="text" id="tblSearchInput" placeholder="Search..." aria-label="Buscar transações" autocomplete="off">
+            </div>
+            <button class="tbl-filter-btn" id="tblFilterToggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+              </svg>
+              Filter
+            </button>
+            <button class="tbl-export-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Export
+            </button>
+            <button class="tbl-refresh-btn" id="tblRefreshBtn" title="Refresh">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Row 3: Filter Chips -->
+          <div class="tbl-filters">
+            <div class="filter-chip-wrap">
+              <button class="filter-chip" id="chipType">
+                <span class="fc-label">Type</span>
+                <span class="fc-val" id="chipTypeVal"></span>
+                <span class="fc-clear" id="chipTypeClear">×</span>
+                <span class="fc-chevron">▾</span>
+              </button>
+              <div class="fc-dropdown" id="ddType">
+                <div class="fc-opt selected" data-val="all">All</div>
+                <div class="fc-opt" data-val="buy">Buy</div>
+                <div class="fc-opt" data-val="sell">Sell</div>
+              </div>
+            </div>
+            <div class="filter-chip-wrap">
+              <button class="filter-chip" id="chipAsset">
+                <span class="fc-label">Asset</span>
+                <span class="fc-val" id="chipAssetVal"></span>
+                <span class="fc-clear" id="chipAssetClear">×</span>
+                <span class="fc-chevron">▾</span>
+              </button>
+              <div class="fc-dropdown" id="ddAsset">
+                <div class="fc-opt selected" data-val="all">All</div>
+                <div class="fc-opt" data-val="BTC">BTC</div>
+                <div class="fc-opt" data-val="ETH">ETH</div>
+                <div class="fc-opt" data-val="BNB">BNB</div>
+                <div class="fc-opt" data-val="SOL">SOL</div>
+                <div class="fc-opt" data-val="ADA">ADA</div>
+              </div>
+            </div>
+            <div class="filter-chip-wrap">
+              <button class="filter-chip" id="chipDate">
+                <span class="fc-label">Date range</span>
+                <span class="fc-val" id="chipDateVal"></span>
+                <span class="fc-clear" id="chipDateClear">×</span>
+                <span class="fc-chevron">▾</span>
+              </button>
+              <div class="fc-dropdown" id="ddDate">
+                <div class="fc-opt selected" data-val="all">All time</div>
+                <div class="fc-opt" data-val="7">Last 7 days</div>
+                <div class="fc-opt" data-val="30">Last 30 days</div>
+                <div class="fc-opt" data-val="90">Last 90 days</div>
+              </div>
+            </div>
+            <button class="add-filter-btn">+ Add filter</button>
+          </div>
+
+        </div><!-- /tbl-topbar -->
+
+        <table id="recentTbl">
+          <thead>
+            <tr>
+              <th>Asset <span style="opacity:.4">↕</span></th>
+              <th>Type</th>
+              <th>Quantity <span style="opacity:.4">↕</span></th>
+              <th>Price <span style="opacity:.4">↕</span></th>
+              <th class="r">Total Value <span style="opacity:.4">↕</span></th>
+              <th>Date <span style="opacity:.4">↕</span></th>
+              <th class="r">P&amp;L</th>
+              <th class="r">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(247,147,26,.15);color:#f7931a">BTC</div><div><div class="coin-sym">BTC</div><div class="coin-name">Bitcoin</div></div></div></td>
+              <td><span class="badge buy">Buy</span></td>
+              <td class="mono">0.0342</td>
+              <td class="mono">$95,420.00</td>
+              <td class="r mono">$3,263.36</td>
+              <td style="color:var(--fg-muted)">Mar 12, 2026</td>
+              <td class="r"><span class="chg-pos">+$184.20</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(98,126,234,.15);color:#627eea">ETH</div><div><div class="coin-sym">ETH</div><div class="coin-name">Ethereum</div></div></div></td>
+              <td><span class="badge sell">Sell</span></td>
+              <td class="mono">1.450</td>
+              <td class="mono">$3,840.00</td>
+              <td class="r mono">$5,568.00</td>
+              <td style="color:var(--fg-muted)">Mar 11, 2026</td>
+              <td class="r"><span class="chg-pos">+$312.50</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(243,186,47,.15);color:#f3ba2f">BNB</div><div><div class="coin-sym">BNB</div><div class="coin-name">Binance Coin</div></div></div></td>
+              <td><span class="badge buy">Buy</span></td>
+              <td class="mono">12.000</td>
+              <td class="mono">$612.00</td>
+              <td class="r mono">$7,344.00</td>
+              <td style="color:var(--fg-muted)">Mar 10, 2026</td>
+              <td class="r"><span class="chg-nil">—</span></td>
+              <td class="r"><span class="status-chip pending"><span class="s-dot" style="background:var(--warning)"></span>Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(153,69,255,.15);color:#9945ff">SOL</div><div><div class="coin-sym">SOL</div><div class="coin-name">Solana</div></div></div></td>
+              <td><span class="badge buy">Buy</span></td>
+              <td class="mono">45.500</td>
+              <td class="mono">$182.00</td>
+              <td class="r mono">$8,281.00</td>
+              <td style="color:var(--fg-muted)">Mar 10, 2026</td>
+              <td class="r"><span class="chg-pos">+$728.00</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(77,126,255,.15);color:#4d7eff">ADA</div><div><div class="coin-sym">ADA</div><div class="coin-name">Cardano</div></div></div></td>
+              <td><span class="badge sell">Sell</span></td>
+              <td class="mono">3,200.00</td>
+              <td class="mono">$1.24</td>
+              <td class="r mono">$3,968.00</td>
+              <td style="color:var(--fg-muted)">Mar 09, 2026</td>
+              <td class="r"><span class="chg-pos">+$224.00</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(98,126,234,.15);color:#627eea">ETH</div><div><div class="coin-sym">ETH</div><div class="coin-name">Ethereum</div></div></div></td>
+              <td><span class="badge buy">Buy</span></td>
+              <td class="mono">0.800</td>
+              <td class="mono">$3,790.00</td>
+              <td class="r mono">$3,032.00</td>
+              <td style="color:var(--fg-muted)">Mar 08, 2026</td>
+              <td class="r"><span class="chg-neg">-$40.00</span></td>
+              <td class="r"><span class="status-chip failed"><span class="s-dot" style="background:var(--destructive)"></span>Failed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(247,147,26,.15);color:#f7931a">BTC</div><div><div class="coin-sym">BTC</div><div class="coin-name">Bitcoin</div></div></div></td>
+              <td><span class="badge sell">Sell</span></td>
+              <td class="mono">0.150</td>
+              <td class="mono">$94,200.00</td>
+              <td class="r mono">$14,130.00</td>
+              <td style="color:var(--fg-muted)">Mar 07, 2026</td>
+              <td class="r"><span class="chg-pos">+$1,680.00</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(153,69,255,.15);color:#9945ff">SOL</div><div><div class="coin-sym">SOL</div><div class="coin-name">Solana</div></div></div></td>
+              <td><span class="badge sell">Sell</span></td>
+              <td class="mono">22.000</td>
+              <td class="mono">$178.00</td>
+              <td class="r mono">$3,916.00</td>
+              <td style="color:var(--fg-muted)">Mar 06, 2026</td>
+              <td class="r"><span class="chg-nil">—</span></td>
+              <td class="r"><span class="status-chip pending"><span class="s-dot" style="background:var(--warning)"></span>Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(243,186,47,.15);color:#f3ba2f">BNB</div><div><div class="coin-sym">BNB</div><div class="coin-name">Binance Coin</div></div></div></td>
+              <td><span class="badge sell">Sell</span></td>
+              <td class="mono">5.000</td>
+              <td class="mono">$608.00</td>
+              <td class="r mono">$3,040.00</td>
+              <td style="color:var(--fg-muted)">Mar 05, 2026</td>
+              <td class="r"><span class="chg-pos">+$96.00</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+            <tr>
+              <td><div class="asset-cell"><div class="coin-icon" style="background:rgba(77,126,255,.15);color:#4d7eff">ADA</div><div><div class="coin-sym">ADA</div><div class="coin-name">Cardano</div></div></div></td>
+              <td><span class="badge buy">Buy</span></td>
+              <td class="mono">5,000.00</td>
+              <td class="mono">$1.26</td>
+              <td class="r mono">$6,300.00</td>
+              <td style="color:var(--fg-muted)">Mar 04, 2026</td>
+              <td class="r"><span class="chg-pos">+$100.00</span></td>
+              <td class="r"><span class="status-chip completed"><span class="s-dot" style="background:var(--fg-ghost)"></span>Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span class="page-info">Showing 1–10 of 247 transactions</span>
+          <div class="page-btns">
+            <button class="pb">‹</button>
+            <button class="pb active">1</button>
+            <button class="pb">2</button>
+            <button class="pb">3</button>
+            <button class="pb" style="background:transparent;color:var(--fg-whisper)">…</button>
+            <button class="pb">25</button>
+            <button class="pb">›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ASSET OVERVIEW ROW ── -->
+      <div class="ao-row">
+
+        <!-- Total Assets -->
+        <div class="card">
+          <div class="card-head">
+            <div class="ao-title-row">
+              <div class="card-title">Total Assets</div>
+              <span class="ao-info-wrap" data-tip="Valor total de todos os seus ativos consolidados">
+                <svg class="ao-info" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="ao-val">$325,980<span class="ao-dec">.65</span></div>
+          <div class="ao-badge-row">
+            <span class="kpi-badge up">↑ 12%</span>
+            <span class="ao-sub">+$39,117.67 in this year</span>
+          </div>
+          <div class="dist-title">Distribution</div>
+          <div class="dist-bar">
+            <div class="dist-seg" style="flex:65;background:var(--primary)"></div>
+            <div class="dist-seg" style="flex:25;background:var(--chart-2)"></div>
+            <div class="dist-seg" style="flex:10;background:var(--warning)"></div>
+          </div>
+          <div class="dist-list">
+            <div class="dist-item">
+              <div class="dist-dot" style="background:var(--primary)"></div>
+              <span class="dist-name">Stocks</span>
+              <span class="dist-pct">65%</span>
+              <span class="dist-val">$211,887.42</span>
+            </div>
+            <div class="dist-item">
+              <div class="dist-dot" style="background:var(--chart-2)"></div>
+              <span class="dist-name">Bonds</span>
+              <span class="dist-pct">25%</span>
+              <span class="dist-val">$81,495.16</span>
+            </div>
+            <div class="dist-item">
+              <div class="dist-dot" style="background:var(--warning)"></div>
+              <span class="dist-name">Mutual Funds</span>
+              <span class="dist-pct">10%</span>
+              <span class="dist-val">$32,598.06</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Investments -->
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="ao-title-row">
+                <div class="card-title">Total Investments</div>
+                <span class="ao-info-wrap" data-tip="Valor total investido em carteira ao longo do tempo">
+                  <svg class="ao-info" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="card-sub">Portfolio value · 2018 – 2026</div>
+            </div>
+            <div class="card-actions">
+              <button class="ca-btn" aria-label="Tendência">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+                </svg>
+              </button>
+              <button class="ca-btn" aria-label="Indicadores">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/>
+                </svg>
+              </button>
+              <button class="ca-btn" aria-label="Snapshot">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+              </button>
+              <span class="more-dots">⋮</span>
+            </div>
+          </div>
+          <div class="ao-val">$270,560<span class="ao-dec">.20</span></div>
+          <div class="ao-badge-row">
+            <span class="kpi-badge up">↑ 20%</span>
+            <span class="ao-sub">+$54,112.04 in this year</span>
+          </div>
+          <div class="ao-chart">
+            <canvas id="investChart"></canvas>
+          </div>
+        </div>
+
+      </div><!-- /ao-row -->
+
+    </div><!-- /body -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════════
+     TRANSACTION DETAIL DRAWER
+══════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="txDrawer">
+  <div class="dw-header">
+    <div class="dw-coin-icon" id="dwCoinIcon"></div>
+    <div class="dw-title-wrap">
+      <div class="dw-title" id="dwTitle"></div>
+      <div class="dw-subtitle" id="dwSubtitle"></div>
+    </div>
+    <button class="dw-close" id="dwClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="dw-meta" id="dwMeta"></div>
+
+  <div class="dw-tabs">
+    <button class="dw-tab active" data-tab="details">Details</button>
+    <button class="dw-tab" data-tab="comments">Comments <span class="dw-tab-badge">3</span></button>
+    <button class="dw-tab" data-tab="attachments">Attachments</button>
+    <button class="dw-tab" data-tab="activity">Activity</button>
+  </div>
+
+  <div class="dw-body">
+    <!-- Details -->
+    <div class="dw-panel active" data-panel="details" id="dwPanelDetails"></div>
+
+    <!-- Comments -->
+    <div class="dw-panel" data-panel="comments">
+      <div class="dw-comment-box">
+        <textarea placeholder="Add a comment..."></textarea>
+        <div class="dw-comment-toolbar">
+          <div class="dw-comment-tools">
+            <button class="dw-comment-tool" title="Emoji">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </button>
+            <button class="dw-comment-tool" title="Mention">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg>
+            </button>
+            <button class="dw-comment-tool" title="Attach link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </button>
+          </div>
+          <button class="dw-submit-btn">Submit</button>
+        </div>
+      </div>
+      <div id="dwComments"></div>
+    </div>
+
+    <!-- Attachments -->
+    <div class="dw-panel" data-panel="attachments" id="dwAttachments"></div>
+
+    <!-- Activity -->
+    <div class="dw-panel" data-panel="activity" id="dwActivity"></div>
+  </div>
+</div>
+
+<script>
+// ─── TABLE FILTERING ───
+(function() {
+  const TOTAL = 247;
+  const refDate = new Date('2026-03-12');
+  const tbl   = document.getElementById('recentTbl');
+  const rows  = Array.from(tbl.querySelectorAll('tbody tr'));
+
+  // Tag each row with data attributes
+  rows.forEach(row => {
+    row.dataset.asset  = row.querySelector('.coin-sym')?.textContent.trim() || '';
+    const typeEl       = row.querySelector('.badge');
+    row.dataset.type   = typeEl?.classList.contains('buy') ? 'buy' : 'sell';
+    const statusEl     = row.querySelector('.status-chip');
+    row.dataset.status = statusEl?.classList.contains('completed') ? 'completed'
+                       : statusEl?.classList.contains('pending')   ? 'pending' : 'failed';
+    const dateCell     = row.cells[5];
+    row.dataset.date   = dateCell ? dateCell.textContent.trim() : '';
+  });
+
+  const filters = { status: 'all', type: 'all', asset: 'all', date: 'all', search: '' };
+
+  function applyFilters() {
+    let visible = 0;
+    rows.forEach(row => {
+      const s = filters.status === 'all' || row.dataset.status === filters.status;
+      const t = filters.type   === 'all' || row.dataset.type   === filters.type;
+      const a = filters.asset  === 'all' || row.dataset.asset  === filters.asset;
+      let   d = true;
+      if (filters.date !== 'all') {
+        const days    = parseInt(filters.date);
+        const rowDate = new Date(row.dataset.date);
+        d = !isNaN(rowDate) && (refDate - rowDate) / 86400000 <= days;
+      }
+      const q = !filters.search ||
+        row.dataset.asset.toLowerCase().includes(filters.search) ||
+        (row.querySelector('.coin-name')?.textContent.toLowerCase().includes(filters.search));
+
+      const show = s && t && a && d && q;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    const anyActive = Object.entries(filters).some(([k, v]) => v !== 'all' && v !== '');
+    document.getElementById('tblCount').textContent = anyActive ? visible : TOTAL;
+  }
+
+  // Status tabs
+  document.querySelectorAll('.tbl-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tbl-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      filters.status = tab.dataset.status;
+      applyFilters();
+    });
+  });
+
+  // Search
+  document.getElementById('tblSearchInput')?.addEventListener('input', e => {
+    filters.search = e.target.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  // Filter chips
+  const dateLabels = { '7': 'Last 7d', '30': 'Last 30d', '90': 'Last 90d' };
+  const chipDefs = [
+    { chip: 'chipType',  val: 'chipTypeVal',  clear: 'chipTypeClear',  dd: 'ddType',  key: 'type'  },
+    { chip: 'chipAsset', val: 'chipAssetVal', clear: 'chipAssetClear', dd: 'ddAsset', key: 'asset' },
+    { chip: 'chipDate',  val: 'chipDateVal',  clear: 'chipDateClear',  dd: 'ddDate',  key: 'date'  },
+  ];
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.fc-dropdown').forEach(d => d.classList.remove('open'));
+  }
+
+  chipDefs.forEach(({ chip, val, clear, dd, key }) => {
+    const chipEl  = document.getElementById(chip);
+    const valEl   = document.getElementById(val);
+    const clearEl = document.getElementById(clear);
+    const ddEl    = document.getElementById(dd);
+
+    chipEl.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = ddEl.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen) ddEl.classList.add('open');
+    });
+
+    ddEl.querySelectorAll('.fc-opt').forEach(opt => {
+      opt.addEventListener('click', e => {
+        e.stopPropagation();
+        const v = opt.dataset.val;
+        ddEl.querySelectorAll('.fc-opt').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        filters[key] = v;
+        if (v === 'all') {
+          chipEl.classList.remove('active');
+          valEl.textContent = '';
+        } else {
+          chipEl.classList.add('active');
+          const label = key === 'date' ? dateLabels[v]
+                      : v.charAt(0).toUpperCase() + v.slice(1);
+          valEl.textContent = ': ' + label;
+        }
+        closeAllDropdowns();
+        applyFilters();
+      });
+    });
+
+    clearEl.addEventListener('click', e => {
+      e.stopPropagation();
+      filters[key] = 'all';
+      chipEl.classList.remove('active');
+      valEl.textContent = '';
+      ddEl.querySelectorAll('.fc-opt').forEach((o, i) => o.classList.toggle('selected', i === 0));
+      applyFilters();
+    });
+  });
+
+  document.addEventListener('click', closeAllDropdowns);
+
+  // Filter panel toggle
+  const filterToggleBtn = document.getElementById('tblFilterToggle');
+  const filterPanel = document.querySelector('.tbl-filters');
+  if (filterToggleBtn && filterPanel) {
+    filterToggleBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = filterPanel.classList.toggle('open');
+      filterToggleBtn.classList.toggle('active', isOpen);
+    });
+  }
+})();
+
+// ─── PRESET FILTER TOGGLE ───
+document.querySelectorAll('.preset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// ─── THEME BRIDGE (CSS variables → JS) ───
+const _css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+// Parse any CSS color to [r,g,b]
+function _rgb(c) {
+  if (c.startsWith('#')) {
+    const h = c.slice(1);
+    const n = h.length === 3
+      ? [parseInt(h[0]+h[0],16), parseInt(h[1]+h[1],16), parseInt(h[2]+h[2],16)]
+      : [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+    return n;
+  }
+  const m = c.match(/(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
+  return m ? [+m[1],+m[2],+m[3]] : [0,201,122];
+}
+function _rgba(color, a) { const r = _rgb(color); return 'rgba('+r[0]+','+r[1]+','+r[2]+','+a+')'; }
+
+const THEME = {
+  primary:     _css('--primary'),
+  primary70:   _css('--primary-70'),
+  chart2:      _css('--chart-2'),
+  cardBg:      _css('--card'),
+  elevated:    _css('--popover'),
+  borderTip:   _css('--popover-border'),
+  fgMuted:     _css('--muted-foreground'),
+  fg:          _css('--foreground'),
+  fgFaint:     _css('--fg-faint'),
+  fgWhisper:   _css('--fg-whisper'),
+  overlay4:    _css('--overlay-4'),
+};
+
+// ─── PORTFOLIO PERFORMANCE CHART ───
+const perfCtx = document.getElementById('perfChart').getContext('2d');
+
+const perfGrad = perfCtx.createLinearGradient(0, 0, 0, 300);
+perfGrad.addColorStop(0,   _rgba(THEME.primary, 0.22));
+perfGrad.addColorStop(0.7, _rgba(THEME.primary, 0.04));
+perfGrad.addColorStop(1,   _rgba(THEME.primary, 0));
+
+const bmGrad = perfCtx.createLinearGradient(0, 0, 0, 300);
+bmGrad.addColorStop(0, 'rgba(108,99,255,0.1)');
+bmGrad.addColorStop(1, 'rgba(108,99,255,0)');
+
+const perfData = [410,414,418,412,420,425,422,430,435,428,438,442,436,445,450,444,452,456,460,454,462,468,465,472,475,470,478,482,480,458];
+const bmData   = [380,382,386,380,388,390,387,394,398,392,400,403,398,406,410,405,413,416,419,415,421,426,422,428,430,426,432,436,434,420];
+
+const labels = [];
+for (let i = 29; i >= 0; i--) {
+  const d = new Date('2026-03-12');
+  d.setDate(d.getDate() - i);
+  labels.push(d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+}
+
+new Chart(perfCtx, {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Portfolio',
+        data: perfData,
+        borderColor: THEME.primary,
+        backgroundColor: perfGrad,
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: THEME.primary,
+        pointHoverBorderColor: THEME.cardBg,
+        pointHoverBorderWidth: 2,
+      },
+      {
+        label: 'Benchmark',
+        data: bmData,
+        borderColor: THEME.chart2 + '80',
+        backgroundColor: bmGrad,
+        borderWidth: 1.5,
+        borderDash: [5, 4],
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        pointHoverBackgroundColor: THEME.chart2,
+        pointHoverBorderColor: THEME.cardBg,
+        pointHoverBorderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        titleColor: THEME.fgMuted,
+        bodyColor: THEME.fg,
+        titleFont: { size: 11 },
+        bodyFont: { size: 13, weight: 'bold' },
+        padding: 12,
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.raw}K` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, maxTicksLimit: 8, maxRotation: 0 },
+        border: { display: false },
+      },
+      y: {
+        grid: { color: THEME.overlay4, lineWidth: 0.5 },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, callback: v => '$' + v + 'K' },
+        border: { display: false },
+        min: 370, max: 510,
+      }
+    }
+  }
+});
+
+// ─── ALLOCATION DONUT ───
+const allocCtx = document.getElementById('allocChart').getContext('2d');
+
+const centerPlugin = {
+  id: 'centerLabel',
+  afterDraw(chart) {
+    if (chart.config.type !== 'doughnut') return;
+    const { ctx, chartArea: { left, top, width, height } } = chart;
+    const cx = left + width / 2, cy = top + height / 2;
+    ctx.save();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = 'bold 16px "Inter", -apple-system, sans-serif';
+    ctx.fillStyle = THEME.fg;
+    ctx.fillText('$458K', cx, cy - 10);
+    ctx.font = '11px "Inter", -apple-system, sans-serif';
+    ctx.fillStyle = THEME.fgFaint;
+    ctx.fillText('Total Value', cx, cy + 9);
+    ctx.restore();
+  }
+};
+
+new Chart(allocCtx, {
+  type: 'doughnut',
+  plugins: [centerPlugin],
+  data: {
+    labels: ['Bitcoin', 'Ethereum', 'BNB', 'Solana'],
+    datasets: [{
+      data: [44, 29, 16, 11],
+      backgroundColor: ['#f7931a', '#627eea', '#f3ba2f', '#9945ff'],
+      borderWidth: 0,
+      borderRadius: 4,
+      spacing: 3,
+      hoverOffset: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '64%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw}%` }
+      }
+    }
+  }
+});
+
+// ─── TOTAL INVESTMENTS CHART ───
+const investCtx = document.getElementById('investChart').getContext('2d');
+
+const investGrad = investCtx.createLinearGradient(0, 0, 0, 200);
+investGrad.addColorStop(0,   'rgba(108,99,255,0.28)');
+investGrad.addColorStop(0.65,'rgba(108,99,255,0.06)');
+investGrad.addColorStop(1,   'rgba(108,99,255,0)');
+
+const investYears = ['2018','2019','2020','2021','2022','2023','2024','2025','2026'];
+const stocksK     = [45, 62,  85, 165,  88, 115,  39, 148, 192];
+const bondsK      = [20, 28,  36,  58,  32,  42,  15,  58,  78];
+const totalK      = stocksK.map((v, i) => v + bondsK[i]);
+// totals           [65, 90, 121, 223, 120, 157,  54, 206, 270]
+
+new Chart(investCtx, {
+  type: 'line',
+  data: {
+    labels: investYears,
+    datasets: [{
+      label: 'Total Investments',
+      data: totalK,
+      borderColor: THEME.chart2,
+      backgroundColor: investGrad,
+      borderWidth: 2,
+      fill: true,
+      tension: 0.4,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: THEME.chart2,
+      pointHoverBorderColor: THEME.cardBg,
+      pointHoverBorderWidth: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        titleColor: THEME.fgMuted,
+        bodyColor: THEME.fg,
+        titleFont: { size: 11 },
+        bodyFont: { size: 13, weight: 'bold' },
+        padding: 12,
+        callbacks: {
+          title: items => items[0].label,
+          label: ctx => [
+            ` Stocks   $${(stocksK[ctx.dataIndex] * 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+            ` Bonds    $${(bondsK[ctx.dataIndex]  * 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+          ]
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, maxRotation: 0 },
+        border: { display: false },
+      },
+      y: {
+        grid: { color: THEME.overlay4, lineWidth: 0.5 },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, callback: v => '$' + v + 'K' },
+        border: { display: false },
+        min: 0,
+      }
+    }
+  }
+});
+
+// ─── CUSTOMER SEGMENTATION DONUT ───
+const segCtx = document.getElementById('segChart').getContext('2d');
+
+const segCenterPlugin = {
+  id: 'segCenter',
+  afterDraw(chart) {
+    if (chart.canvas.id !== 'segChart') return;
+    const { ctx, chartArea: { left, top, width, height } } = chart;
+    const cx = left + width / 2, cy = top + height / 2;
+    ctx.save();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '500 11px "Inter", sans-serif';
+    ctx.fillStyle = THEME.fgMuted;
+    ctx.fillText('Total', cx, cy - 12);
+    ctx.font = 'bold 20px "Inter", sans-serif';
+    ctx.fillStyle = THEME.fg;
+    ctx.fillText('3420', cx, cy + 8);
+    ctx.restore();
+  }
+};
+
+new Chart(segCtx, {
+  type: 'doughnut',
+  plugins: [segCenterPlugin],
+  data: {
+    labels: ['Small Business', 'Enterprise', 'Individuals'],
+    datasets: [{
+      data: [2310, 800, 310],
+      backgroundColor: [THEME.primary, '#f6b51e', THEME.primary70],
+      borderWidth: 0,
+      borderRadius: 4,
+      spacing: 3,
+      hoverOffset: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` }
+      }
+    }
+  }
+});
+
+// ─── ORDER OVERVIEW AREA CHART ───
+const orderCtx = document.getElementById('orderChart').getContext('2d');
+
+const salesGrad = orderCtx.createLinearGradient(0, 0, 0, 240);
+salesGrad.addColorStop(0,   _rgba(THEME.primary, 0.22));
+salesGrad.addColorStop(0.7, _rgba(THEME.primary, 0.04));
+salesGrad.addColorStop(1,   _rgba(THEME.primary, 0));
+
+const ordersGrad = orderCtx.createLinearGradient(0, 0, 0, 240);
+ordersGrad.addColorStop(0,   'rgba(124,108,255,0.18)');
+ordersGrad.addColorStop(0.7, 'rgba(124,108,255,0.03)');
+ordersGrad.addColorStop(1,   'rgba(124,108,255,0)');
+
+const ovMonths = ['Jan2026','Feb2026','March2026','Apr2026','May2026','Jun2026','Jul2026'];
+const salesData  = [1200, 1800, 2400, 4800, 6200, 3600, 2800];
+const ordersData = [800, 1200, 1600, 2200, 3400, 2800, 2200];
+
+new Chart(orderCtx, {
+  type: 'line',
+  data: {
+    labels: ovMonths,
+    datasets: [
+      {
+        label: 'Sales',
+        data: salesData,
+        borderColor: THEME.primary,
+        backgroundColor: salesGrad,
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: THEME.primary,
+        pointHoverBorderColor: THEME.cardBg,
+        pointHoverBorderWidth: 2,
+      },
+      {
+        label: 'Orders',
+        data: ordersData,
+        borderColor: THEME.chart2,
+        backgroundColor: ordersGrad,
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: THEME.chart2,
+        pointHoverBorderColor: THEME.cardBg,
+        pointHoverBorderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        titleColor: THEME.fgMuted,
+        bodyColor: THEME.fg,
+        titleFont: { size: 11 },
+        bodyFont: { size: 13, weight: 'bold' },
+        padding: 12,
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, maxRotation: 0 },
+        border: { display: false },
+      },
+      y: {
+        grid: { color: THEME.overlay4, lineWidth: 0.5 },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 }, callback: v => (v/1000) + 'k' },
+        border: { display: false },
+        min: 0,
+      }
+    }
+  }
+});
+
+// ─── USER ACTIVITY BAR CHART ───
+const actCtx = document.getElementById('activityChart').getContext('2d');
+
+const actDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const viewedData   = [3200, 4800, 3600, 5200, 6400, 4200, 5800];
+const checkoutData = [1800, 2600, 2200, 3000, 3800, 2400, 3400];
+
+new Chart(actCtx, {
+  type: 'bar',
+  data: {
+    labels: actDays,
+    datasets: [
+      {
+        label: 'Viewed',
+        data: viewedData,
+        backgroundColor: THEME.primary,
+        borderRadius: 4,
+        borderSkipped: false,
+        barPercentage: 0.5,
+        categoryPercentage: 0.7,
+      },
+      {
+        label: 'Checkout',
+        data: checkoutData,
+        backgroundColor: THEME.primary70,
+        borderRadius: 4,
+        borderSkipped: false,
+        barPercentage: 0.5,
+        categoryPercentage: 0.7,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: THEME.elevated,
+        borderColor: THEME.borderTip,
+        borderWidth: 1,
+        titleColor: THEME.fgMuted,
+        bodyColor: THEME.fg,
+        titleFont: { size: 11 },
+        bodyFont: { size: 13, weight: 'bold' },
+        padding: 12,
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: THEME.fgWhisper, font: { size: 10 } },
+        border: { display: false },
+      },
+      y: {
+        display: false,
+      }
+    }
+  }
+});
+
+
+// ─── DOTTED WORLD MAP RENDERER ───
+(function(){
+  var d="266,20;271,20;277,20;283,20;288,20;254,26;260,26;266,26;271,26;277,26;283,26;288,26;294,26;323,26;328,26;340,26;494,26;220,32;231,32;248,32;254,32;277,32;283,32;300,32;311,32;323,32;328,32;334,32;340,32;346,32;454,32;500,32;506,32;586,32;597,32;197,38;203,38;214,38;231,38;248,38;260,38;266,38;271,38;277,38;288,38;294,38;300,38;306,38;311,38;317,38;323,38;328,38;334,38;340,38;449,38;517,38;580,38;586,38;191,44;237,44;254,44;260,44;266,44;288,44;294,44;300,44;306,44;311,44;317,44;323,44;328,44;334,44;340,44;346,44;351,44;437,44;449,44;523,44;534,44;592,44;203,50;214,50;226,50;260,50;277,50;283,50;288,50;294,50;300,50;306,50;311,50;317,50;323,50;328,50;334,50;340,50;346,50;403,50;409,50;523,50;529,50;534,50;540,50;609,50;660,50;666,50;672,50;677,50;683,50;695,50;111,55;117,55;185,55;203,55;208,55;214,55;226,55;237,55;248,55;254,55;277,55;283,55;288,55;294,55;300,55;306,55;311,55;317,55;323,55;328,55;334,55;340,55;346,55;391,55;397,55;517,55;523,55;529,55;534,55;540,55;603,55;609,55;614,55;626,55;632,55;649,55;655,55;660,55;666,55;672,55;677,55;683,55;689,55;695,55;94,61;100,61;105,61;111,61;117,61;123,61;180,61;185,61;191,61;237,61;243,61;248,61;271,61;277,61;283,61;288,61;294,61;300,61;306,61;311,61;317,61;323,61;328,61;334,61;340,61;397,61;403,61;471,61;512,61;517,61;523,61;534,61;557,61;569,61;574,61;597,61;603,61;609,61;614,61;620,61;626,61;632,61;637,61;643,61;649,61;655,61;660,61;666,61;672,61;677,61;683,61;695,61;94,67;100,67;105,67;111,67;117,67;123,67;128,67;134,67;174,67;185,67;191,67;208,67;220,67;231,67;248,67;288,67;294,67;300,67;306,67;311,67;317,67;323,67;328,67;334,67;340,67;397,67;466,67;512,67;517,67;523,67;529,67;534,67;546,67;552,67;557,67;563,67;569,67;574,67;580,67;592,67;597,67;603,67;609,67;614,67;620,67;626,67;632,67;637,67;643,67;649,67;655,67;660,67;666,67;672,67;677,67;683,67;689,67;83,73;100,73;105,73;111,73;117,73;123,73;128,73;134,73;140,73;157,73;163,73;185,73;191,73;197,73;203,73;214,73;226,73;237,73;288,73;294,73;300,73;306,73;311,73;317,73;323,73;328,73;334,73;460,73;500,73;512,73;517,73;523,73;529,73;534,73;540,73;546,73;552,73;557,73;563,73;569,73;574,73;580,73;586,73;592,73;597,73;603,73;609,73;614,73;620,73;626,73;632,73;637,73;643,73;649,73;655,73;660,73;666,73;672,73;677,73;683,73;83,79;88,79;94,79;100,79;105,79;111,79;117,79;123,79;128,79;134,79;140,79;145,79;151,79;157,79;163,79;168,79;180,79;185,79;191,79;197,79;220,79;231,79;243,79;248,79;288,79;294,79;300,79;306,79;311,79;317,79;323,79;328,79;334,79;340,79;460,79;483,79;506,79;512,79;517,79;523,79;529,79;534,79;540,79;546,79;552,79;557,79;563,79;569,79;574,79;580,79;586,79;592,79;597,79;603,79;609,79;614,79;620,79;626,79;632,79;637,79;643,79;649,79;655,79;660,79;666,79;672,79;677,79;683,79;689,79;71,85;94,85;100,85;105,85;111,85;117,85;123,85;128,85;134,85;140,85;145,85;151,85;157,85;163,85;168,85;174,85;185,85;191,85;203,85;220,85;231,85;237,85;243,85;248,85;288,85;294,85;300,85;306,85;311,85;317,85;323,85;328,85;460,85;489,85;494,85;500,85;512,85;517,85;523,85;529,85;534,85;540,85;546,85;552,85;557,85;563,85;569,85;574,85;580,85;586,85;592,85;597,85;603,85;609,85;614,85;620,85;626,85;632,85;637,85;643,85;649,85;655,85;660,85;666,85;672,85;677,85;683,85;689,85;695,85;83,90;88,90;94,90;100,90;105,90;111,90;117,90;123,90;128,90;134,90;140,90;145,90;151,90;163,90;168,90;174,90;185,90;191,90;208,90;237,90;248,90;254,90;288,90;294,90;300,90;306,90;311,90;317,90;323,90;328,90;460,90;483,90;489,90;500,90;506,90;517,90;523,90;529,90;534,90;540,90;546,90;552,90;557,90;563,90;569,90;574,90;580,90;586,90;592,90;597,90;603,90;609,90;614,90;620,90;626,90;632,90;637,90;643,90;649,90;655,90;660,90;666,90;672,90;677,90;683,90;77,96;83,96;88,96;94,96;100,96;105,96;111,96;117,96;123,96;128,96;134,96;140,96;145,96;151,96;157,96;174,96;180,96;185,96;191,96;197,96;203,96;208,96;214,96;220,96;231,96;254,96;260,96;283,96;288,96;294,96;300,96;306,96;311,96;317,96;323,96;334,96;466,96;489,96;506,96;512,96;517,96;523,96;529,96;534,96;540,96;546,96;552,96;557,96;563,96;569,96;574,96;580,96;586,96;592,96;597,96;603,96;609,96;614,96;620,96;626,96;632,96;637,96;643,96;649,96;655,96;660,96;666,96;677,96;683,96;71,102;77,102;83,102;88,102;94,102;100,102;105,102;111,102;117,102;123,102;128,102;134,102;140,102;145,102;151,102;157,102;163,102;168,102;174,102;180,102;185,102;191,102;197,102;203,102;208,102;214,102;220,102;226,102;231,102;243,102;254,102;294,102;300,102;306,102;311,102;317,102;323,102;328,102;414,102;420,102;454,102;477,102;483,102;494,102;500,102;512,102;517,102;523,102;529,102;534,102;540,102;546,102;552,102;557,102;563,102;569,102;574,102;580,102;586,102;592,102;597,102;603,102;609,102;614,102;620,102;626,102;632,102;637,102;643,102;649,102;655,102;672,102;77,108;83,108;88,108;94,108;100,108;111,108;117,108;123,108;128,108;134,108;140,108;145,108;151,108;157,108;168,108;174,108;185,108;191,108;197,108;208,108;214,108;248,108;254,108;260,108;288,108;294,108;300,108;306,108;311,108;317,108;409,108;414,108;420,108;426,108;431,108;449,108;460,108;466,108;471,108;477,108;483,108;489,108;500,108;506,108;512,108;517,108;523,108;529,108;534,108;540,108;546,108;552,108;557,108;563,108;569,108;574,108;580,108;586,108;592,108;597,108;603,108;609,108;614,108;620,108;626,108;632,108;637,108;643,108;649,108;655,108;672,108;83,114;117,114;123,114;128,114;134,114;140,114;145,114;151,114;157,114;163,114;180,114;185,114;191,114;203,114;208,114;220,114;226,114;237,114;243,114;248,114;254,114;266,114;283,114;288,114;294,114;300,114;306,114;311,114;403,114;409,114;414,114;420,114;426,114;431,114;437,114;454,114;460,114;466,114;471,114;477,114;483,114;489,114;494,114;500,114;506,114;512,114;517,114;523,114;529,114;534,114;540,114;546,114;552,114;557,114;563,114;569,114;574,114;580,114;586,114;592,114;597,114;603,114;609,114;614,114;620,114;626,114;632,114;637,114;672,114;677,114;71,120;77,120;123,120;128,120;134,120;140,120;145,120;151,120;157,120;168,120;174,120;180,120;185,120;191,120;197,120;203,120;226,120;248,120;254,120;288,120;294,120;300,120;334,120;346,120;397,120;403,120;409,120;420,120;426,120;449,120;454,120;460,120;466,120;471,120;477,120;483,120;489,120;494,120;500,120;506,120;512,120;517,120;523,120;529,120;534,120;540,120;546,120;552,120;557,120;563,120;569,120;574,120;580,120;586,120;592,120;597,120;603,120;609,120;614,120;620,120;626,120;632,120;672,120;677,120;60,126;65,126;123,126;128,126;134,126;140,126;145,126;151,126;157,126;163,126;168,126;174,126;180,126;185,126;197,126;237,126;254,126;288,126;294,126;340,126;397,126;403,126;420,126;426,126;431,126;443,126;449,126;454,126;460,126;466,126;471,126;477,126;483,126;489,126;494,126;500,126;506,126;512,126;517,126;523,126;529,126;534,126;540,126;546,126;552,126;557,126;563,126;569,126;574,126;580,126;586,126;592,126;597,126;603,126;609,126;614,126;620,126;626,126;632,126;672,126;677,126;683,126;695,126;37,131;42,131;48,131;54,131;123,131;128,131;134,131;140,131;145,131;151,131;157,131;163,131;168,131;174,131;185,131;191,131;197,131;237,131;243,131;288,131;294,131;391,131;397,131;403,131;414,131;431,131;443,131;449,131;454,131;460,131;466,131;471,131;477,131;483,131;489,131;494,131;500,131;506,131;512,131;517,131;523,131;529,131;534,131;540,131;546,131;552,131;557,131;563,131;569,131;574,131;580,131;586,131;592,131;597,131;603,131;609,131;614,131;620,131;626,131;632,131;677,131;128,137;134,137;140,137;145,137;151,137;157,137;163,137;168,137;174,137;180,137;185,137;197,137;231,137;237,137;243,137;254,137;386,137;391,137;397,137;414,137;420,137;426,137;437,137;443,137;449,137;454,137;460,137;466,137;471,137;477,137;483,137;489,137;494,137;500,137;506,137;512,137;517,137;523,137;529,137;534,137;540,137;546,137;552,137;557,137;563,137;569,137;574,137;580,137;586,137;592,137;597,137;603,137;609,137;614,137;620,137;626,137;632,137;677,137;128,143;134,143;140,143;145,143;151,143;157,143;163,143;168,143;174,143;180,143;185,143;191,143;197,143;203,143;231,143;237,143;243,143;248,143;254,143;386,143;397,143;403,143;420,143;426,143;431,143;437,143;449,143;454,143;460,143;466,143;471,143;477,143;483,143;489,143;494,143;500,143;506,143;512,143;517,143;523,143;529,143;534,143;540,143;546,143;552,143;557,143;563,143;574,143;580,143;586,143;592,143;597,143;603,143;609,143;614,143;620,143;626,143;632,143;637,143;643,143;649,143;677,143;128,149;134,149;140,149;145,149;151,149;157,149;163,149;168,149;174,149;180,149;191,149;203,149;208,149;214,149;231,149;237,149;243,149;248,149;254,149;363,149;397,149;414,149;420,149;426,149;431,149;437,149;443,149;449,149;454,149;460,149;466,149;471,149;477,149;483,149;489,149;494,149;500,149;506,149;512,149;517,149;523,149;529,149;534,149;540,149;546,149;552,149;557,149;563,149;569,149;574,149;586,149;592,149;597,149;603,149;609,149;614,149;620,149;626,149;632,149;637,149;643,149;655,149;134,155;140,155;145,155;151,155;157,155;163,155;168,155;174,155;180,155;191,155;197,155;203,155;208,155;214,155;226,155;231,155;237,155;243,155;248,155;254,155;260,155;369,155;391,155;414,155;420,155;426,155;431,155;437,155;443,155;449,155;454,155;460,155;466,155;471,155;477,155;483,155;489,155;494,155;500,155;506,155;512,155;517,155;523,155;529,155;534,155;540,155;546,155;552,155;557,155;563,155;569,155;586,155;592,155;597,155;603,155;609,155;614,155;620,155;626,155;632,155;637,155;643,155;649,155;655,155;677,155;134,161;140,161;145,161;151,161;157,161;163,161;168,161;174,161;180,161;191,161;208,161;214,161;226,161;231,161;237,161;243,161;248,161;254,161;260,161;266,161;357,161;369,161;391,161;397,161;403,161;409,161;414,161;420,161;426,161;431,161;437,161;443,161;449,161;454,161;460,161;466,161;471,161;477,161;483,161;489,161;494,161;500,161;506,161;512,161;517,161;523,161;529,161;534,161;540,161;546,161;552,161;557,161;563,161;574,161;580,161;586,161;592,161;597,161;603,161;609,161;614,161;620,161;626,161;632,161;637,161;643,161;655,161;134,167;140,167;145,167;151,167;157,167;163,167;168,167;174,167;180,167;185,167;191,167;197,167;203,167;208,167;214,167;220,167;226,167;231,167;237,167;243,167;369,167;374,167;386,167;391,167;397,167;403,167;409,167;414,167;420,167;426,167;431,167;437,167;443,167;449,167;454,167;460,167;466,167;471,167;477,167;483,167;489,167;494,167;500,167;506,167;512,167;517,167;523,167;529,167;534,167;540,167;546,167;552,167;557,167;563,167;569,167;574,167;580,167;586,167;592,167;597,167;603,167;609,167;614,167;620,167;626,167;632,167;637,167;643,167;672,167;128,172;134,172;140,172;145,172;151,172;157,172;163,172;168,172;174,172;180,172;185,172;191,172;208,172;214,172;220,172;226,172;231,172;243,172;260,172;266,172;380,172;386,172;391,172;397,172;403,172;409,172;414,172;420,172;426,172;431,172;437,172;443,172;449,172;454,172;460,172;466,172;471,172;477,172;483,172;489,172;494,172;500,172;506,172;512,172;517,172;523,172;529,172;534,172;540,172;546,172;552,172;557,172;563,172;569,172;574,172;580,172;586,172;592,172;597,172;603,172;609,172;614,172;620,172;626,172;632,172;637,172;643,172;660,172;666,172;128,178;134,178;140,178;145,178;151,178;157,178;163,178;168,178;174,178;180,178;185,178;191,178;197,178;208,178;220,178;226,178;231,178;237,178;243,178;254,178;369,178;374,178;380,178;386,178;391,178;397,178;403,178;409,178;414,178;420,178;426,178;431,178;443,178;454,178;460,178;466,178;483,178;489,178;494,178;500,178;506,178;512,178;517,178;529,178;534,178;540,178;546,178;552,178;557,178;563,178;569,178;574,178;580,178;586,178;592,178;597,178;603,178;609,178;614,178;620,178;626,178;632,178;660,178;128,184;134,184;140,184;145,184;151,184;157,184;163,184;168,184;174,184;180,184;185,184;191,184;197,184;208,184;226,184;231,184;248,184;374,184;380,184;386,184;391,184;397,184;409,184;414,184;420,184;426,184;443,184;449,184;454,184;460,184;477,184;483,184;489,184;500,184;506,184;512,184;517,184;523,184;529,184;534,184;540,184;546,184;552,184;557,184;563,184;569,184;574,184;580,184;586,184;592,184;597,184;603,184;609,184;614,184;620,184;626,184;632,184;660,184;123,190;128,190;134,190;140,190;145,190;151,190;157,190;163,190;168,190;174,190;180,190;185,190;191,190;197,190;203,190;214,190;220,190;226,190;363,190;369,190;374,190;386,190;397,190;414,190;420,190;426,190;460,190;466,190;483,190;489,190;494,190;500,190;506,190;512,190;517,190;523,190;529,190;534,190;540,190;546,190;552,190;557,190;563,190;569,190;574,190;580,190;586,190;592,190;597,190;603,190;609,190;614,190;632,190;660,190;128,196;134,196;140,196;145,196;151,196;157,196;163,196;168,196;174,196;180,196;185,196;191,196;197,196;203,196;208,196;214,196;220,196;226,196;357,196;363,196;369,196;374,196;391,196;403,196;414,196;426,196;437,196;443,196;449,196;460,196;466,196;471,196;483,196;489,196;494,196;500,196;506,196;512,196;517,196;523,196;529,196;534,196;540,196;546,196;552,196;557,196;563,196;569,196;574,196;580,196;586,196;592,196;597,196;603,196;609,196;637,196;660,196;128,202;134,202;140,202;145,202;151,202;157,202;163,202;168,202;174,202;180,202;185,202;191,202;197,202;203,202;208,202;214,202;220,202;357,202;363,202;369,202;409,202;420,202;431,202;437,202;443,202;449,202;454,202;460,202;466,202;489,202;494,202;500,202;506,202;512,202;517,202;523,202;529,202;534,202;540,202;546,202;552,202;557,202;563,202;569,202;574,202;580,202;586,202;592,202;597,202;603,202;609,202;614,202;620,202;637,202;655,202;134,207;140,207;145,207;151,207;157,207;163,207;168,207;174,207;180,207;185,207;191,207;197,207;203,207;208,207;214,207;363,207;386,207;391,207;403,207;449,207;454,207;460,207;466,207;471,207;477,207;483,207;489,207;494,207;500,207;506,207;512,207;517,207;523,207;529,207;534,207;540,207;546,207;552,207;557,207;563,207;569,207;574,207;580,207;586,207;592,207;597,207;603,207;609,207;614,207;649,207;134,213;140,213;145,213;151,213;157,213;163,213;168,213;174,213;180,213;185,213;191,213;197,213;203,213;208,213;363,213;369,213;374,213;380,213;386,213;391,213;443,213;449,213;454,213;460,213;466,213;471,213;477,213;483,213;489,213;494,213;500,213;506,213;512,213;517,213;523,213;529,213;534,213;540,213;546,213;552,213;557,213;563,213;569,213;574,213;580,213;586,213;592,213;597,213;603,213;609,213;614,213;620,213;643,213;134,219;145,219;151,219;157,219;163,219;168,219;174,219;180,219;185,219;191,219;197,219;203,219;357,219;363,219;369,219;374,219;380,219;386,219;391,219;397,219;403,219;420,219;449,219;454,219;460,219;466,219;471,219;477,219;483,219;489,219;494,219;500,219;506,219;512,219;517,219;523,219;529,219;534,219;540,219;546,219;552,219;557,219;563,219;569,219;574,219;580,219;586,219;592,219;597,219;603,219;609,219;614,219;620,219;626,219;134,225;140,225;145,225;151,225;157,225;163,225;168,225;174,225;203,225;357,225;363,225;369,225;374,225;380,225;386,225;391,225;397,225;403,225;409,225;414,225;420,225;426,225;431,225;437,225;443,225;449,225;454,225;460,225;466,225;471,225;483,225;489,225;494,225;500,225;506,225;512,225;517,225;523,225;529,225;534,225;540,225;546,225;552,225;557,225;563,225;569,225;574,225;580,225;586,225;592,225;597,225;603,225;609,225;614,225;620,225;140,231;151,231;157,231;163,231;168,231;208,231;351,231;357,231;363,231;369,231;374,231;380,231;386,231;391,231;397,231;403,231;409,231;414,231;420,231;426,231;431,231;437,231;443,231;454,231;460,231;466,231;471,231;500,231;506,231;512,231;517,231;523,231;529,231;534,231;540,231;546,231;552,231;557,231;563,231;569,231;574,231;580,231;586,231;592,231;597,231;603,231;609,231;614,231;620,231;42,237;145,237;157,237;163,237;168,237;220,237;346,237;351,237;357,237;363,237;369,237;374,237;380,237;386,237;391,237;397,237;403,237;409,237;414,237;420,237;426,237;431,237;437,237;443,237;460,237;466,237;471,237;477,237;489,237;517,237;523,237;529,237;534,237;540,237;546,237;552,237;557,237;563,237;569,237;574,237;580,237;586,237;592,237;597,237;603,237;609,237;614,237;626,237;48,243;157,243;163,243;168,243;191,243;203,243;208,243;214,243;340,243;346,243;351,243;357,243;363,243;369,243;374,243;380,243;386,243;391,243;397,243;403,243;409,243;414,243;420,243;426,243;431,243;437,243;443,243;449,243;460,243;466,243;471,243;477,243;483,243;489,243;494,243;523,243;529,243;534,243;540,243;546,243;552,243;574,243;580,243;586,243;592,243;157,248;163,248;168,248;185,248;226,248;237,248;340,248;346,248;351,248;357,248;363,248;369,248;374,248;380,248;386,248;391,248;397,248;403,248;409,248;414,248;420,248;426,248;431,248;437,248;443,248;449,248;466,248;471,248;477,248;483,248;489,248;529,248;534,248;540,248;546,248;574,248;580,248;586,248;592,248;609,248;168,254;174,254;180,254;185,254;346,254;351,254;357,254;363,254;369,254;374,254;380,254;386,254;391,254;397,254;403,254;409,254;414,254;420,254;426,254;431,254;437,254;443,254;449,254;454,254;471,254;477,254;483,254;534,254;540,254;586,254;592,254;597,254;632,254;185,260;191,260;197,260;340,260;346,260;351,260;357,260;363,260;369,260;374,260;380,260;386,260;391,260;397,260;403,260;409,260;414,260;420,260;426,260;431,260;437,260;443,260;449,260;454,260;466,260;534,260;540,260;592,260;597,260;603,260;632,260;197,266;220,266;346,266;351,266;357,266;363,266;369,266;374,266;380,266;386,266;391,266;397,266;403,266;409,266;414,266;420,266;426,266;431,266;437,266;443,266;449,266;454,266;460,266;483,266;540,266;586,266;597,266;603,266;637,266;203,272;208,272;214,272;220,272;226,272;231,272;237,272;243,272;351,272;357,272;363,272;369,272;374,272;380,272;386,272;391,272;397,272;403,272;409,272;414,272;420,272;426,272;431,272;437,272;443,272;449,272;454,272;460,272;466,272;471,272;477,272;546,272;586,272;637,272;643,272;214,278;220,278;226,278;231,278;237,278;243,278;248,278;357,278;363,278;369,278;386,278;391,278;397,278;403,278;409,278;414,278;420,278;426,278;431,278;437,278;443,278;449,278;454,278;460,278;466,278;471,278;592,278;626,278;214,284;220,284;226,284;231,284;237,284;243,284;248,284;254,284;260,284;266,284;397,284;403,284;409,284;414,284;420,284;426,284;431,284;437,284;443,284;449,284;454,284;460,284;466,284;580,284;592,284;620,284;180,289;208,289;214,289;220,289;226,289;231,289;237,289;243,289;248,289;254,289;260,289;266,289;397,289;403,289;409,289;414,289;420,289;426,289;431,289;437,289;449,289;454,289;460,289;586,289;592,289;609,289;614,289;620,289;637,289;649,289;208,295;214,295;220,295;226,295;231,295;237,295;243,295;248,295;254,295;260,295;266,295;271,295;277,295;397,295;403,295;409,295;414,295;420,295;426,295;431,295;437,295;449,295;454,295;592,295;597,295;609,295;614,295;620,295;632,295;655,295;660,295;666,295;208,301;214,301;220,301;226,301;231,301;237,301;243,301;248,301;254,301;260,301;266,301;271,301;277,301;283,301;288,301;294,301;403,301;409,301;414,301;420,301;426,301;431,301;443,301;449,301;454,301;597,301;632,301;660,301;666,301;672,301;677,301;695,301;208,307;214,307;220,307;226,307;231,307;237,307;243,307;248,307;254,307;260,307;266,307;271,307;277,307;283,307;288,307;294,307;300,307;403,307;409,307;414,307;420,307;426,307;431,307;443,307;449,307;454,307;603,307;609,307;614,307;672,307;677,307;683,307;706,307;712,307;214,313;220,313;226,313;231,313;237,313;243,313;248,313;254,313;260,313;266,313;271,313;277,313;283,313;288,313;294,313;403,313;409,313;414,313;420,313;426,313;431,313;437,313;443,313;449,313;454,313;626,313;632,313;637,313;689,313;717,313;214,319;220,319;226,319;231,319;237,319;243,319;248,319;254,319;260,319;266,319;271,319;277,319;283,319;288,319;409,319;414,319;420,319;426,319;431,319;437,319;443,319;454,319;655,319;660,319;677,319;220,324;226,324;231,324;237,324;243,324;248,324;254,324;260,324;266,324;271,324;277,324;283,324;288,324;403,324;409,324;414,324;420,324;426,324;431,324;437,324;443,324;449,324;454,324;477,324;643,324;655,324;660,324;677,324;226,330;231,330;237,330;243,330;248,330;254,330;260,330;266,330;271,330;277,330;283,330;288,330;403,330;409,330;414,330;420,330;426,330;431,330;437,330;443,330;449,330;471,330;477,330;637,330;643,330;649,330;655,330;660,330;666,330;677,330;729,330;752,330;231,336;237,336;243,336;248,336;254,336;260,336;266,336;271,336;277,336;283,336;288,336;403,336;409,336;414,336;420,336;426,336;431,336;437,336;443,336;471,336;632,336;637,336;643,336;649,336;655,336;660,336;666,336;672,336;677,336;683,336;231,342;237,342;243,342;248,342;254,342;260,342;266,342;271,342;277,342;409,342;414,342;420,342;426,342;431,342;437,342;443,342;466,342;471,342;620,342;626,342;632,342;637,342;643,342;649,342;655,342;660,342;666,342;672,342;677,342;683,342;723,342;231,348;237,348;243,348;248,348;254,348;260,348;266,348;271,348;409,348;414,348;420,348;426,348;431,348;437,348;614,348;620,348;626,348;632,348;637,348;643,348;649,348;655,348;660,348;666,348;672,348;677,348;683,348;689,348;231,354;237,354;243,354;248,354;254,354;260,354;266,354;271,354;409,354;414,354;420,354;426,354;431,354;437,354;614,354;620,354;626,354;632,354;637,354;643,354;649,354;655,354;660,354;666,354;672,354;677,354;683,354;689,354;695,354;231,360;237,360;243,360;248,360;254,360;260,360;266,360;414,360;420,360;426,360;431,360;614,360;620,360;626,360;632,360;637,360;643,360;649,360;655,360;660,360;666,360;672,360;677,360;683,360;689,360;695,360;231,365;237,365;243,365;248,365;254,365;260,365;266,365;414,365;420,365;426,365;614,365;620,365;626,365;632,365;637,365;643,365;649,365;655,365;660,365;666,365;672,365;677,365;683,365;689,365;231,371;237,371;243,371;248,371;254,371;614,371;620,371;626,371;655,371;660,371;666,371;672,371;677,371;683,371;689,371;226,377;231,377;237,377;243,377;248,377;254,377;660,377;666,377;672,377;677,377;683,377;231,383;237,383;243,383;248,383;666,383;672,383;677,383;683,383;231,389;237,389;243,389;666,389;672,389;677,389;735,389;231,395;237,395;243,395;735,395;231,401;237,401;672,401;735,401;231,406;237,406;243,406;672,406;729,406;231,412;237,412;723,412;231,418;237,418;260,418;712,418;717,418;237,424;243,424;712,424;243,430;248,430";
+  var s=document.getElementById("worldDotMap");
+  if(!s) return;
+  var ns="http://www.w3.org/2000/svg";
+  var cs=getComputedStyle(document.documentElement);
+  var fill=cs.getPropertyValue("--fg-ghost").trim()||"rgba(255,255,255,0.15)";
+  d.split(";").forEach(function(p){
+    var c=p.split(","),e=document.createElementNS(ns,"circle");
+    e.setAttribute("cx",c[0]);e.setAttribute("cy",c[1]);
+    e.setAttribute("r","1.2");e.setAttribute("fill",fill);
+    s.appendChild(e);
+  });
+  /* Update dot colors on theme change */
+  var obs=new MutationObserver(function(){
+    var nf=getComputedStyle(document.documentElement).getPropertyValue("--fg-ghost").trim();
+    s.querySelectorAll("circle").forEach(function(c){c.setAttribute("fill",nf);});
+  });
+  obs.observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+
+// ─── TOP COUNTRIES HOVER INTERACTION ───
+(function() {
+  const dots  = document.querySelectorAll('.tc-map-dot[data-country]');
+  const items = document.querySelectorAll('.tc-item[data-country]');
+
+  function highlight(country) {
+    dots.forEach(d => d.classList.toggle('active', d.dataset.country === country));
+    items.forEach(i => i.classList.toggle('highlight', i.dataset.country === country));
+  }
+  function clear() {
+    dots.forEach(d => d.classList.remove('active'));
+    items.forEach(i => i.classList.remove('highlight'));
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('mouseenter', () => highlight(dot.dataset.country));
+    dot.addEventListener('mouseleave', clear);
+  });
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => highlight(item.dataset.country));
+    item.addEventListener('mouseleave', clear);
+  });
+})();
+
+// ─── SIDEBAR TOGGLE ───
+(function() {
+  var sidebar = document.querySelector('.sidebar');
+  var btn = document.getElementById('sidebarToggle');
+  var saved = localStorage.getItem('cv-sidebar');
+  if (saved === 'collapsed') sidebar.classList.add('collapsed');
+  btn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    localStorage.setItem('cv-sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+  });
+})();
+
+// ─── THEME TOGGLE ───
+(function() {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('cv-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+
+  function refreshTheme() {
+    const t = {
+      primary:   _css('--primary'),
+      primary70: _css('--primary-70'),
+      chart2:    _css('--chart-2'),
+      cardBg:    _css('--card'),
+      elevated:  _css('--popover'),
+      borderTip: _css('--popover-border'),
+      fgMuted:   _css('--muted-foreground'),
+      fg:        _css('--foreground'),
+      fgFaint:   _css('--fg-faint'),
+      fgWhisper: _css('--fg-whisper'),
+      overlay4:  _css('--overlay-4'),
+    };
+    Object.assign(THEME, t);
+
+    // Update all Chart.js instances
+    Chart.helpers.each(Chart.instances, chart => {
+      const opts = chart.options;
+      const id = chart.canvas.id;
+      // tooltip
+      if (opts.plugins && opts.plugins.tooltip) {
+        opts.plugins.tooltip.backgroundColor = t.elevated;
+        opts.plugins.tooltip.borderColor = t.borderTip;
+        opts.plugins.tooltip.titleColor = t.fg;
+        opts.plugins.tooltip.bodyColor = t.fgMuted;
+      }
+      // scales
+      if (opts.scales) {
+        Object.values(opts.scales).forEach(scale => {
+          if (scale.ticks)  scale.ticks.color = t.fgMuted;
+          if (scale.grid)   scale.grid.color = t.overlay4;
+          if (scale.border) scale.border.color = 'transparent';
+        });
+      }
+      // dataset colors — rebuild gradients and update greens
+      if (id === 'perfChart') {
+        const g = chart.ctx.createLinearGradient(0, 0, 0, 300);
+        g.addColorStop(0,   _rgba(t.primary, 0.22));
+        g.addColorStop(0.7, _rgba(t.primary, 0.04));
+        g.addColorStop(1,   _rgba(t.primary, 0));
+        chart.data.datasets[0].borderColor = t.primary;
+        chart.data.datasets[0].backgroundColor = g;
+        chart.data.datasets[0].pointHoverBackgroundColor = t.primary;
+        chart.data.datasets[0].pointHoverBorderColor = t.cardBg;
+        chart.data.datasets[1].pointHoverBorderColor = t.cardBg;
+      }
+      if (id === 'orderChart') {
+        const g = chart.ctx.createLinearGradient(0, 0, 0, 240);
+        g.addColorStop(0,   _rgba(t.primary, 0.22));
+        g.addColorStop(0.7, _rgba(t.primary, 0.04));
+        g.addColorStop(1,   _rgba(t.primary, 0));
+        chart.data.datasets[0].borderColor = t.primary;
+        chart.data.datasets[0].backgroundColor = g;
+        chart.data.datasets[0].pointHoverBackgroundColor = t.primary;
+        chart.data.datasets[0].pointHoverBorderColor = t.cardBg;
+        chart.data.datasets[1].pointHoverBorderColor = t.cardBg;
+      }
+      if (id === 'segChart') {
+        chart.data.datasets[0].backgroundColor = [t.primary, '#f6b51e', t.primary70];
+      }
+      if (id === 'activityChart') {
+        chart.data.datasets[0].backgroundColor = t.primary;
+        chart.data.datasets[1].backgroundColor = t.primary70;
+      }
+      chart.update('none');
+    });
+  }
+
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('cv-theme', next);
+    // allow CSS to repaint before reading new computed values
+    requestAnimationFrame(() => requestAnimationFrame(refreshTheme));
+  });
+})();
+
+// ─── TRANSACTION DETAIL DRAWER ───
+(function() {
+  const overlay = document.getElementById('drawerOverlay');
+  const drawer  = document.getElementById('txDrawer');
+  const closeBtn = document.getElementById('dwClose');
+  const metaEl   = document.getElementById('dwMeta');
+  const tabs     = drawer.querySelectorAll('.dw-tab');
+  const panels   = drawer.querySelectorAll('.dw-panel');
+
+  // Network map
+  const networks = {
+    BTC: 'Bitcoin Network', ETH: 'Ethereum Mainnet', BNB: 'BNB Smart Chain',
+    SOL: 'Solana Mainnet', ADA: 'Cardano Mainnet'
+  };
+
+  // Mock data
+  const mockComments = [
+    { name: 'Sarah', color: '#627eea', time: 'Just now', text: 'Transaction confirmed on-chain. Everything looks good.', reaction: null },
+    { name: 'Alex', color: '#f7931a', time: '5 min ago', text: 'Please verify the wallet address before next transfer.', reaction: { emoji: '\uD83D\uDC4D', count: 1 } },
+    { name: 'Mike', color: '#9945ff', time: '12 min ago', text: 'Added this to the Q1 portfolio report.', reaction: null },
+  ];
+  const mockAttachments = [
+    { name: 'Transaction Receipt.pdf', size: '245 KB', color: '#ef4444', icon: 'PDF' },
+    { name: 'Confirmation Screenshot.png', size: '1.2 MB', color: '#627eea', icon: 'IMG' },
+    { name: 'Tax Report Export.csv', size: '89 KB', color: '#00c97a', icon: 'CSV' },
+  ];
+
+  function generateHash() {
+    const chars = '0123456789abcdef';
+    let h = '0x';
+    for (let i = 0; i < 40; i++) h += chars[Math.floor(Math.random() * 16)];
+    return h;
+  }
+
+  function openDrawer(row) {
+    const sym    = row.querySelector('.coin-sym')?.textContent || '';
+    const name   = row.querySelector('.coin-name')?.textContent || '';
+    const icon   = row.querySelector('.coin-icon');
+    const type   = row.querySelector('.badge');
+    const qty    = row.cells[2]?.textContent.trim() || '';
+    const price  = row.cells[3]?.textContent.trim() || '';
+    const total  = row.cells[4]?.textContent.trim() || '';
+    const date   = row.cells[5]?.textContent.trim() || '';
+    const pnl    = row.cells[6]?.querySelector('span');
+    const status = row.querySelector('.status-chip');
+    const hash   = generateHash();
+
+    // Header
+    const coinIcon = document.getElementById('dwCoinIcon');
+    coinIcon.style.background = icon ? icon.style.background : '';
+    coinIcon.style.color = icon ? icon.style.color : '';
+    coinIcon.textContent = sym.charAt(0);
+    document.getElementById('dwTitle').textContent = name;
+    document.getElementById('dwSubtitle').textContent = sym + ' Transaction';
+
+    // Metadata
+    const statusClass = status?.classList.contains('completed') ? 'completed'
+                      : status?.classList.contains('pending') ? 'pending' : 'failed';
+    const statusText  = status?.textContent.trim() || '';
+    const statusDotColor = statusClass === 'completed' ? 'var(--fg-ghost)'
+                         : statusClass === 'pending' ? 'var(--warning)' : 'var(--destructive)';
+
+    metaEl.innerHTML = `
+      <div class="dw-row">
+        <span class="dw-label">Type</span>
+        <span class="dw-value"><span class="badge ${type?.classList.contains('buy') ? 'buy' : 'sell'}">${type?.textContent || ''}</span></span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Status</span>
+        <span class="dw-value"><span class="status-chip ${statusClass}"><span class="s-dot" style="background:${statusDotColor}"></span>${statusText}</span></span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Date</span>
+        <span class="dw-value">${date}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Quantity</span>
+        <span class="dw-value mono">${qty}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Price</span>
+        <span class="dw-value mono">${price}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Total Value</span>
+        <span class="dw-value mono" style="font-weight:700">${total}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">P&L</span>
+        <span class="dw-value">${pnl ? pnl.outerHTML : '—'}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Fee</span>
+        <span class="dw-value mono">$4.99</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">Network</span>
+        <span class="dw-value">${networks[sym] || sym + ' Network'}</span>
+      </div>
+      <div class="dw-row">
+        <span class="dw-label">TX Hash</span>
+        <span class="dw-value"><span class="dw-hash">${hash.slice(0,6)}...${hash.slice(-4)}<button class="dw-copy" onclick="navigator.clipboard.writeText('${hash}')" title="Copy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></span></span>
+      </div>
+    `;
+
+    // Details panel
+    document.getElementById('dwPanelDetails').innerHTML = `
+      <div class="dw-section-title">Notes</div>
+      <div class="dw-notes">
+        ${type?.classList.contains('buy') ? 'Buy' : 'Sell'} order for ${qty} ${sym} at ${price} per unit.
+        Transaction executed via limit order on ${networks[sym] || sym + ' Network'}.
+        Confirmation received within standard block time.
+      </div>
+      <div class="dw-detail-grid">
+        <div class="dw-detail-card">
+          <div class="dw-detail-card-label">Exchange</div>
+          <div class="dw-detail-card-val">Binance</div>
+        </div>
+        <div class="dw-detail-card">
+          <div class="dw-detail-card-label">Order Type</div>
+          <div class="dw-detail-card-val">Limit</div>
+        </div>
+        <div class="dw-detail-card">
+          <div class="dw-detail-card-label">Confirmations</div>
+          <div class="dw-detail-card-val">${statusClass === 'completed' ? '12' : statusClass === 'pending' ? '2' : '0'}</div>
+        </div>
+        <div class="dw-detail-card">
+          <div class="dw-detail-card-label">Block</div>
+          <div class="dw-detail-card-val">#${Math.floor(Math.random() * 900000 + 100000)}</div>
+        </div>
+      </div>
+    `;
+
+    // Comments panel
+    document.getElementById('dwComments').innerHTML = mockComments.map(c => `
+      <div class="dw-comment">
+        <div class="dw-comment-avatar" style="background:${c.color}">${c.name.charAt(0)}</div>
+        <div class="dw-comment-body">
+          <div class="dw-comment-head">
+            <span class="dw-comment-name">${c.name}</span>
+            <span class="dw-comment-time">${c.time}</span>
+          </div>
+          <div class="dw-comment-text">${c.text}</div>
+          <div class="dw-comment-actions">
+            ${c.reaction ? `<span class="dw-reaction">${c.reaction.emoji} ${c.reaction.count}</span>` : ''}
+            <button class="dw-comment-action">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </button>
+            <button class="dw-comment-action">Reply</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Attachments panel
+    document.getElementById('dwAttachments').innerHTML = mockAttachments.map(a => `
+      <div class="dw-attachment">
+        <div class="dw-att-icon" style="background:${a.color}">${a.icon}</div>
+        <div class="dw-att-info">
+          <div class="dw-att-name">${a.name}</div>
+          <div class="dw-att-meta">
+            <span>${a.size}</span>
+            <span class="dw-att-action">Download</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Activity panel
+    const activities = [
+      { dot: statusClass, title: statusText, desc: `Transaction ${statusText.toLowerCase()}`, time: date },
+      { dot: 'default', title: 'Confirmed on-chain', desc: `${networks[sym] || sym} confirmation received`, time: date },
+      { dot: 'default', title: 'Order Submitted', desc: `${type?.classList.contains('buy') ? 'Buy' : 'Sell'} order placed on exchange`, time: date },
+      { dot: 'default', title: 'Created', desc: 'Transaction initiated by user', time: date },
+    ];
+    document.getElementById('dwActivity').innerHTML = `
+      <div class="dw-timeline">
+        ${activities.map(a => `
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot ${a.dot}"></div>
+            <div class="dw-tl-title">${a.title}</div>
+            <div class="dw-tl-desc">${a.desc}</div>
+            <div class="dw-tl-time">${a.time}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    // Reset to first tab
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tabs[0].classList.add('active');
+    panels[0].classList.add('active');
+
+    // Show
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.tab;
+      drawer.querySelector(`[data-panel="${target}"]`).classList.add('active');
+    });
+  });
+
+  // Row click
+  document.querySelectorAll('#recentTbl tbody tr').forEach(row => {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => openDrawer(row));
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>

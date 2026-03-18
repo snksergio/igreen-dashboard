@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawer — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="drawer.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+    }
+    .preview--col { display: flex; flex-direction: column; align-items: stretch; }
+
+    /* Inline drawer preview — renders drawer content within page flow */
+    .preview--drawer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Icon helper */
+    .icon { display: inline-flex; flex-shrink: 0; }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+
+    /* Demo toggle button */
+    .demo-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 24px; border-radius: var(--radius-sm);
+      background: var(--primary); color: #fff; border: none;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: opacity .2s;
+    }
+    .demo-toggle:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Drawer</div>
+      <div class="page-desc">Transaction detail drawer — a 620px slide-in panel with header, metadata grid, tabs, and 4 content panels.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ DRAWER HEADER ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Drawer Header</div>
+    <div class="section-desc">
+      The <code>.dw-header</code> contains a coin icon, title/subtitle wrap, and a close button. The icon uses an inline background color for the asset type.
+    </div>
+    <div class="preview--drawer">
+      <div class="dw-header">
+        <div class="dw-coin-icon" style="background: #F7931A; color: #fff;">BTC</div>
+        <div class="dw-title-wrap">
+          <div class="dw-title">Buy Bitcoin</div>
+          <div class="dw-subtitle">BTC/USDT &middot; Spot Trade</div>
+        </div>
+        <button class="dw-close" aria-label="Close drawer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ METADATA GRID ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Metadata Grid</div>
+    <div class="section-desc">
+      The <code>.dw-meta</code> grid uses a two-column layout (120px label + fluid value) to display key transaction fields. Each <code>.dw-row</code> uses <code>display: contents</code>.
+    </div>
+    <div class="preview--drawer">
+      <div class="dw-meta">
+        <div class="dw-row">
+          <div class="dw-label">Type</div>
+          <div class="dw-value">Buy</div>
+        </div>
+        <div class="dw-row">
+          <div class="dw-label">Amount</div>
+          <div class="dw-value mono">0.4521 BTC</div>
+        </div>
+        <div class="dw-row">
+          <div class="dw-label">Price</div>
+          <div class="dw-value mono">$43,250.00</div>
+        </div>
+        <div class="dw-row">
+          <div class="dw-label">Total</div>
+          <div class="dw-value mono">$19,553.23</div>
+        </div>
+        <div class="dw-row">
+          <div class="dw-label">Hash</div>
+          <div class="dw-value">
+            <span class="dw-hash">
+              0x7a3f...8b2e
+              <button class="dw-copy" aria-label="Copy hash">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ TABS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Tabs</div>
+    <div class="section-desc">
+      The <code>.dw-tabs</code> bar provides navigation between drawer panels. Active state uses a bottom border indicator. Badges show counts with <code>.dw-tab-badge</code>.
+    </div>
+    <div class="preview--drawer">
+      <div class="dw-tabs">
+        <button class="dw-tab active">Overview</button>
+        <button class="dw-tab">Comments <span class="dw-tab-badge">3</span></button>
+        <button class="dw-tab">Attachments <span class="dw-tab-badge">2</span></button>
+        <button class="dw-tab">Activity</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ DETAILS PANEL ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Details Panel</div>
+    <div class="section-desc">
+      The Overview panel uses <code>.dw-section-title</code>, <code>.dw-notes</code> for narrative context, and a <code>.dw-detail-grid</code> of metric cards.
+    </div>
+    <div class="preview--drawer">
+      <div style="padding: var(--space-xl) var(--space-2xl) var(--space-2xl);">
+        <div class="dw-section-title">Notes</div>
+        <div class="dw-notes">
+          Recurring weekly DCA purchase. Bitcoin accumulated as part of long-term portfolio strategy. Order executed at market price during low-volatility window.
+        </div>
+        <div class="dw-detail-grid">
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Fee</div>
+            <div class="dw-detail-card-val">0.1% ($19.55)</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Network</div>
+            <div class="dw-detail-card-val">Bitcoin Mainnet</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Confirmations</div>
+            <div class="dw-detail-card-val">6 / 6</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Block</div>
+            <div class="dw-detail-card-val">#831,042</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ COMMENTS PANEL ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Comments Panel</div>
+    <div class="section-desc">
+      The Comments panel features a <code>.dw-comment-box</code> with textarea, formatting toolbar, and submit button, followed by threaded <code>.dw-comment</code> entries.
+    </div>
+    <div class="preview--drawer">
+      <div style="padding: var(--space-xl) var(--space-2xl) var(--space-2xl);">
+        <!-- Comment input -->
+        <div class="dw-comment-box">
+          <textarea placeholder="Add a comment..."></textarea>
+          <div class="dw-comment-toolbar">
+            <div class="dw-comment-tools">
+              <button class="dw-comment-tool" aria-label="Attach file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+              </button>
+              <button class="dw-comment-tool" aria-label="Mention user">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg>
+              </button>
+              <button class="dw-comment-tool" aria-label="Add emoji">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </button>
+            </div>
+            <button class="dw-submit-btn">Comment</button>
+          </div>
+        </div>
+
+        <!-- Comment 1 -->
+        <div class="dw-comment">
+          <div class="dw-comment-avatar" style="background: #6366F1;">JD</div>
+          <div class="dw-comment-body">
+            <div class="dw-comment-head">
+              <span class="dw-comment-name">Jane Doe</span>
+              <span class="dw-comment-time">2 hours ago</span>
+            </div>
+            <div class="dw-comment-text">Great entry point! The DCA strategy is paying off nicely with this price action. Consider bumping the weekly amount.</div>
+            <div class="dw-comment-actions">
+              <button class="dw-comment-action">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+                Like
+              </button>
+              <button class="dw-comment-action">Reply</button>
+              <span class="dw-reaction">+1 &nbsp;2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment 2 -->
+        <div class="dw-comment">
+          <div class="dw-comment-avatar" style="background: #10B981;">AS</div>
+          <div class="dw-comment-body">
+            <div class="dw-comment-head">
+              <span class="dw-comment-name">Alex Smith</span>
+              <span class="dw-comment-time">45 min ago</span>
+            </div>
+            <div class="dw-comment-text">Confirmed on-chain. All 6 confirmations received, settlement complete. Funds are now in cold storage.</div>
+            <div class="dw-comment-actions">
+              <button class="dw-comment-action">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+                Like
+              </button>
+              <button class="dw-comment-action">Reply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ ATTACHMENTS PANEL ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Attachments Panel</div>
+    <div class="section-desc">
+      Each <code>.dw-attachment</code> row shows a file type icon, name, metadata, and a download action.
+    </div>
+    <div class="preview--drawer">
+      <div style="padding: var(--space-xl) var(--space-2xl) var(--space-2xl);">
+        <div class="dw-attachment">
+          <div class="dw-att-icon" style="background: #EF4444;">PDF</div>
+          <div class="dw-att-info">
+            <div class="dw-att-name">Transaction_Receipt_831042.pdf</div>
+            <div class="dw-att-meta">
+              <span>245 KB</span>
+              <span>&middot;</span>
+              <span>Mar 15, 2026</span>
+            </div>
+          </div>
+          <span class="dw-att-action">Download</span>
+        </div>
+        <div class="dw-attachment">
+          <div class="dw-att-icon" style="background: #8B5CF6;">PNG</div>
+          <div class="dw-att-info">
+            <div class="dw-att-name">Confirmation_Screenshot.png</div>
+            <div class="dw-att-meta">
+              <span>1.2 MB</span>
+              <span>&middot;</span>
+              <span>Mar 15, 2026</span>
+            </div>
+          </div>
+          <span class="dw-att-action">Download</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ ACTIVITY TIMELINE ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Activity Timeline</div>
+    <div class="section-desc">
+      The <code>.dw-timeline</code> uses a vertical line with dot indicators. Each <code>.dw-tl-item</code> has a status dot (<code>.completed</code>, <code>.pending</code>, <code>.failed</code>, <code>.default</code>), title, description, and timestamp.
+    </div>
+    <div class="preview--drawer">
+      <div style="padding: var(--space-xl) var(--space-2xl) var(--space-2xl);">
+        <div class="dw-timeline">
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot completed"></div>
+            <div class="dw-tl-title">Transaction Confirmed</div>
+            <div class="dw-tl-desc">6/6 confirmations received. Settlement finalized and funds deposited to wallet.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:32 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot pending"></div>
+            <div class="dw-tl-title">Network Confirmation</div>
+            <div class="dw-tl-desc">Broadcasted to Bitcoin mainnet. Waiting for block inclusion and miner confirmations.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:18 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot default"></div>
+            <div class="dw-tl-title">Order Submitted</div>
+            <div class="dw-tl-desc">Market buy order submitted at $43,250.00 per BTC. Matched with liquidity pool.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:15 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot completed"></div>
+            <div class="dw-tl-title">Order Initiated</div>
+            <div class="dw-tl-desc">DCA auto-buy triggered by weekly recurring schedule. Amount: 0.4521 BTC.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:00 UTC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ LIVE DEMO ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Live Demo</div>
+    <div class="section-desc">
+      Click the button below to toggle the actual drawer panel. It slides in from the right with an overlay backdrop. Click the overlay or the close button to dismiss.
+    </div>
+    <div class="preview">
+      <button class="demo-toggle" id="drawerToggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        Toggle Drawer
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API REFERENCE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">Drawer</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>drawer-overlay</td>
+          <td>Full-screen backdrop behind the drawer panel.</td>
+          <td><code>layout</code></td>
+          <td><code>hidden</code></td>
+        </tr>
+        <tr>
+          <td>drawer-overlay.open</td>
+          <td>Shows the overlay with fade-in transition.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>drawer</td>
+          <td>Fixed 620px panel, slides from right edge.</td>
+          <td><code>layout</code></td>
+          <td><code>hidden</code></td>
+        </tr>
+        <tr>
+          <td>drawer.open</td>
+          <td>Translates the panel into view.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-header</td>
+          <td>Flex container for icon, title wrap, and close button.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-coin-icon</td>
+          <td>48px square icon with rounded corners.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-meta</td>
+          <td>Two-column metadata grid (120px + 1fr).</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-row</td>
+          <td>Grid row using display: contents.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tabs</td>
+          <td>Horizontal tab bar with border separators.</td>
+          <td><code>navigation</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tab</td>
+          <td>Individual tab button.</td>
+          <td><code>element</code></td>
+          <td><code>inactive</code></td>
+        </tr>
+        <tr>
+          <td>dw-tab.active</td>
+          <td>Active tab with bottom border indicator.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tab-badge</td>
+          <td>Count badge inside a tab.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-body</td>
+          <td>Scrollable content area below tabs.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-panel</td>
+          <td>Tab panel container (hidden by default).</td>
+          <td><code>layout</code></td>
+          <td><code>hidden</code></td>
+        </tr>
+        <tr>
+          <td>dw-panel.active</td>
+          <td>Visible tab panel.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-comment-box</td>
+          <td>Comment input container with toolbar.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-comment</td>
+          <td>Single comment with avatar and body.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-attachment</td>
+          <td>File attachment row with icon and metadata.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-timeline</td>
+          <td>Vertical timeline with line and dot indicators.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tl-dot.completed</td>
+          <td>Green (primary) status dot.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tl-dot.pending</td>
+          <td>Yellow (warning) status dot.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tl-dot.failed</td>
+          <td>Red (destructive) status dot.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>dw-tl-dot.default</td>
+          <td>Gray (muted) status dot.</td>
+          <td><code>state</code></td>
+          <td><code>-</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ════════════════════════ ACTUAL DRAWER (for live demo) ════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawerPanel">
+
+    <!-- Drawer Header -->
+    <div class="dw-header">
+      <div class="dw-coin-icon" style="background: #F7931A; color: #fff;">BTC</div>
+      <div class="dw-title-wrap">
+        <div class="dw-title">Buy Bitcoin</div>
+        <div class="dw-subtitle">BTC/USDT &middot; Spot Trade</div>
+      </div>
+      <button class="dw-close" id="drawerClose" aria-label="Close drawer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Metadata -->
+    <div class="dw-meta">
+      <div class="dw-row">
+        <div class="dw-label">Type</div>
+        <div class="dw-value">Buy</div>
+      </div>
+      <div class="dw-row">
+        <div class="dw-label">Amount</div>
+        <div class="dw-value mono">0.4521 BTC</div>
+      </div>
+      <div class="dw-row">
+        <div class="dw-label">Price</div>
+        <div class="dw-value mono">$43,250.00</div>
+      </div>
+      <div class="dw-row">
+        <div class="dw-label">Total</div>
+        <div class="dw-value mono">$19,553.23</div>
+      </div>
+      <div class="dw-row">
+        <div class="dw-label">Hash</div>
+        <div class="dw-value">
+          <span class="dw-hash">
+            0x7a3f...8b2e
+            <button class="dw-copy" aria-label="Copy hash">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="dw-tabs">
+      <button class="dw-tab active" data-panel="overview">Overview</button>
+      <button class="dw-tab" data-panel="comments">Comments <span class="dw-tab-badge">3</span></button>
+      <button class="dw-tab" data-panel="attachments">Attachments <span class="dw-tab-badge">2</span></button>
+      <button class="dw-tab" data-panel="activity">Activity</button>
+    </div>
+
+    <!-- Body -->
+    <div class="dw-body">
+
+      <!-- Overview Panel -->
+      <div class="dw-panel active" id="panel-overview">
+        <div class="dw-section-title">Notes</div>
+        <div class="dw-notes">
+          Recurring weekly DCA purchase. Bitcoin accumulated as part of long-term portfolio strategy. Order executed at market price during low-volatility window.
+        </div>
+        <div class="dw-detail-grid">
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Fee</div>
+            <div class="dw-detail-card-val">0.1% ($19.55)</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Network</div>
+            <div class="dw-detail-card-val">Bitcoin Mainnet</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Confirmations</div>
+            <div class="dw-detail-card-val">6 / 6</div>
+          </div>
+          <div class="dw-detail-card">
+            <div class="dw-detail-card-label">Block</div>
+            <div class="dw-detail-card-val">#831,042</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comments Panel -->
+      <div class="dw-panel" id="panel-comments">
+        <div class="dw-comment-box">
+          <textarea placeholder="Add a comment..."></textarea>
+          <div class="dw-comment-toolbar">
+            <div class="dw-comment-tools">
+              <button class="dw-comment-tool" aria-label="Attach file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+              </button>
+              <button class="dw-comment-tool" aria-label="Mention user">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg>
+              </button>
+              <button class="dw-comment-tool" aria-label="Add emoji">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </button>
+            </div>
+            <button class="dw-submit-btn">Comment</button>
+          </div>
+        </div>
+
+        <div class="dw-comment">
+          <div class="dw-comment-avatar" style="background: #6366F1;">JD</div>
+          <div class="dw-comment-body">
+            <div class="dw-comment-head">
+              <span class="dw-comment-name">Jane Doe</span>
+              <span class="dw-comment-time">2 hours ago</span>
+            </div>
+            <div class="dw-comment-text">Great entry point! The DCA strategy is paying off nicely with this price action. Consider bumping the weekly amount.</div>
+            <div class="dw-comment-actions">
+              <button class="dw-comment-action">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+                Like
+              </button>
+              <button class="dw-comment-action">Reply</button>
+              <span class="dw-reaction">+1 &nbsp;2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dw-comment">
+          <div class="dw-comment-avatar" style="background: #10B981;">AS</div>
+          <div class="dw-comment-body">
+            <div class="dw-comment-head">
+              <span class="dw-comment-name">Alex Smith</span>
+              <span class="dw-comment-time">45 min ago</span>
+            </div>
+            <div class="dw-comment-text">Confirmed on-chain. All 6 confirmations received, settlement complete. Funds are now in cold storage.</div>
+            <div class="dw-comment-actions">
+              <button class="dw-comment-action">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+                Like
+              </button>
+              <button class="dw-comment-action">Reply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attachments Panel -->
+      <div class="dw-panel" id="panel-attachments">
+        <div class="dw-attachment">
+          <div class="dw-att-icon" style="background: #EF4444;">PDF</div>
+          <div class="dw-att-info">
+            <div class="dw-att-name">Transaction_Receipt_831042.pdf</div>
+            <div class="dw-att-meta">
+              <span>245 KB</span>
+              <span>&middot;</span>
+              <span>Mar 15, 2026</span>
+            </div>
+          </div>
+          <span class="dw-att-action">Download</span>
+        </div>
+        <div class="dw-attachment">
+          <div class="dw-att-icon" style="background: #8B5CF6;">PNG</div>
+          <div class="dw-att-info">
+            <div class="dw-att-name">Confirmation_Screenshot.png</div>
+            <div class="dw-att-meta">
+              <span>1.2 MB</span>
+              <span>&middot;</span>
+              <span>Mar 15, 2026</span>
+            </div>
+          </div>
+          <span class="dw-att-action">Download</span>
+        </div>
+      </div>
+
+      <!-- Activity Panel -->
+      <div class="dw-panel" id="panel-activity">
+        <div class="dw-timeline">
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot completed"></div>
+            <div class="dw-tl-title">Transaction Confirmed</div>
+            <div class="dw-tl-desc">6/6 confirmations received. Settlement finalized and funds deposited to wallet.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:32 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot pending"></div>
+            <div class="dw-tl-title">Network Confirmation</div>
+            <div class="dw-tl-desc">Broadcasted to Bitcoin mainnet. Waiting for block inclusion and miner confirmations.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:18 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot default"></div>
+            <div class="dw-tl-title">Order Submitted</div>
+            <div class="dw-tl-desc">Market buy order submitted at $43,250.00 per BTC. Matched with liquidity pool.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:15 UTC</div>
+          </div>
+          <div class="dw-tl-item">
+            <div class="dw-tl-dot completed"></div>
+            <div class="dw-tl-title">Order Initiated</div>
+            <div class="dw-tl-desc">DCA auto-buy triggered by weekly recurring schedule. Amount: 0.4521 BTC.</div>
+            <div class="dw-tl-time">Mar 15, 2026 &middot; 14:00 UTC</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+
+  // Drawer toggle
+  const overlay = document.getElementById('drawerOverlay');
+  const drawer = document.getElementById('drawerPanel');
+  const toggleBtn = document.getElementById('drawerToggle');
+  const closeBtn = document.getElementById('drawerClose');
+
+  function openDrawer() {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+  }
+
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if (drawer.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+
+  // Escape key closes drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
+  // Tab switching inside the live drawer
+  const tabs = drawer.querySelectorAll('.dw-tab');
+  const panels = drawer.querySelectorAll('.dw-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panelId = 'panel-' + tab.getAttribute('data-panel');
+      const target = document.getElementById(panelId);
+      if (target) target.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Order — CryptoVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function(){var t=localStorage.getItem('cv-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+  <link href="./dist/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="s-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <rect x="2" y="12" width="3.5" height="8" rx="1.2"/>
+          <rect x="7.5" y="7" width="3.5" height="13" rx="1.2"/>
+          <rect x="13" y="3" width="3.5" height="17" rx="1.2"/>
+          <rect x="18.5" y="9" width="3.5" height="11" rx="1.2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CryptoVault</div>
+        <div class="brand-sub">Pro Account</div>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="sidebar-section">
+      <div class="sec-label">Main Menu</div>
+      <a class="nav-item" href="dashboard.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Portfolio</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <span class="nav-label">Swap</span>
+      </a>
+      <a class="nav-item" href="market-trends.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Market Trends</span>
+      </a>
+    </div>
+
+    <!-- Manage -->
+    <div class="sidebar-section">
+      <div class="sec-label">Manage</div>
+      <a class="nav-item" href="analytics.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="13" width="3" height="9" rx="1"/>
+            <rect x="7" y="8" width="3" height="14" rx="1"/>
+            <rect x="12" y="3" width="3" height="19" rx="1"/>
+            <rect x="17" y="10" width="3" height="12" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-label">Analytics</span>
+      </a>
+      <a class="nav-item" href="products.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="nav-label">Calendar</span>
+      </a>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-section">
+      <div class="sec-label">Settings</div>
+      <a class="nav-item active" href="order.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Settings</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Security</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+
+    <div class="sidebar-gap"></div>
+
+    <!-- Upgrade Card -->
+    <div class="upgrade-card">
+      <div class="uc-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="uc-title">Upgrade To Pro</div>
+      <div class="uc-sub">Unlock real-time signals and advanced analytics.</div>
+      <button class="uc-btn">Get Started</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+      </button>
+      <div class="topbar-divider"></div>
+      <div class="breadcrumb">
+        <span class="bc-parent" onclick="location.href='analytics.html'">Analytics</span>
+        <span class="bc-sep">&rsaquo;</span>
+        <span class="bc-current">Edit Order</span>
+      </div>
+
+      <div class="topbar-center">
+        <div class="wallet-tag"><div class="dot dot-gray"></div>Main-coin wallet</div>
+        <div class="wallet-tag"><div class="dot dot-green"></div>All Wallet (08)</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="t-icon-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <div class="notif-badge"></div>
+        </div>
+        <div class="t-icon-btn" id="themeToggle" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="user-chip">
+          <div class="avatar">S</div>
+          <div class="user-meta">
+            <div class="user-name">Simson wili</div>
+            <div class="user-url">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Simsonwit.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         PAGE CONTENT
+    ══════════════════════════════════════ -->
+    <div class="body">
+
+      <!-- Page Title -->
+      <h1 class="form-page-title">Edit order</h1>
+
+      <!-- 2-column layout: nav + form -->
+      <div class="form-layout">
+
+        <!-- LEFT: Step Navigation -->
+        <nav class="form-nav">
+          <a href="#section-products" class="form-nav-item" data-target="section-products">
+            <div class="form-nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <div class="form-nav-text">
+              <div class="form-nav-title">Select products</div>
+              <div class="form-nav-desc">Add product to purchase list.</div>
+            </div>
+          </a>
+
+          <a href="#section-customer" class="form-nav-item active" data-target="section-customer">
+            <div class="form-nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="form-nav-text">
+              <div class="form-nav-title">Customer details</div>
+              <div class="form-nav-desc">Enter customer information like name, email &amp; phone number.</div>
+            </div>
+          </a>
+
+          <a href="#section-address" class="form-nav-item" data-target="section-address">
+            <div class="form-nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="form-nav-text">
+              <div class="form-nav-title">Address Information</div>
+              <div class="form-nav-desc">Provide shipping address details.</div>
+            </div>
+          </a>
+
+          <a href="#section-payment" class="form-nav-item" data-target="section-payment">
+            <div class="form-nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+              </svg>
+            </div>
+            <div class="form-nav-text">
+              <div class="form-nav-title">Payment</div>
+              <div class="form-nav-desc">Enter payment method and details to complete the transaction.</div>
+            </div>
+          </a>
+        </nav>
+
+        <!-- RIGHT: Form Sections -->
+        <div class="form-content">
+
+          <!-- Section 1: Select Products -->
+          <div id="section-products" class="form-section">
+            <div class="form-section-title">Select products</div>
+            <div class="form-group">
+              <label class="form-label">Search product</label>
+              <input type="text" class="form-input" placeholder="Search by product name or SKU...">
+            </div>
+          </div>
+
+          <!-- Section 2: Customer Details -->
+          <div id="section-customer" class="form-section">
+            <div class="form-section-title">Customer details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="First name" name="first_name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">User Name</label>
+                <input type="text" class="form-input" placeholder="User name" name="user_name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="email@example.com" name="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone number</label>
+              <div class="form-phone-row">
+                <select class="form-select" name="phone_code">
+                  <option value="+1">+1</option>
+                  <option value="+44">+44</option>
+                  <option value="+55">+55</option>
+                  <option value="+91">+91</option>
+                  <option value="+49">+49</option>
+                </select>
+                <input type="tel" class="form-input" placeholder="Phone Number" name="phone">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Address Information -->
+          <div id="section-address" class="form-section">
+            <div class="form-section-title">Address Information</div>
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <select class="form-select" name="country">
+                <option value="">Select country</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="BR">Brazil</option>
+                <option value="DE">Germany</option>
+                <option value="IN">India</option>
+                <option value="JP">Japan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Address</label>
+              <input type="text" class="form-input" placeholder="Address" name="address">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-input" placeholder="City" name="city">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Postal Code</label>
+                <input type="text" class="form-input" placeholder="Postal Code" name="postal_code">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Payment -->
+          <div id="section-payment" class="form-section">
+            <div class="form-section-title">Payment</div>
+            <div class="form-group">
+              <label class="form-label">Payment method</label>
+              <select class="form-select" name="payment_method">
+                <option value="credit">Credit/Debit card</option>
+                <option value="paypal">PayPal</option>
+                <option value="crypto">Crypto Wallet</option>
+                <option value="bank">Bank Transfer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card holder name</label>
+              <input type="text" class="form-input" placeholder="Card holder name" name="card_holder">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Credit card number</label>
+              <input type="text" class="form-input" placeholder="**** **** **** ****" name="card_number" maxlength="19">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Expiration date</label>
+                <input type="text" class="form-input" placeholder="MM/YY" name="exp_date" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CVV</label>
+                <input type="text" class="form-input" placeholder="***" name="cvv" maxlength="4">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end .form-content -->
+
+      </div>
+      <!-- end .form-layout -->
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button class="btn btn--outline" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-2 14H7L5 6"/>
+            <path d="M10 11v6"/><path d="M14 11v6"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+          Discard
+        </button>
+        <button class="btn btn--solid btn--lg" type="button">Create</button>
+      </div>
+
+    </div>
+    <!-- end .body -->
+
+  </div>
+  <!-- end .main -->
+
+</div>
+
+<!-- ── Scripts ── -->
+<script>
+// ─── SIDEBAR TOGGLE ───
+(function() {
+  var sidebar = document.querySelector('.sidebar');
+  var btn = document.getElementById('sidebarToggle');
+  var saved = localStorage.getItem('cv-sidebar');
+  if (saved === 'collapsed') sidebar.classList.add('collapsed');
+  btn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    localStorage.setItem('cv-sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+  });
+})();
+
+// ─── THEME TOGGLE ───
+(function() {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('cv-theme', next);
+  });
+})();
+
+// ─── FORM NAV: SCROLL + ACTIVE TRACKING ───
+(function() {
+  const navItems = document.querySelectorAll('.form-nav-item');
+  const sections = document.querySelectorAll('.form-section');
+  const scrollContainer = document.querySelector('.body');
+
+  // Click: smooth scroll to section
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('data-target');
+      const target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Scroll: update active nav based on visible section
+  function updateActiveNav() {
+    let currentId = null;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const containerRect = scrollContainer.getBoundingClientRect();
+      if (rect.top - containerRect.top < 100) {
+        currentId = section.id;
+      }
+    });
+    if (currentId) {
+      navItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-target') === currentId);
+      });
+    }
+  }
+
+  scrollContainer.addEventListener('scroll', updateActiveNav);
+})();
+</script>
+</body>
+</html>

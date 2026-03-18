@@ -1,0 +1,133 @@
+/* ═══════════════════════════════════════════════
+   LIGHT THEME
+   Activated via [data-theme="light"] on <html>
+═══════════════════════════════════════════════ */
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* ─ Surfaces ─ */
+  --bg:             #f3f3f9;
+  --sidebar-bg:     #ffffff;
+  --input-bg:       #f5f5fa;
+  --card-bg:        #ffffff;
+  --popover-bg:     #ffffff;
+  --elevated:       #ecedf2;
+  --elevated-hover: #e4e5eb;
+  --nav-hover-bg:   #e8ecf1;
+
+  /* ─ Borders ─ */
+  --border-structural: #e4e5eb;
+  --border-focus:      #bbbdc6;
+  --border-tooltip:    #d4d6de;
+  --border-separator:  rgba(0,0,0,0.06);
+  --border-subtle:     rgba(0,0,0,0.08);
+  --border-soft:       rgba(0,0,0,0.12);
+  --border-strong:     rgba(0,0,0,0.20);
+
+  /* ─ Foreground scale ─ */
+  --fg:            #1a1a2e;
+  --fg-strong:     #2a2a3e;
+  --fg-secondary:  #3a3a50;
+  --fg-tooltip:    #555568;
+  --fg-hover:      #5e5e72;
+  --fg-tertiary:   #6e6e82;
+  --fg-muted:      #8b8ba0;
+  --fg-dim:        #9e9eb2;
+  --fg-faint:      #b0b0c0;
+  --fg-ghost:      #c4c4d0;
+  --fg-hint:       #d0d0da;
+  --fg-decoration: #e0e0e8;
+  --fg-whisper:    #d8d8e2;
+  --fg-disabled:   #dcdce4;
+
+  /* ─ Alpha foreground ─ */
+  --fg-30: rgba(26,26,46,0.30);
+  --fg-40: rgba(26,26,46,0.40);
+  --fg-45: rgba(26,26,46,0.45);
+  --fg-50: rgba(26,26,46,0.50);
+  --fg-60: rgba(26,26,46,0.60);
+  --fg-70: rgba(26,26,46,0.70);
+  --fg-80: rgba(26,26,46,0.80);
+
+  /* ─ Alpha surface overlays (blue-gray tinted to match --input-bg family) ─ */
+  --overlay-3:  rgba(26,26,46,0.02);
+  --overlay-4:  rgba(26,26,46,0.03);
+  --overlay-5:  rgba(26,26,46,0.04);
+  --overlay-6:  rgba(26,26,46,0.05);
+  --overlay-7:  rgba(26,26,46,0.06);
+  --overlay-8:  rgba(26,26,46,0.07);
+  --overlay-10: rgba(26,26,46,0.09);
+  --overlay-12: rgba(26,26,46,0.11);
+  --overlay-22: rgba(26,26,46,0.20);
+
+  /* ─ Primary (forest green for light bg) ─ */
+  --primary:    #338449;
+  --primary-fg: #ffffff;
+  --primary-7:  rgba(51,132,73,0.07);
+  --primary-8:  rgba(51,132,73,0.08);
+  --primary-10: rgba(51,132,73,0.10);
+  --primary-12: rgba(51,132,73,0.12);
+  --primary-15: rgba(51,132,73,0.15);
+  --primary-20: rgba(51,132,73,0.20);
+  --primary-70: rgba(51,132,73,0.70);
+
+  /* ─ Semantic ─ */
+  --destructive:    #dc2626;
+  --destructive-8:  rgba(220,38,38,0.08);
+  --destructive-10: rgba(220,38,38,0.10);
+  --warning:        #d97706;
+  --warning-8:      rgba(217,119,6,0.08);
+  --info:           #7c3aed;
+  --info-8:         rgba(124,58,237,0.08);
+
+  /* ─ Charts ─ */
+  --chart-2: #6c5ce7;
+
+  /* ─ Shadows (lighter, more visible on white) ─ */
+  --shadow-card:       0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.06), 0 8px 28px rgba(0,0,0,0.10);
+  --shadow-popover:    0 8px 32px rgba(0,0,0,0.12);
+
+  /* ─ Semantic Tokens ─ */
+  --background:           #f3f3f9;
+  --background-glass:     rgba(243,243,249,0.75);
+  --foreground:           #1a1a2e;
+  --card:                 #ffffff;
+  --card-foreground:      #1a1a2e;
+  --popover:              #ffffff;
+  --popover-foreground:   #555568;
+  --popover-border:       #d4d6de;
+  --muted:                #f5f5fa;
+  --muted-foreground:     #8b8ba0;
+  --accent:               #ecedf2;
+  --accent-foreground:    #1a1a2e;
+  --surface-raised:       #ffffff;
+  --secondary:            #ffffff;
+  --secondary-foreground: #6e6e82;
+  --input:                #ffffff;
+  --input-border:         #e4e5eb;
+  --border:               #e4e5eb;
+  --ring:                 #bbbdc6;
+  --sidebar:              #ffffff;
+  --sidebar-foreground:   #8b8ba0;
+  --sidebar-muted:        #9e9eb2;
+  --sidebar-accent:       #e8ecf1;
+  --sidebar-border:       #e4e5eb;
+}
+
+/* ── Theme toggle icons ── */
+[data-theme="dark"] .icon-sun  { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="light"] .icon-sun  { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
+
+/* ── Light theme element overrides (design-specific, ~8 remaining) ── */
+[data-theme="light"] .upgrade-card { background: linear-gradient(145deg, #f0f1f6, #e8e9f0); }
+[data-theme="light"] .s-logo svg { fill: #fff; }
+[data-theme="light"] .avatar { background: linear-gradient(135deg, #2ea86a, #238c55); }
+[data-theme="light"] .body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+[data-theme="light"] .body::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.20); }
+[data-theme="light"] .tbl-search svg stroke { stroke: #999; }
+[data-theme="light"] .kpi-spark svg rect { fill-opacity: 0.7; }
+

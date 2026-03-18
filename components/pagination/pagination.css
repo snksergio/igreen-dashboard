@@ -1,0 +1,44 @@
+/* ═══════════════════════════════════
+   PAGINATION — CryptoVault Design System
+   Table pagination with page info,
+   navigation buttons, active state
+═══════════════════════════════════ */
+
+/* ═══════════════════════════════════
+   CONTAINER
+═══════════════════════════════════ */
+.pagination {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: var(--space-lg); padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-separator);
+}
+
+/* ═══════════════════════════════════
+   PAGE INFO
+═══════════════════════════════════ */
+.page-info {
+  font-size: var(--text-caption); color: var(--fg-muted);
+}
+
+/* ═══════════════════════════════════
+   PAGE BUTTONS
+═══════════════════════════════════ */
+.page-btns { display: flex; gap: 4px; }
+
+.pb {
+  min-width: 34px; height: 34px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--secondary); color: var(--secondary-foreground);
+  font-size: var(--text-sm); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 10px; font-family: inherit; font-weight: 500;
+  transition: all .2s var(--ease-out); touch-action: manipulation;
+}
+.pb.active {
+  background: var(--primary); color: var(--primary-fg);
+  font-weight: 700; border-color: var(--primary);
+}
+.pb:hover:not(.active) {
+  color: var(--fg-secondary); background: var(--overlay-10);
+  border-color: var(--border-soft);
+}

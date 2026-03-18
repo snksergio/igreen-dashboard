@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════
+   KPI CARD — CryptoVault Design System
+   Key Performance Indicator cards with
+   label, value, badge, sub-text, sparkline
+═══════════════════════════════════ */
+
+/* ═══════════════════════════════════
+   GRID CONTAINER
+═══════════════════════════════════ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   KPI CARD
+═══════════════════════════════════ */
+.kpi-card {
+  background: var(--card); border-radius: var(--radius-md);
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  display: flex; justify-content: space-between; align-items: stretch; gap: var(--space-sm);
+  cursor: default; box-shadow: var(--shadow-card);
+  transition: box-shadow .25s var(--ease-out), transform .25s var(--ease-out);
+  overflow: hidden;
+}
+.kpi-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════
+   LEFT CONTENT
+═══════════════════════════════════ */
+.kpi-left {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.kpi-label {
+  font-size: var(--text-sm); font-weight: 500;
+  color: var(--fg-tertiary); letter-spacing: .1px;
+  margin-bottom: var(--space-md);
+}
+.kpi-value {
+  font-size: 22px; font-weight: 700; line-height: 1; letter-spacing: -.5px;
+  font-variant-numeric: tabular-nums; margin-bottom: var(--space-md);
+}
+
+/* ═══════════════════════════════════
+   FOOTER (badge + sub-text)
+═══════════════════════════════════ */
+.kpi-footer {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.kpi-sub {
+  font-size: var(--text-caption); color: var(--fg-muted);
+  font-weight: 500; font-variant-numeric: tabular-nums;
+}
+.kpi-badge {
+  font-size: var(--text-xs); padding: 4px 10px; border-radius: var(--radius-pill);
+  font-weight: 600; display: inline-flex; align-items: center; justify-content: center;
+  height: 24px; line-height: 1; white-space: nowrap;
+}
+.kpi-badge.up { background: var(--primary-10); color: var(--primary); }
+.kpi-badge.dn { background: var(--destructive-10); color: var(--destructive); }
+
+/* ═══════════════════════════════════
+   SPARKLINE
+═══════════════════════════════════ */
+.kpi-spark {
+  width: 100px; flex-shrink: 0;
+  display: flex; align-items: flex-end; justify-content: center;
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="badge.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Badge</div>
+      <div class="page-desc">Badges, status chips, and change indicators for transaction types, KPI metrics, and table counts.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ TRANSACTION BADGES ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Transaction Badges</div>
+    <div class="section-desc">
+      Tag transactions by type with <code>.badge</code> combined with <code>.buy</code>, <code>.sell</code>, or <code>.swap</code>.
+    </div>
+    <div class="preview">
+      <span class="badge buy">Buy</span>
+      <span class="badge sell">Sell</span>
+      <span class="badge swap">Swap</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ KPI BADGES ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">KPI Badges</div>
+    <div class="section-desc">
+      Display percentage changes with <code>.kpi-badge</code> combined with <code>.up</code> or <code>.dn</code>.
+    </div>
+    <div class="preview">
+      <span class="kpi-badge up">+12.4%</span>
+      <span class="kpi-badge dn">-3.2%</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ STATUS CHIPS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Status Chips</div>
+    <div class="section-desc">
+      Show transaction status with <code>.status-chip</code> and a <code>.s-dot</code> indicator. Use <code>.completed</code>, <code>.pending</code>, or <code>.failed</code>.
+    </div>
+    <div class="preview">
+      <span class="status-chip completed"><span class="s-dot"></span>Completed</span>
+      <span class="status-chip pending"><span class="s-dot"></span>Pending</span>
+      <span class="status-chip failed"><span class="s-dot"></span>Failed</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ CHANGE INDICATORS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Change Indicators</div>
+    <div class="section-desc">
+      Inline text indicators for positive, negative, or neutral changes: <code>.chg-pos</code>, <code>.chg-neg</code>, <code>.chg-nil</code>.
+    </div>
+    <div class="preview">
+      <span class="chg-pos">+5.24%</span>
+      <span class="chg-neg">-2.18%</span>
+      <span class="chg-nil">0.00%</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ TABLE BADGE ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Table Badge</div>
+    <div class="section-desc">
+      Count indicator for tables and lists using <code>.tbl-badge</code>.
+    </div>
+    <div class="preview">
+      <span class="tbl-badge">1,247 Transactions</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ ALLOCATION & SEGMENTATION ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Allocation & Segmentation</div>
+    <div class="section-desc">
+      Change badges for allocation (<code>.al-chg</code>) and segmentation (<code>.seg-chg</code>) tables. Use <code>.up</code> or <code>.dn</code> modifiers.
+    </div>
+    <div class="preview">
+      <span class="al-chg up">+2.4%</span>
+      <span class="al-chg dn">-1.8%</span>
+      <span class="seg-chg up">+5.1%</span>
+      <span class="seg-chg dn">-3.7%</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">Badge</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>badge</td>
+          <td>Base transaction badge. Combine with a type modifier.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>badge.buy</td>
+          <td>Green badge for buy transactions.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>badge.sell</td>
+          <td>Red badge for sell transactions.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>badge.swap</td>
+          <td>Blue badge for swap transactions.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge</td>
+          <td>Base KPI percentage badge. Combine with direction modifier.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge.up</td>
+          <td>Green badge for positive change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge.dn</td>
+          <td>Red badge for negative change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>status-chip</td>
+          <td>Base status chip with dot indicator. Combine with a state class.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>s-dot</td>
+          <td>Small colored dot inside a status chip.</td>
+          <td><code>child</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>status-chip.completed</td>
+          <td>Muted chip for completed status.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>status-chip.pending</td>
+          <td>Warning chip for pending status.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>status-chip.failed</td>
+          <td>Destructive chip for failed status.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>chg-pos</td>
+          <td>Inline text for positive change value.</td>
+          <td><code>standalone</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>chg-neg</td>
+          <td>Inline text for negative change value.</td>
+          <td><code>standalone</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>chg-nil</td>
+          <td>Inline text for neutral / zero change value.</td>
+          <td><code>standalone</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>tbl-badge</td>
+          <td>Muted pill badge for table row counts.</td>
+          <td><code>standalone</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>al-chg</td>
+          <td>Allocation change badge. Combine with <code>.up</code> or <code>.dn</code>.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>al-chg.up</td>
+          <td>Green pill for positive allocation change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>al-chg.dn</td>
+          <td>Red pill for negative allocation change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>seg-chg</td>
+          <td>Segmentation change badge. Combine with <code>.up</code> or <code>.dn</code>.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>seg-chg.up</td>
+          <td>Green pill for positive segmentation change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>seg-chg.dn</td>
+          <td>Red pill for negative segmentation change.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+</script>
+</body>
+</html>

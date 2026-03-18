@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Trends — CryptoVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function(){var t=localStorage.getItem('cv-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+  <link href="./dist/styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="s-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <rect x="2" y="12" width="3.5" height="8" rx="1.2"/>
+          <rect x="7.5" y="7" width="3.5" height="13" rx="1.2"/>
+          <rect x="13" y="3" width="3.5" height="17" rx="1.2"/>
+          <rect x="18.5" y="9" width="3.5" height="11" rx="1.2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CryptoVault</div>
+        <div class="brand-sub">Pro Account</div>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="sidebar-section">
+      <div class="sec-label">Main Menu</div>
+      <a class="nav-item" href="dashboard.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Portfolio</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <span class="nav-label">Swap</span>
+      </a>
+      <a class="nav-item active" href="market-trends.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Market Trends</span>
+      </a>
+    </div>
+
+    <!-- Manage -->
+    <div class="sidebar-section">
+      <div class="sec-label">Manage</div>
+      <a class="nav-item" href="analytics.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="13" width="3" height="9" rx="1"/>
+            <rect x="7" y="8" width="3" height="14" rx="1"/>
+            <rect x="12" y="3" width="3" height="19" rx="1"/>
+            <rect x="17" y="10" width="3" height="12" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-label">Analytics</span>
+      </a>
+      <a class="nav-item" href="products.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="nav-label">Calendar</span>
+      </a>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-section">
+      <div class="sec-label">Settings</div>
+      <a class="nav-item" href="order.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Settings</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Security</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+
+    <div class="sidebar-gap"></div>
+
+    <div class="upgrade-card">
+      <div class="uc-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="uc-title">Upgrade To Pro</div>
+      <div class="uc-sub">Unlock real-time signals and advanced analytics.</div>
+      <button class="uc-btn">Get Started</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+      </button>
+      <div class="topbar-divider"></div>
+      <div class="breadcrumb">
+        <span class="bc-parent" onclick="location.href='analytics.html'">Analytics</span>
+        <span class="bc-sep">&rsaquo;</span>
+        <span class="bc-current">Market Trends</span>
+      </div>
+      <div class="topbar-center">
+        <div class="wallet-tag"><div class="dot dot-gray"></div>Main-coin wallet</div>
+        <div class="wallet-tag"><div class="dot dot-green"></div>All Wallet (08)</div>
+      </div>
+      <div class="topbar-right">
+        <div class="t-icon-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <div class="notif-badge"></div>
+        </div>
+        <div class="t-icon-btn" id="themeToggle" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="user-chip">
+          <div class="avatar">S</div>
+          <div class="user-meta">
+            <div class="user-name">Simson wili</div>
+            <div class="user-url">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Simsonwit.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         PAGE CONTENT
+    ══════════════════════════════════════ -->
+    <div class="body">
+
+      <h1 class="form-page-title">Market Trends</h1>
+
+      <!-- ── ROW 1: Line + Doughnut ── -->
+      <div class="ch-grid">
+
+        <!-- 1. Line Chart — Price History -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Price History</div>
+              <div class="ch-card-sub">BTC &amp; ETH — Last 12 months</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">BTC Price</div>
+              <div class="ch-stat-val">$67,432</div>
+              <span class="ch-stat-chg up">+12.4%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">ETH Price</div>
+              <div class="ch-stat-val">$3,521</div>
+              <span class="ch-stat-chg up">+8.7%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartLine" height="220"></canvas></div>
+          <div class="ch-lg-simple" id="legendLine"></div>
+        </div>
+
+        <!-- 2. Doughnut — Portfolio Allocation -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Portfolio Allocation</div>
+              <div class="ch-card-sub">Current distribution by asset</div>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="max-width:260px;margin:0 auto;position:relative">
+            <canvas id="chartDoughnut" height="260"></canvas>
+            <div class="ch-donut-center">
+              <div class="ch-donut-val">$458K</div>
+              <div class="ch-donut-sub">Total Value</div>
+            </div>
+          </div>
+          <div class="ch-lg-rich" id="legendDoughnut"></div>
+        </div>
+
+        <!-- 3. Bar Chart — Trading Volume -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Trading Volume</div>
+              <div class="ch-card-sub">Weekly volume by asset (M$)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Total Weekly</div>
+              <div class="ch-stat-val">$2.34B</div>
+              <span class="ch-stat-chg up">+18.3%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Peak Day</div>
+              <div class="ch-stat-val">Friday</div>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartBar" height="220"></canvas></div>
+          <div class="ch-lg-vals" id="legendBar"></div>
+        </div>
+
+        <!-- 4. Area Chart — Market Cap -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Market Cap Trend</div>
+              <div class="ch-card-sub">Total crypto market cap (T$)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Market Cap</div>
+              <div class="ch-stat-val">$2.41T</div>
+              <span class="ch-stat-chg up">+5.2%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">24h Volume</div>
+              <div class="ch-stat-val">$89.3B</div>
+              <span class="ch-stat-chg dn">-3.1%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartArea" height="220"></canvas></div>
+        </div>
+
+        <!-- 5. Radar — Asset Comparison -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Asset Comparison</div>
+              <div class="ch-card-sub">Multi-factor analysis</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">BTC Score</div>
+              <div class="ch-stat-val">84.7</div>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">ETH Score</div>
+              <div class="ch-stat-val">81.2</div>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="max-width:320px;margin:0 auto"><canvas id="chartRadar" height="300"></canvas></div>
+          <div class="ch-lg-simple" id="legendRadar"></div>
+        </div>
+
+        <!-- 6. Horizontal Bar — Top Performers -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Top Performers</div>
+              <div class="ch-card-sub">30-day return (%)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Best</div>
+              <div class="ch-stat-val">SOL</div>
+              <span class="ch-stat-chg up">+34.2%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Avg Return</div>
+              <div class="ch-stat-val">20.1%</div>
+              <span class="ch-stat-chg up">+5.8%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartHBar" height="260"></canvas></div>
+        </div>
+
+        <!-- 7. Mixed (Bar+Line) — Revenue & Profit -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Revenue &amp; Profit</div>
+              <div class="ch-card-sub">Monthly comparison (K$)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Revenue YTD</div>
+              <div class="ch-stat-val">$764K</div>
+              <span class="ch-stat-chg up">+22.1%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Profit YTD</div>
+              <div class="ch-stat-val">$262K</div>
+              <span class="ch-stat-chg up">+31.4%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartMixed" height="220"></canvas></div>
+          <div class="ch-lg-simple" id="legendMixed"></div>
+        </div>
+
+        <!-- 8. Scatter — Risk vs Return -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Risk vs Return</div>
+              <div class="ch-card-sub">Volatility vs 90-day return</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Avg Volatility</div>
+              <div class="ch-stat-val">28.4%</div>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Avg Return</div>
+              <div class="ch-stat-val">34.1%</div>
+              <span class="ch-stat-chg up">+6.2%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartScatter" height="220"></canvas></div>
+          <div class="ch-lg-simple" id="legendScatter"></div>
+        </div>
+
+        <!-- 9. Polar Area — Sector Exposure -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Sector Exposure</div>
+              <div class="ch-card-sub">Allocation by category</div>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="max-width:260px;margin:0 auto;position:relative">
+            <canvas id="chartPolar" height="260"></canvas>
+            <div class="ch-donut-center">
+              <div class="ch-donut-val">6</div>
+              <div class="ch-donut-sub">Sectors</div>
+            </div>
+          </div>
+          <div class="ch-lg-rich" id="legendPolar"></div>
+        </div>
+
+        <!-- 10. Stacked Bar — Inflow/Outflow -->
+        <div class="ch-card">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Inflow &amp; Outflow</div>
+              <div class="ch-card-sub">Monthly net flow (K$)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Net Inflow</div>
+              <div class="ch-stat-val">$870K</div>
+              <span class="ch-stat-chg up">+14.5%</span>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Net Outflow</div>
+              <div class="ch-stat-val">$660K</div>
+              <span class="ch-stat-chg dn">-8.2%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartStacked" height="220"></canvas></div>
+          <div class="ch-lg-vals" id="legendStacked"></div>
+        </div>
+
+      </div>
+
+      <!-- ── ROW: 4-col Mini Charts ── -->
+      <div class="ch-grid-4" style="margin-top:var(--space-xl)">
+
+        <!-- 11. Mini Sparkline — BTC 24h -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">BTC 24h</div>
+              <div class="ch-card-sub">Price movement</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Price</div>
+              <div class="ch-stat-val">$67,432</div>
+              <span class="ch-stat-chg up">+2.1%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartMiniLine1" height="80"></canvas></div>
+        </div>
+
+        <!-- 12. Mini Sparkline — ETH 24h -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">ETH 24h</div>
+              <div class="ch-card-sub">Price movement</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Price</div>
+              <div class="ch-stat-val">$3,521</div>
+              <span class="ch-stat-chg dn">-0.8%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartMiniLine2" height="80"></canvas></div>
+        </div>
+
+        <!-- 13. Mini Sparkline — SOL 24h -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">SOL 24h</div>
+              <div class="ch-card-sub">Price movement</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Price</div>
+              <div class="ch-stat-val">$142.80</div>
+              <span class="ch-stat-chg up">+5.3%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartMiniLine3" height="80"></canvas></div>
+        </div>
+
+        <!-- 14. Mini Sparkline — BNB 24h -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">BNB 24h</div>
+              <div class="ch-card-sub">Price movement</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Price</div>
+              <div class="ch-stat-val">$312.50</div>
+              <span class="ch-stat-chg up">+1.4%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartMiniLine4" height="80"></canvas></div>
+        </div>
+
+      </div>
+
+      <!-- ── ROW: 3-col Charts ── -->
+      <div class="ch-grid-3" style="margin-top:var(--space-xl)">
+
+        <!-- 15. Mini Doughnut — Fear & Greed -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Fear &amp; Greed Index</div>
+              <div class="ch-card-sub">Market sentiment</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Score</div>
+              <div class="ch-stat-val">72</div>
+              <span class="ch-stat-chg up">Greed</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="max-width:160px;margin:0 auto"><canvas id="chartGauge" height="160"></canvas></div>
+        </div>
+
+        <!-- 16. Mini Bar — Gas Fees -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Gas Fees (Gwei)</div>
+              <div class="ch-card-sub">ETH network — Last 24h</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">Current</div>
+              <div class="ch-stat-val">24</div>
+            </div>
+            <div class="ch-stat">
+              <div class="ch-stat-label">Avg</div>
+              <div class="ch-stat-val">31</div>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartGas" height="120"></canvas></div>
+        </div>
+
+        <!-- 17. Mini Horizontal Bar — Dominance -->
+        <div class="ch-card-sm">
+          <div class="ch-card-head">
+            <div>
+              <div class="ch-card-title">Market Dominance</div>
+              <div class="ch-card-sub">Top 5 assets share (%)</div>
+            </div>
+          </div>
+          <div class="ch-stat-row">
+            <div class="ch-stat">
+              <div class="ch-stat-label">BTC Dom.</div>
+              <div class="ch-stat-val">52.4%</div>
+              <span class="ch-stat-chg up">+0.8%</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap"><canvas id="chartDominance" height="140"></canvas></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Scripts ── -->
+<script>
+// ─── SIDEBAR TOGGLE ───
+(function() {
+  var sidebar = document.querySelector('.sidebar');
+  var btn = document.getElementById('sidebarToggle');
+  var saved = localStorage.getItem('cv-sidebar');
+  if (saved === 'collapsed') sidebar.classList.add('collapsed');
+  btn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    localStorage.setItem('cv-sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+  });
+})();
+
+// ─── THEME TOGGLE ───
+(function() {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('cv-theme', next);
+    // Rebuild charts with new colors
+    setTimeout(initCharts, 100);
+  });
+})();
+
+// ─── CHART.JS GLOBAL CONFIG & RENDER ───
+function initCharts() {
+  const s = getComputedStyle(document.documentElement);
+  const c = (v) => s.getPropertyValue(v).trim();
+
+  const primary   = c('--primary');
+  const destruct  = c('--destructive');
+  const warning   = c('--warning');
+  const info      = c('--info');
+  const chart2    = c('--chart-2');
+  const fg        = c('--fg-muted');
+  const border    = c('--border-separator');
+  const card      = c('--card');
+
+  Chart.defaults.color = fg;
+  Chart.defaults.borderColor = border;
+  Chart.defaults.font.family = 'Inter, sans-serif';
+  Chart.defaults.font.size = 11;
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = card;
+  Chart.defaults.plugins.tooltip.titleColor = c('--foreground');
+  Chart.defaults.plugins.tooltip.bodyColor = c('--fg-secondary');
+  Chart.defaults.plugins.tooltip.borderColor = border;
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+  Chart.defaults.elements.point.radius = 0;
+  Chart.defaults.elements.point.hoverRadius = 5;
+  Chart.defaults.elements.line.tension = 0.35;
+
+  // Destroy existing charts
+  Chart.helpers.each(Chart.instances, function(instance) { instance.destroy(); });
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const weeks  = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+  // ── Legend helpers ──
+  function simpleLegend(id, items) {
+    // items: [{ label, color }]
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = items.map(i => '<div class="ch-lg-simple-item"><div class="ch-lg-dot" style="background:'+i.color+'"></div>'+i.label+'</div>').join('');
+  }
+  function richLegend(id, items) {
+    // items: [{ label, color, value, change, dir:'up'|'dn' }]
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = items.map(i =>
+      '<div class="ch-lg-row">' +
+        '<div class="ch-lg-dot" style="background:'+i.color+'"></div>' +
+        '<span class="ch-lg-name">'+i.label+'</span>' +
+        '<span class="ch-lg-pct">'+i.value+'</span>' +
+        (i.change ? '<span class="ch-lg-badge '+i.dir+'">'+i.change+'</span>' : '') +
+      '</div>'
+    ).join('');
+  }
+  function valLegend(id, items) {
+    // items: [{ label, color, value }]
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = items.map(i =>
+      '<div class="ch-lg-val-item">' +
+        '<div class="ch-lg-val-label"><div class="ch-lg-dot" style="background:'+i.color+'"></div>'+i.label+'</div>' +
+        '<div class="ch-lg-val-num">'+i.value+'</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  // 1. LINE — Price History (simple legend)
+  new Chart('chartLine', {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        { label: 'BTC', data: [42100,44500,43200,47800,51200,49600,53400,56100,58900,61200,64300,67400], borderColor: primary, backgroundColor: primary+'18', fill: true, borderWidth: 2 },
+        { label: 'ETH', data: [2200,2400,2350,2700,2900,2800,3050,3200,3100,3350,3400,3520], borderColor: chart2, backgroundColor: chart2+'18', fill: true, borderWidth: 2 }
+      ]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: false, grid: { color: border } }, x: { grid: { display: false } } } }
+  });
+  simpleLegend('legendLine', [{ label: 'Bitcoin', color: primary }, { label: 'Ethereum', color: chart2 }]);
+
+  // 2. DOUGHNUT — Portfolio (rich legend)
+  new Chart('chartDoughnut', {
+    type: 'doughnut',
+    data: {
+      labels: ['Bitcoin','Ethereum','Solana','BNB','Cardano','Other'],
+      datasets: [{ data: [42,28,12,10,5,3], backgroundColor: [primary, chart2, warning, info, destruct, fg], borderWidth: 0 }]
+    },
+    options: { responsive: true, cutout: '68%' }
+  });
+  richLegend('legendDoughnut', [
+    { label: 'Bitcoin',  color: primary, value: '42%', change: '+5.2%', dir: 'up' },
+    { label: 'Ethereum', color: chart2,  value: '28%', change: '+2.8%', dir: 'up' },
+    { label: 'Solana',   color: warning, value: '12%', change: '+8.4%', dir: 'up' },
+    { label: 'BNB',      color: info,    value: '10%', change: '-1.1%', dir: 'dn' },
+    { label: 'Cardano',  color: destruct, value: '5%', change: '-0.6%', dir: 'dn' },
+    { label: 'Other',    color: fg,      value: '3%' }
+  ]);
+
+  // 3. BAR — Trading Volume (value legend)
+  new Chart('chartBar', {
+    type: 'bar',
+    data: {
+      labels: weeks,
+      datasets: [
+        { label: 'BTC', data: [320,280,410,380,520,290,340], backgroundColor: primary, borderRadius: 4 },
+        { label: 'ETH', data: [180,210,190,240,280,170,200], backgroundColor: chart2, borderRadius: 4 },
+        { label: 'SOL', data: [90,110,130,100,150,80,120], backgroundColor: warning, borderRadius: 4 }
+      ]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: border } }, x: { grid: { display: false } } } }
+  });
+  valLegend('legendBar', [
+    { label: 'BTC', color: primary, value: '$2.34B' },
+    { label: 'ETH', color: chart2, value: '$1.47B' },
+    { label: 'SOL', color: warning, value: '$780M' }
+  ]);
+
+  // 4. AREA — Market Cap
+  new Chart('chartArea', {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'Market Cap', data: [1.82,1.95,1.88,2.1,2.25,2.18,2.3,2.35,2.28,2.38,2.42,2.41],
+        borderColor: info, backgroundColor: info+'22', fill: true, borderWidth: 2
+      }]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: false, grid: { color: border } }, x: { grid: { display: false } } } }
+  });
+
+  // 5. RADAR — Asset Comparison (simple legend)
+  new Chart('chartRadar', {
+    type: 'radar',
+    data: {
+      labels: ['Liquidity','Volatility','Volume','Adoption','Dev Activity','Security'],
+      datasets: [
+        { label: 'BTC', data: [95,65,88,92,70,98], borderColor: primary, backgroundColor: primary+'20', borderWidth: 2, pointRadius: 3, pointBackgroundColor: primary },
+        { label: 'ETH', data: [85,72,80,88,95,90], borderColor: chart2, backgroundColor: chart2+'20', borderWidth: 2, pointRadius: 3, pointBackgroundColor: chart2 }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: { r: { beginAtZero: true, max: 100, grid: { color: border }, angleLines: { color: border }, pointLabels: { color: fg, font: { size: 11 } }, ticks: { display: false } } }
+    }
+  });
+  simpleLegend('legendRadar', [{ label: 'Bitcoin', color: primary }, { label: 'Ethereum', color: chart2 }]);
+
+  // 6. HORIZONTAL BAR — Top Performers
+  new Chart('chartHBar', {
+    type: 'bar',
+    data: {
+      labels: ['SOL','AVAX','LINK','DOT','MATIC','ADA','BNB'],
+      datasets: [{ data: [34.2,28.5,22.1,18.7,15.3,12.8,9.4], backgroundColor: [primary,primary,chart2,chart2,info,info,warning], borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, grid: { color: border } }, y: { grid: { display: false } } } }
+  });
+
+  // 7. MIXED — Revenue & Profit (simple legend)
+  new Chart('chartMixed', {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { type: 'bar', label: 'Revenue', data: [48,52,45,58,62,55,68,72,65,75,80,84], backgroundColor: primary+'44', borderRadius: 4, order: 2 },
+        { type: 'line', label: 'Profit', data: [12,15,10,18,22,16,24,28,20,30,32,35], borderColor: warning, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: warning, order: 1 }
+      ]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: border } }, x: { grid: { display: false } } } }
+  });
+  simpleLegend('legendMixed', [{ label: 'Revenue', color: primary }, { label: 'Profit', color: warning }]);
+
+  // 8. SCATTER — Risk vs Return (simple legend)
+  new Chart('chartScatter', {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'Large Cap', data: [{x:12,y:18},{x:15,y:22},{x:10,y:14},{x:18,y:28}], backgroundColor: primary, pointRadius: 8, pointHoverRadius: 10 },
+        { label: 'Mid Cap', data: [{x:25,y:35},{x:30,y:28},{x:22,y:42},{x:35,y:32}], backgroundColor: chart2, pointRadius: 8, pointHoverRadius: 10 },
+        { label: 'Small Cap', data: [{x:40,y:55},{x:45,y:48},{x:50,y:62},{x:55,y:45}], backgroundColor: warning, pointRadius: 8, pointHoverRadius: 10 }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { title: { display: true, text: 'Volatility (%)', color: fg }, beginAtZero: true, grid: { color: border } },
+        y: { title: { display: true, text: 'Return (%)', color: fg }, beginAtZero: true, grid: { color: border } }
+      }
+    }
+  });
+  simpleLegend('legendScatter', [{ label: 'Large Cap', color: primary }, { label: 'Mid Cap', color: chart2 }, { label: 'Small Cap', color: warning }]);
+
+  // 9. DOUGHNUT — Sector Exposure (rich legend, center label)
+  const sectorColors = [primary, chart2, warning, info, destruct, fg];
+  new Chart('chartPolar', {
+    type: 'doughnut',
+    data: {
+      labels: ['DeFi','Layer 1','NFT','Gaming','Infrastructure','Stablecoins'],
+      datasets: [{ data: [30,25,15,12,10,8], backgroundColor: sectorColors, borderWidth: 0 }]
+    },
+    options: { responsive: true, cutout: '62%' }
+  });
+  richLegend('legendPolar', [
+    { label: 'DeFi',           color: primary,  value: '30%', change: '+3.1%', dir: 'up' },
+    { label: 'Layer 1',        color: chart2,   value: '25%', change: '+1.4%', dir: 'up' },
+    { label: 'NFT',            color: warning,  value: '15%', change: '-2.3%', dir: 'dn' },
+    { label: 'Gaming',         color: info,     value: '12%', change: '+0.8%', dir: 'up' },
+    { label: 'Infrastructure', color: destruct, value: '10%', change: '+1.2%', dir: 'up' },
+    { label: 'Stablecoins',    color: fg,       value: '8%' }
+  ]);
+
+  // 10. STACKED BAR — Inflow/Outflow (value legend)
+  new Chart('chartStacked', {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { label: 'Inflow', data: [120,140,110,160,180,150,190,200,170,210,220,230], backgroundColor: primary, borderRadius: 4 },
+        { label: 'Outflow', data: [-80,-90,-70,-100,-110,-85,-120,-130,-95,-140,-115,-125], backgroundColor: destruct, borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: { y: { stacked: true, grid: { color: border } }, x: { stacked: true, grid: { display: false } } }
+    }
+  });
+  valLegend('legendStacked', [
+    { label: 'Inflow', color: primary, value: '$2.08M' },
+    { label: 'Outflow', color: destruct, value: '$1.26M' }
+  ]);
+
+  // ── 11-14. MINI SPARKLINES (24h price) ──
+  const miniOpts = {
+    responsive: true,
+    scales: { x: { display: false }, y: { display: false } },
+    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+    elements: { point: { radius: 0 }, line: { borderWidth: 2, tension: 0.4 } }
+  };
+
+  new Chart('chartMiniLine1', {
+    type: 'line',
+    data: { labels: Array.from({length:24},(_,i)=>i+'h'), datasets: [{ data: [64200,64800,65100,64900,65400,66200,66800,66500,67100,67400,66900,67200,67800,67500,67100,66800,67300,67600,67900,67400,67100,67500,67800,67432], borderColor: primary, backgroundColor: primary+'18', fill: true }] },
+    options: miniOpts
+  });
+
+  new Chart('chartMiniLine2', {
+    type: 'line',
+    data: { labels: Array.from({length:24},(_,i)=>i+'h'), datasets: [{ data: [3560,3540,3530,3550,3570,3545,3520,3510,3530,3540,3525,3510,3505,3520,3535,3515,3500,3510,3525,3530,3515,3508,3518,3521], borderColor: destruct, backgroundColor: destruct+'18', fill: true }] },
+    options: miniOpts
+  });
+
+  new Chart('chartMiniLine3', {
+    type: 'line',
+    data: { labels: Array.from({length:24},(_,i)=>i+'h'), datasets: [{ data: [135,136,137,136,138,140,141,139,140,142,141,143,144,143,142,141,143,144,142,141,143,142,143,142.8], borderColor: warning, backgroundColor: warning+'18', fill: true }] },
+    options: miniOpts
+  });
+
+  new Chart('chartMiniLine4', {
+    type: 'line',
+    data: { labels: Array.from({length:24},(_,i)=>i+'h'), datasets: [{ data: [308,309,310,309,311,312,311,310,312,313,312,311,310,312,313,314,313,312,311,312,313,312,313,312.5], borderColor: info, backgroundColor: info+'18', fill: true }] },
+    options: miniOpts
+  });
+
+  // 15. GAUGE (Doughnut) — Fear & Greed
+  new Chart('chartGauge', {
+    type: 'doughnut',
+    data: {
+      labels: ['Score','Remaining'],
+      datasets: [{ data: [72, 28], backgroundColor: [primary, border], borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, cutout: '75%', rotation: -90, circumference: 180,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+
+  // 16. BAR — Gas Fees
+  const hours = ['0h','2h','4h','6h','8h','10h','12h','14h','16h','18h','20h','22h'];
+  new Chart('chartGas', {
+    type: 'bar',
+    data: {
+      labels: hours,
+      datasets: [{ data: [18,15,12,10,14,22,35,42,38,30,28,24], backgroundColor: chart2, borderRadius: 3 }]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: border }, ticks: { font: { size: 10 } } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } } }
+  });
+
+  // 17. HORIZONTAL BAR — Market Dominance
+  new Chart('chartDominance', {
+    type: 'bar',
+    data: {
+      labels: ['BTC','ETH','BNB','SOL','XRP'],
+      datasets: [{ data: [52.4,17.8,3.6,2.9,2.5], backgroundColor: [primary,chart2,warning,info,destruct], borderRadius: 3 }]
+    },
+    options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, max: 60, grid: { color: border }, ticks: { font: { size: 10 } } }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } } }
+  });
+}
+
+// Init on load
+initCharts();
+</script>
+</body>
+</html>

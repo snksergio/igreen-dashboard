@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order #95954 — CryptoVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function(){var t=localStorage.getItem('cv-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+  <link href="./dist/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="s-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <rect x="2" y="12" width="3.5" height="8" rx="1.2"/>
+          <rect x="7.5" y="7" width="3.5" height="13" rx="1.2"/>
+          <rect x="13" y="3" width="3.5" height="17" rx="1.2"/>
+          <rect x="18.5" y="9" width="3.5" height="11" rx="1.2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CryptoVault</div>
+        <div class="brand-sub">Pro Account</div>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="sidebar-section">
+      <div class="sec-label">Main Menu</div>
+      <a class="nav-item" href="dashboard.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Portfolio</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <span class="nav-label">Swap</span>
+      </a>
+      <a class="nav-item" href="market-trends.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Market Trends</span>
+      </a>
+    </div>
+
+    <!-- Manage -->
+    <div class="sidebar-section">
+      <div class="sec-label">Manage</div>
+      <a class="nav-item" href="analytics.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="13" width="3" height="9" rx="1"/>
+            <rect x="7" y="8" width="3" height="14" rx="1"/>
+            <rect x="12" y="3" width="3" height="19" rx="1"/>
+            <rect x="17" y="10" width="3" height="12" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-label">Analytics</span>
+      </a>
+      <a class="nav-item active" href="products.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="nav-label">Calendar</span>
+      </a>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-section">
+      <div class="sec-label">Settings</div>
+      <a class="nav-item" href="order.html">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Settings</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-label">Security</span>
+      </a>
+      <a class="nav-item" href="#">
+        <div class="ni-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+
+    <div class="sidebar-gap"></div>
+
+    <!-- Upgrade Card -->
+    <div class="upgrade-card">
+      <div class="uc-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="uc-title">Upgrade To Pro</div>
+      <div class="uc-sub">Unlock real-time signals and advanced analytics.</div>
+      <button class="uc-btn">Get Started</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+      </button>
+      <div class="topbar-divider"></div>
+      <div class="breadcrumb">
+        <span class="bc-parent" onclick="location.href='products.html'">Products</span>
+        <span class="bc-sep">&rsaquo;</span>
+        <span class="bc-current">Order #95954</span>
+      </div>
+
+      <div class="topbar-center">
+        <div class="wallet-tag"><div class="dot dot-gray"></div>Main-coin wallet</div>
+        <div class="wallet-tag"><div class="dot dot-green"></div>All Wallet (08)</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="t-icon-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <div class="notif-badge"></div>
+        </div>
+        <div class="t-icon-btn" id="themeToggle" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="user-chip">
+          <div class="avatar">S</div>
+          <div class="user-meta">
+            <div class="user-name">Simson wili</div>
+            <div class="user-url">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Simsonwit.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         PAGE CONTENT
+    ══════════════════════════════════════ -->
+    <div class="body">
+
+      <!-- Header -->
+      <div class="od-header">
+        <div class="od-header-left">
+          <h1 class="od-title">Order: <span>#95954</span></h1>
+          <span class="od-status paid">Paid</span>
+          <span class="od-status fulfilled">Fulfilled</span>
+        </div>
+        <div class="od-actions">
+          <button class="btn btn--outline">Restock</button>
+          <button class="btn btn--outline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Edit
+          </button>
+          <button class="btn btn--outline btn--icon" title="More actions">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+            </svg>
+          </button>
+          <div class="od-nav-arrows">
+            <button class="btn btn--outline btn--icon" title="Previous order">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <button class="btn btn--outline btn--icon" title="Next order">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="od-meta">January 8, 2024 at 9:48 pm from Draft Orders</div>
+
+      <!-- Tabs -->
+      <div class="od-tabs">
+        <button class="od-tab active" data-tab="overview">Overview</button>
+        <button class="od-tab" data-tab="details">Details</button>
+        <button class="od-tab" data-tab="activity">Activity</button>
+        <button class="od-tab" data-tab="comments">Comments <span class="od-tab-badge">3</span></button>
+        <button class="od-tab" data-tab="attachments">Attachments</button>
+      </div>
+
+      <!-- ═══ Tab: Overview ═══ -->
+      <div class="od-panel active" data-panel="overview">
+        <div class="od-grid">
+          <div class="od-main">
+
+            <!-- Products ordered -->
+            <div class="od-card">
+              <div class="od-card-head">
+                <span class="od-card-title">Products ordered</span>
+              </div>
+              <div class="od-product">
+                <div class="od-product-img"></div>
+                <div class="od-product-info">
+                  <div class="od-product-name">Snövalla</div>
+                  <div class="od-product-id">ID: 098359NT</div>
+                </div>
+                <div class="od-product-right">
+                  <div class="od-product-price">$252.00</div>
+                  <div class="od-product-qty">Qty: 2</div>
+                </div>
+              </div>
+              <div class="od-product">
+                <div class="od-product-img"></div>
+                <div class="od-product-info">
+                  <div class="od-product-name">Maneki Neko Poster</div>
+                  <div class="od-product-id">ID: 098336NT</div>
+                </div>
+                <div class="od-product-right">
+                  <div class="od-product-price">$389.00</div>
+                  <div class="od-product-qty">Qty: 1</div>
+                </div>
+              </div>
+              <div class="od-product">
+                <div class="od-product-img"></div>
+                <div class="od-product-info">
+                  <div class="od-product-name">Ektöra</div>
+                  <div class="od-product-id">ID: 098368NT</div>
+                </div>
+                <div class="od-product-right">
+                  <div class="od-product-price">$869.00</div>
+                  <div class="od-product-qty">Qty: 1</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="od-card">
+              <div class="od-card-head">
+                <span class="od-card-title">Payment</span>
+                <span class="od-status paid">Paid</span>
+              </div>
+              <div class="od-summary-row">
+                <span>Subtotal</span>
+                <span>$1,762.00</span>
+              </div>
+              <div class="od-summary-row">
+                <span>Shipping</span>
+                <span>$15.00</span>
+              </div>
+              <div class="od-summary-row">
+                <span>Tax</span>
+                <span>$105.72</span>
+              </div>
+              <div class="od-summary-row total">
+                <span>Total</span>
+                <span>$1,870.72</span>
+              </div>
+              <div class="od-payment-final">
+                <span>Customer payment</span>
+                <span>$1,870.72</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="od-side">
+
+            <!-- Customer -->
+            <div class="od-card">
+              <div class="od-card-head">
+                <span class="od-card-title">Customer</span>
+              </div>
+              <div class="od-customer">
+                <div class="od-customer-avatar">SS</div>
+                <div>
+                  <div class="od-customer-name">Steve Sutton</div>
+                  <div class="od-customer-sub">11 previous orders</div>
+                </div>
+              </div>
+              <div class="od-info-row">
+                <svg class="od-info-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span class="od-info-text">handsome-obrien@hotmail.com</span>
+              </div>
+              <div class="od-info-row">
+                <svg class="od-info-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span class="od-info-text">+1 (541) 754-3010</span>
+              </div>
+
+              <div class="od-address-title">Shipping Address</div>
+              <div class="od-address-line">100 Main ST</div>
+              <div class="od-address-line">PO Box 1022</div>
+              <div class="od-address-line">Seattle WA 98104</div>
+              <div class="od-address-line">United States of America</div>
+
+              <div class="od-address-title">Billing address</div>
+              <div class="od-address-line">1527 Pond Reef Rd</div>
+              <div class="od-address-line">Ketchikan</div>
+              <div class="od-address-line">Alaska 99901</div>
+              <div class="od-address-line">United States of America</div>
+            </div>
+
+            <!-- Note -->
+            <div class="od-card">
+              <div class="od-card-head">
+                <span class="od-card-title">Note</span>
+              </div>
+              <div class="od-note">
+                If there are any issues or delays with my order, please don't hesitate to contact me, I value clear communication and appreciate your attention to detail.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab: Details ═══ -->
+      <div class="od-panel" data-panel="details">
+
+        <!-- ── Tags ── -->
+        <div class="od-detail-tags">
+          <span class="od-detail-tag green">Verified Buyer</span>
+          <span class="od-detail-tag blue">Premium</span>
+          <span class="od-detail-tag orange">High Priority</span>
+          <span class="od-detail-tag gray">Recurring</span>
+        </div>
+
+        <div class="od-grid">
+          <div class="od-main">
+
+            <!-- ── Customer Information ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Customer Information</span>
+                  <button class="od-detail-action">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit Details
+                  </button>
+                </div>
+                <div class="od-detail-profile">
+                  <div class="od-detail-photo">RW</div>
+                  <div class="od-fields">
+                    <div>
+                      <div class="od-field-label">First Name</div>
+                      <div class="od-field-value">Rene</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Middle Name</div>
+                      <div class="od-field-value">Hasan</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Last Name</div>
+                      <div class="od-field-value">Wells</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Email Address</div>
+                      <div class="od-field-value"><a href="#">rene.wells@example.com</a></div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Phone Number</div>
+                      <div class="od-field-value">706-455-5214</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Account Type</div>
+                      <div class="od-field-value">Premium</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Customer ID</div>
+                      <div class="od-field-value">#CUS-52365</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Registration Date</div>
+                      <div class="od-field-value">12/17/2023</div>
+                    </div>
+                    <div>
+                      <div class="od-field-label">Status</div>
+                      <div class="od-field-value" style="color:var(--primary)">Active</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Shipping Information ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Shipping Information</span>
+                </div>
+                <div class="od-fields">
+                  <div>
+                    <div class="od-field-label">Address Line 1</div>
+                    <div class="od-field-value">2780 Scenic Drive</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Address Line 2</div>
+                    <div class="od-field-value">Suite 4</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">City</div>
+                    <div class="od-field-value">Blue Ridge</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">State</div>
+                    <div class="od-field-value">Georgia</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">ZIP Code</div>
+                    <div class="od-field-value">30513</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Country</div>
+                    <div class="od-field-value">United States</div>
+                  </div>
+                </div>
+
+                <div class="od-detail-divider"></div>
+
+                <div class="od-fields">
+                  <div>
+                    <div class="od-field-label">Carrier</div>
+                    <div class="od-field-value">FedEx Express</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Tracking Number</div>
+                    <div class="od-field-value"><a href="#">7489-2045-8831</a></div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Estimated Delivery</div>
+                    <div class="od-field-value">Jan 12, 2024</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Billing Information ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Billing Information</span>
+                </div>
+                <div class="od-fields">
+                  <div>
+                    <div class="od-field-label">Billing Address</div>
+                    <div class="od-field-value">2780 Scenic Drive, Suite 4</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">City / State</div>
+                    <div class="od-field-value">Blue Ridge, Georgia 30513</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Country</div>
+                    <div class="od-field-value">United States</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Payment Method</div>
+                    <div class="od-field-value">Visa ending in 4242</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Transaction ID</div>
+                    <div class="od-field-value"><a href="#">TXN-8847291</a></div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Payment Date</div>
+                    <div class="od-field-value">Jan 8, 2024</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="od-side">
+
+            <!-- ── Order Summary ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Order Summary</span>
+                </div>
+                <div class="od-fields-2">
+                  <div>
+                    <div class="od-field-label">Order ID</div>
+                    <div class="od-field-value">#95954</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Order Date</div>
+                    <div class="od-field-value">Jan 8, 2024</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Items</div>
+                    <div class="od-field-value">3 products</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Total</div>
+                    <div class="od-field-value" style="color:var(--primary)">$756.99</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Payment Status</div>
+                    <div class="od-field-value"><span class="od-detail-tag green sm">Paid</span></div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Fulfillment</div>
+                    <div class="od-field-value"><span class="od-detail-tag blue sm">Fulfilled</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Internal Notes ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Internal Notes</span>
+                </div>
+                <div class="od-note">
+                  Customer requested gift wrapping for all items. The shipping label must include the note "Fragile — Handle with care". Priority handling confirmed due to premium account status.
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Tags & Labels ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Tags &amp; Labels</span>
+                </div>
+                <div class="od-detail-tags" style="margin-bottom:0">
+                  <span class="od-detail-tag green">Verified Buyer</span>
+                  <span class="od-detail-tag blue">Premium</span>
+                  <span class="od-detail-tag orange">High Priority</span>
+                  <span class="od-detail-tag gray">Recurring</span>
+                  <span class="od-detail-tag gray">Gift Wrap</span>
+                  <span class="od-detail-tag red">Fragile</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Discount Applied ── -->
+            <div class="od-card">
+              <div class="od-detail-section">
+                <div class="od-detail-header">
+                  <div class="od-detail-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+                  </div>
+                  <span class="od-detail-section-title">Discount Applied</span>
+                </div>
+                <div class="od-fields-2">
+                  <div>
+                    <div class="od-field-label">Coupon Code</div>
+                    <div class="od-field-value">WINTER2024</div>
+                  </div>
+                  <div>
+                    <div class="od-field-label">Discount</div>
+                    <div class="od-field-value" style="color:var(--primary)">-15% ($113.55)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ═══ Tab: Activity ═══ -->
+      <div class="od-panel" data-panel="activity">
+        <div class="od-card">
+          <div class="od-card-head">
+            <span class="od-card-title">Activity</span>
+            <span class="od-status fulfilled">Fulfilled</span>
+          </div>
+          <div class="od-timeline">
+
+            <div class="od-tl-date">Sunday, 06 March</div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot completed"></div>
+              <div class="od-tl-title status-green">Parcel has been delivered</div>
+              <div class="od-tl-desc">Recipient: Steve Sutton</div>
+              <div class="od-tl-time">05:13 AM</div>
+            </div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Parcel is out for delivery</div>
+              <div class="od-tl-time">12:32 AM</div>
+            </div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Parcel has arrived at delivery station</div>
+              <div class="od-tl-time">10:15 PM</div>
+            </div>
+
+            <div class="od-tl-date">Friday, 04 March</div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Parcel has been picked up by courier</div>
+              <div class="od-tl-time">03:43 AM</div>
+            </div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Parcel has left the warehouse</div>
+              <div class="od-tl-time">01:12 AM</div>
+            </div>
+
+            <div class="od-tl-date">Thursday, 03 March</div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Parcel is being prepared for shipment</div>
+              <div class="od-tl-time">11:30 PM</div>
+            </div>
+
+            <div class="od-tl-item">
+              <div class="od-tl-dot pending"></div>
+              <div class="od-tl-title">Order confirmed</div>
+              <div class="od-tl-desc">Payment received via credit card</div>
+              <div class="od-tl-time">09:15 PM</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab: Comments ═══ -->
+      <div class="od-panel" data-panel="comments">
+        <div class="od-card">
+          <div class="od-card-head">
+            <span class="od-card-title">Comments</span>
+            <span class="tbl-badge">3</span>
+          </div>
+
+          <div class="od-comment-box">
+            <textarea placeholder="Write a comment..."></textarea>
+            <div class="od-comment-toolbar">
+              <button class="btn btn--solid btn--sm">Comment</button>
+            </div>
+          </div>
+
+          <div class="od-comment">
+            <div class="od-comment-avatar">SS</div>
+            <div class="od-comment-body">
+              <div class="od-comment-head">
+                <span class="od-comment-name">Steve Sutton</span>
+                <span class="od-comment-time">2 days ago</span>
+              </div>
+              <div class="od-comment-text">Can you please update the shipping address? I moved recently and forgot to change it before placing the order.</div>
+            </div>
+          </div>
+
+          <div class="od-comment">
+            <div class="od-comment-avatar">SW</div>
+            <div class="od-comment-body">
+              <div class="od-comment-head">
+                <span class="od-comment-name">Simson Wili</span>
+                <span class="od-comment-time">1 day ago</span>
+              </div>
+              <div class="od-comment-text">Sure! I've updated the shipping address to PO Box 1022, Seattle WA 98104. Please confirm this is correct.</div>
+            </div>
+          </div>
+
+          <div class="od-comment">
+            <div class="od-comment-avatar">SS</div>
+            <div class="od-comment-body">
+              <div class="od-comment-head">
+                <span class="od-comment-name">Steve Sutton</span>
+                <span class="od-comment-time">1 day ago</span>
+              </div>
+              <div class="od-comment-text">That's correct, thank you for the quick update!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab: Attachments ═══ -->
+      <div class="od-panel" data-panel="attachments">
+        <div class="od-card">
+          <div class="od-card-head">
+            <span class="od-card-title">Attachments</span>
+          </div>
+
+          <div class="od-attachment">
+            <div class="od-att-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="od-att-info">
+              <div class="od-att-name">invoice_95954.pdf</div>
+              <div class="od-att-meta">PDF &middot; 245 KB</div>
+            </div>
+            <button class="od-att-action">Download</button>
+          </div>
+
+          <div class="od-attachment">
+            <div class="od-att-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div class="od-att-info">
+              <div class="od-att-name">shipping_label.png</div>
+              <div class="od-att-meta">PNG &middot; 128 KB</div>
+            </div>
+            <button class="od-att-action">Download</button>
+          </div>
+
+          <div class="od-attachment">
+            <div class="od-att-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <div class="od-att-info">
+              <div class="od-att-name">receipt_confirmation.pdf</div>
+              <div class="od-att-meta">PDF &middot; 89 KB</div>
+            </div>
+            <button class="od-att-action">Download</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end .body -->
+
+  </div>
+  <!-- end .main -->
+
+</div>
+
+<!-- ── Scripts ── -->
+<script>
+// ─── SIDEBAR TOGGLE ───
+(function() {
+  var sidebar = document.querySelector('.sidebar');
+  var btn = document.getElementById('sidebarToggle');
+  var saved = localStorage.getItem('cv-sidebar');
+  if (saved === 'collapsed') sidebar.classList.add('collapsed');
+  btn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    localStorage.setItem('cv-sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+  });
+})();
+
+// ─── THEME TOGGLE ───
+(function() {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('cv-theme', next);
+  });
+})();
+
+// ─── TAB SWITCHING ───
+(function() {
+  const tabs = document.querySelectorAll('.od-tab');
+  const panels = document.querySelectorAll('.od-panel');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = tab.getAttribute('data-tab');
+      document.querySelector('.od-panel[data-panel="' + target + '"]').classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

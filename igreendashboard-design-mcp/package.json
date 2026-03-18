@@ -1,0 +1,22 @@
+{
+  "name": "cryptovault-design-mcp",
+  "version": "2.0.0",
+  "description": "MCP Server — CryptoVault Design System Style Guide for AI-assisted development",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:http": "node src/index.js --http",
+    "dev": "node --watch src/index.js",
+    "dev:http": "node --watch src/index.js --http"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

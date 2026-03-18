@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagination — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="pagination.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Label helper for state demos */
+    .state-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--muted-foreground);
+      text-align: center;
+    }
+    .state-group {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Pagination</div>
+      <div class="page-desc">Table pagination component with page info text, numbered page buttons, and navigation arrows.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ DEFAULT PAGINATION ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Default Pagination</div>
+    <div class="section-desc">
+      Full pagination bar with <code>.pagination</code> container, <code>.page-info</code> text, and <code>.page-btns</code> navigation. The current page uses the <code>.pb.active</code> class.
+    </div>
+    <div class="preview preview--col">
+      <div class="pagination" style="margin-top: 0; border-top: none; padding-top: 0;">
+        <span class="page-info">Showing 1-10 of 1,247 transactions</span>
+        <div class="page-btns">
+          <button class="pb" aria-label="Previous page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="pb active">1</button>
+          <button class="pb">2</button>
+          <button class="pb">3</button>
+          <button class="pb">...</button>
+          <button class="pb">10</button>
+          <button class="pb" aria-label="Next page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ BUTTON STATES ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Button States</div>
+    <div class="section-desc">
+      Individual <code>.pb</code> button states: default, hover (simulated), and active.
+    </div>
+    <div class="preview">
+      <div class="state-group">
+        <button class="pb">5</button>
+        <span class="state-label">Default</span>
+      </div>
+      <div class="state-group">
+        <button class="pb" style="color: var(--fg-secondary); background: var(--overlay-10); border-color: var(--border-soft);">5</button>
+        <span class="state-label">Hover</span>
+      </div>
+      <div class="state-group">
+        <button class="pb active">5</button>
+        <span class="state-label">Active</span>
+      </div>
+      <div class="state-group">
+        <button class="pb" aria-label="Previous">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="state-label">Arrow</span>
+      </div>
+      <div class="state-group">
+        <button class="pb">...</button>
+        <span class="state-label">Ellipsis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ COMPACT PAGINATION ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Compact Pagination</div>
+    <div class="section-desc">
+      Minimal prev/next navigation without page numbers. Ideal for small tables or mobile layouts.
+    </div>
+    <div class="preview preview--col">
+      <div class="pagination" style="margin-top: 0; border-top: none; padding-top: 0;">
+        <span class="page-info">Page 3 of 12</span>
+        <div class="page-btns">
+          <button class="pb" aria-label="Previous page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="pb" aria-label="Next page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">Pagination</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>.pagination</td>
+          <td>Container. Flexbox row with space-between alignment and a top border separator.</td>
+          <td><code>layout</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>.page-info</td>
+          <td>Text element showing the current range and total count (e.g. "Showing 1-10 of 1,247").</td>
+          <td><code>text</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.page-btns</td>
+          <td>Flex container for page buttons with a 4px gap.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.pb</td>
+          <td>Individual page button. 34px min-width/height, centered content.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>.pb.active</td>
+          <td>Highlights the current page with primary background and bold text.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+</script>
+</body>
+</html>

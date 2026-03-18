@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPI Card — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="kpi-card.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+    .preview--grid { display: block; }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* Anatomy label */
+    .anatomy-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .anatomy-wrapper {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Sparkline placeholder */
+    .spark-placeholder {
+      width: 100%; height: 40px;
+      border-radius: 4px;
+      background: var(--overlay-8);
+      opacity: 0.5;
+    }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">KPI Card</div>
+      <div class="page-desc">Key Performance Indicator cards displaying metrics with labels, values, badges, sub-text, and sparkline charts.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ KPI GRID (4 COLUMNS) ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">KPI Grid (4 Columns)</div>
+    <div class="section-desc">
+      Use <code>.kpi-grid</code> to lay out KPI cards in a 4-column grid. Each <code>.kpi-card</code> contains a <code>.kpi-left</code> content area and a <code>.kpi-spark</code> sparkline area.
+    </div>
+    <div class="preview preview--grid">
+      <div class="kpi-grid">
+
+        <!-- Card 1: Total Revenue -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Total Revenue</div>
+            <div class="kpi-value">$48,352.94</div>
+            <div class="kpi-footer">
+              <span class="kpi-badge up">+12.4%</span>
+              <span class="kpi-sub">vs last month</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+              <polyline points="0,32 10,28 20,30 30,22 40,18 50,20 60,10 70,8 80,4" stroke="var(--primary)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <linearGradient id="sparkGrad1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+              </linearGradient>
+              <polygon points="0,32 10,28 20,30 30,22 40,18 50,20 60,10 70,8 80,4 80,40 0,40" fill="url(#sparkGrad1)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Transactions -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Transactions</div>
+            <div class="kpi-value">1,247</div>
+            <div class="kpi-footer">
+              <span class="kpi-badge up">+8.2%</span>
+              <span class="kpi-sub">vs last month</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+              <polyline points="0,30 10,26 20,24 30,28 40,20 50,16 60,14 70,12 80,6" stroke="var(--primary)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <linearGradient id="sparkGrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+              </linearGradient>
+              <polygon points="0,30 10,26 20,24 30,28 40,20 50,16 60,14 70,12 80,6 80,40 0,40" fill="url(#sparkGrad2)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 3: Active Users -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Active Users</div>
+            <div class="kpi-value">3,891</div>
+            <div class="kpi-footer">
+              <span class="kpi-badge dn">-2.1%</span>
+              <span class="kpi-sub">vs last month</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+              <polyline points="0,8 10,12 20,10 30,16 40,20 50,18 60,26 70,30 80,34" stroke="var(--destructive)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <linearGradient id="sparkGrad3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--destructive)" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="var(--destructive)" stop-opacity="0"/>
+              </linearGradient>
+              <polygon points="0,8 10,12 20,10 30,16 40,20 50,18 60,26 70,30 80,34 80,40 0,40" fill="url(#sparkGrad3)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 4: Avg Order -->
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-label">Avg Order</div>
+            <div class="kpi-value">$38.74</div>
+            <div class="kpi-footer">
+              <span class="kpi-badge up">+5.7%</span>
+              <span class="kpi-sub">vs last month</span>
+            </div>
+          </div>
+          <div class="kpi-spark">
+            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+              <polyline points="0,28 10,30 20,26 30,24 40,22 50,18 60,14 70,16 80,8" stroke="var(--primary)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <linearGradient id="sparkGrad4" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+              </linearGradient>
+              <polygon points="0,28 10,30 20,26 30,24 40,22 50,18 60,14 70,16 80,8 80,40 0,40" fill="url(#sparkGrad4)"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ SINGLE KPI CARD (ANATOMY) ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Single KPI Card</div>
+    <div class="section-desc">
+      Anatomy of a single <code>.kpi-card</code>. The card splits into <code>.kpi-left</code> (label, value, footer) and <code>.kpi-spark</code> (sparkline chart).
+    </div>
+    <div class="preview" style="max-width: 380px;">
+      <div class="kpi-card" style="width: 100%;">
+        <div class="kpi-left">
+          <div class="kpi-label">
+            <div class="anatomy-wrapper">
+              <span class="anatomy-label">.kpi-label</span>
+              Total Revenue
+            </div>
+          </div>
+          <div class="kpi-value">
+            <div class="anatomy-wrapper">
+              <span class="anatomy-label">.kpi-value</span>
+              $48,352.94
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <div class="anatomy-wrapper" style="display: flex; flex-direction: row; align-items: center; gap: 8px;">
+              <span class="kpi-badge up">+12.4%</span>
+              <span class="kpi-sub">vs last month</span>
+            </div>
+          </div>
+        </div>
+        <div class="kpi-spark">
+          <div class="anatomy-wrapper" style="text-align: center;">
+            <span class="anatomy-label">.kpi-spark</span>
+            <div class="spark-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ BADGE VARIANTS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Badge Variants</div>
+    <div class="section-desc">
+      The <code>.kpi-badge</code> component supports two directional variants: <code>.up</code> for positive change and <code>.dn</code> for negative change.
+    </div>
+    <div class="preview">
+      <span class="kpi-badge up">+12.4%</span>
+      <span class="kpi-badge up">+8.2%</span>
+      <span class="kpi-badge up">+5.7%</span>
+      <span class="kpi-badge dn">-2.1%</span>
+      <span class="kpi-badge dn">-7.3%</span>
+      <span class="kpi-badge dn">-0.5%</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">KPI Card</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>kpi-grid</td>
+          <td>Grid container for KPI cards. Lays out children in a 4-column grid.</td>
+          <td><code>layout</code></td>
+          <td><code>4 columns</code></td>
+        </tr>
+        <tr>
+          <td>kpi-card</td>
+          <td>Base card container. Displays content and sparkline side by side.</td>
+          <td><code>base</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>kpi-left</td>
+          <td>Left content area containing label, value, and footer.</td>
+          <td><code>structure</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>kpi-label</td>
+          <td>Metric label text displayed above the value.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-value</td>
+          <td>Primary metric value. Bold, large, tabular-numeric.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-footer</td>
+          <td>Footer row containing badge and sub-text.</td>
+          <td><code>structure</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge</td>
+          <td>Percentage change badge. Requires a direction modifier.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge.up</td>
+          <td>Positive change badge. Green/primary color scheme.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-badge.dn</td>
+          <td>Negative change badge. Red/destructive color scheme.</td>
+          <td><code>modifier</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-sub</td>
+          <td>Sub-text shown next to the badge (e.g. "vs last month").</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>kpi-spark</td>
+          <td>Right-aligned sparkline chart container. Fixed 100px width.</td>
+          <td><code>element</code></td>
+          <td><code>100px wide</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+</script>
+</body>
+</html>

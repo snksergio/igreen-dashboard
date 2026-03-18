@@ -1,0 +1,222 @@
+/* ═══════════════════════════════════════════════
+   BUTTON COMPONENT
+   Agnostic, stateless button system.
+   Depends on design tokens from theme/dark.css & theme/light.css
+═══════════════════════════════════════════════ */
+
+/* ── Base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  outline: none;
+  touch-action: manipulation;
+  transition: all .2s var(--ease-out);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Base States ── */
+.btn:hover {
+  color: var(--fg-secondary);
+  background: var(--overlay-8);
+  border-color: var(--border-soft);
+}
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.btn[disabled],
+.btn--loading {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ═══════════════════════════════════
+   VARIANTS
+═══════════════════════════════════ */
+
+/* Solid (Primary) */
+.btn--solid {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: var(--primary);
+}
+.btn--solid:hover {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: var(--primary);
+  opacity: 0.88;
+}
+
+/* Outline */
+.btn--outline {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--border-soft);
+}
+.btn--outline:hover {
+  background: var(--overlay-5);
+  color: var(--foreground);
+  border-color: var(--border-strong);
+}
+
+/* Ghost */
+.btn--ghost {
+  background: transparent;
+  color: var(--muted-foreground);
+  border-color: transparent;
+}
+.btn--ghost:hover {
+  background: var(--accent);
+  color: var(--foreground);
+  border-color: transparent;
+}
+
+/* Destructive */
+.btn--destructive {
+  background: var(--destructive);
+  color: #fff;
+  border-color: var(--destructive);
+}
+.btn--destructive:hover {
+  background: var(--destructive);
+  color: #fff;
+  border-color: var(--destructive);
+  opacity: 0.88;
+}
+
+/* Warning */
+.btn--warning {
+  background: var(--warning);
+  color: #000;
+  border-color: var(--warning);
+}
+.btn--warning:hover {
+  background: var(--warning);
+  color: #000;
+  border-color: var(--warning);
+  opacity: 0.88;
+}
+
+/* Info */
+.btn--info {
+  background: var(--info);
+  color: #fff;
+  border-color: var(--info);
+}
+.btn--info:hover {
+  background: var(--info);
+  color: #fff;
+  border-color: var(--info);
+  opacity: 0.88;
+}
+
+/* ═══════════════════════════════════
+   SIZES
+═══════════════════════════════════ */
+
+/* Extra Small */
+.btn--xs {
+  height: 26px;
+  padding: 0 8px;
+  font-size: var(--text-xs);
+  gap: 4px;
+  border-radius: var(--radius-xs);
+}
+.btn--xs.btn--icon { width: 26px; }
+.btn--xs svg { width: 12px; height: 12px; }
+
+/* Small */
+.btn--sm {
+  height: 32px;
+  padding: 0 12px;
+  font-size: var(--text-caption);
+  gap: 5px;
+}
+.btn--sm.btn--icon { width: 32px; }
+.btn--sm svg { width: 14px; height: 14px; }
+
+/* Medium (default — no class needed) */
+.btn svg { width: 16px; height: 16px; }
+
+/* Large */
+.btn--lg {
+  height: 44px;
+  padding: 0 20px;
+  font-size: var(--text-body);
+  font-weight: 600;
+  gap: 8px;
+}
+.btn--lg.btn--icon { width: 44px; }
+.btn--lg svg { width: 18px; height: 18px; }
+
+/* ═══════════════════════════════════
+   MODIFIERS
+═══════════════════════════════════ */
+
+/* Icon Only */
+.btn--icon {
+  width: 36px;
+  padding: 0;
+}
+
+/* Block (full-width) */
+.btn--block {
+  width: 100%;
+}
+
+/* Pill Shape */
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+/* ═══════════════════════════════════
+   LOADING STATE
+═══════════════════════════════════ */
+.btn--loading {
+  position: relative;
+  color: transparent !important;
+}
+.btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin .6s linear infinite;
+}
+
+/* Restore visible color for spinner */
+.btn--loading::after { border-color: var(--secondary-foreground); border-right-color: transparent; }
+.btn--solid.btn--loading::after { border-color: var(--primary-fg); border-right-color: transparent; }
+.btn--destructive.btn--loading::after,
+.btn--info.btn--loading::after { border-color: #fff; border-right-color: transparent; }
+.btn--warning.btn--loading::after { border-color: #000; border-right-color: transparent; }
+.btn--ghost.btn--loading::after { border-color: var(--muted-foreground); border-right-color: transparent; }
+.btn--outline.btn--loading::after { border-color: var(--foreground); border-right-color: transparent; }
+
+.btn--xs.btn--loading::after { width: 12px; height: 12px; border-width: 1.5px; }
+.btn--sm.btn--loading::after { width: 14px; height: 14px; border-width: 1.5px; }
+.btn--lg.btn--loading::after { width: 18px; height: 18px; border-width: 2.5px; }
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}

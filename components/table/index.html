@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="table.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Icon helper (inline SVG icons for demo) */
+    .icon { display: inline-flex; flex-shrink: 0; }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Table</div>
+      <div class="page-desc">Transaction table with 5-layer toolbar, tabs, filter chips, search, sortable columns, and pagination.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ COMPLETE TABLE ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Complete Table</div>
+    <div class="section-desc">
+      Full transaction table with <code>.table-section</code> container, topbar with title, tabs, search, filters, sortable columns, and pagination.
+    </div>
+    <div class="table-section">
+      <div class="tbl-topbar">
+
+        <!-- Row 1 — Title + actions -->
+        <div class="tbl-title-row">
+          <div class="tbl-title-left">
+            <span style="font-size: 16px; font-weight: 700;">Recent Transactions</span>
+            <span class="tbl-badge">1,247</span>
+          </div>
+          <div class="tbl-title-right">
+            <button class="tbl-export-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 2 — Tabs + search/actions -->
+        <div class="tbl-toolbar-row">
+          <div class="tbl-tabs">
+            <button class="tbl-tab active">All</button>
+            <button class="tbl-tab">Buy</button>
+            <button class="tbl-tab">Sell</button>
+            <button class="tbl-tab">Swap</button>
+          </div>
+          <div class="tbl-toolbar-spacer"></div>
+          <div class="tbl-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:.4; flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Search transactions...">
+          </div>
+          <button class="tbl-filter-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Filter
+          </button>
+          <button class="tbl-refresh-btn" aria-label="Refresh">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Type</th>
+            <th class="r">Amount</th>
+            <th class="r">Price</th>
+            <th class="r">Total</th>
+            <th class="r">Change <span>&#x25B4;</span></th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1 — BTC Buy -->
+          <tr>
+            <td>
+              <div class="asset-cell">
+                <div class="coin-icon" style="background:#F7931A; color:#fff;">BT</div>
+                <div>
+                  <div class="coin-sym">BTC</div>
+                  <div class="coin-name">Bitcoin</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge buy">Buy</span></td>
+            <td class="r mono">0.2451</td>
+            <td class="r mono">$67,432.18</td>
+            <td class="r mono">$16,527.06</td>
+            <td class="r"><span class="chg-pos">+2.34%</span></td>
+            <td>
+              <span class="status-chip completed">
+                <span class="s-dot" style="background: currentColor; opacity:.5;"></span>
+                Completed
+              </span>
+            </td>
+            <td style="white-space:nowrap; font-size: var(--text-sm); color: var(--fg-muted);">Mar 18, 2026</td>
+          </tr>
+          <!-- Row 2 — ETH Sell -->
+          <tr>
+            <td>
+              <div class="asset-cell">
+                <div class="coin-icon" style="background:#627EEA; color:#fff;">ET</div>
+                <div>
+                  <div class="coin-sym">ETH</div>
+                  <div class="coin-name">Ethereum</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge sell">Sell</span></td>
+            <td class="r mono">3.8000</td>
+            <td class="r mono">$3,521.44</td>
+            <td class="r mono">$13,381.47</td>
+            <td class="r"><span class="chg-neg">-1.12%</span></td>
+            <td>
+              <span class="status-chip completed">
+                <span class="s-dot" style="background: currentColor; opacity:.5;"></span>
+                Completed
+              </span>
+            </td>
+            <td style="white-space:nowrap; font-size: var(--text-sm); color: var(--fg-muted);">Mar 17, 2026</td>
+          </tr>
+          <!-- Row 3 — SOL Buy -->
+          <tr>
+            <td>
+              <div class="asset-cell">
+                <div class="coin-icon" style="background:#9945FF; color:#fff;">SO</div>
+                <div>
+                  <div class="coin-sym">SOL</div>
+                  <div class="coin-name">Solana</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge buy">Buy</span></td>
+            <td class="r mono">42.5000</td>
+            <td class="r mono">$187.63</td>
+            <td class="r mono">$7,974.28</td>
+            <td class="r"><span class="chg-pos">+5.67%</span></td>
+            <td>
+              <span class="status-chip pending">
+                <span class="s-dot" style="background: currentColor; opacity:.7;"></span>
+                Pending
+              </span>
+            </td>
+            <td style="white-space:nowrap; font-size: var(--text-sm); color: var(--fg-muted);">Mar 17, 2026</td>
+          </tr>
+          <!-- Row 4 — ADA Sell -->
+          <tr>
+            <td>
+              <div class="asset-cell">
+                <div class="coin-icon" style="background:#0D1E30; color:#fff;">AD</div>
+                <div>
+                  <div class="coin-sym">ADA</div>
+                  <div class="coin-name">Cardano</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge sell">Sell</span></td>
+            <td class="r mono">5,200.00</td>
+            <td class="r mono">$0.6842</td>
+            <td class="r mono">$3,557.84</td>
+            <td class="r"><span class="chg-neg">-3.41%</span></td>
+            <td>
+              <span class="status-chip failed">
+                <span class="s-dot" style="background: currentColor; opacity:.7;"></span>
+                Failed
+              </span>
+            </td>
+            <td style="white-space:nowrap; font-size: var(--text-sm); color: var(--fg-muted);">Mar 16, 2026</td>
+          </tr>
+          <!-- Row 5 — DOT Buy -->
+          <tr>
+            <td>
+              <div class="asset-cell">
+                <div class="coin-icon" style="background:#E6007A; color:#fff;">DT</div>
+                <div>
+                  <div class="coin-sym">DOT</div>
+                  <div class="coin-name">Polkadot</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge buy">Buy</span></td>
+            <td class="r mono">320.0000</td>
+            <td class="r mono">$9.14</td>
+            <td class="r mono">$2,924.80</td>
+            <td class="r"><span class="chg-pos">+0.89%</span></td>
+            <td>
+              <span class="status-chip completed">
+                <span class="s-dot" style="background: currentColor; opacity:.5;"></span>
+                Completed
+              </span>
+            </td>
+            <td style="white-space:nowrap; font-size: var(--text-sm); color: var(--fg-muted);">Mar 15, 2026</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span class="page-info">Showing 1-10 of 1,247</span>
+        <div class="page-btns">
+          <button class="pb active">1</button>
+          <button class="pb">2</button>
+          <button class="pb">3</button>
+          <button class="pb" disabled style="border:none; background:none; cursor:default; color: var(--fg-muted);">...</button>
+          <button class="pb">10</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ TAB VARIANTS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Tab Variants</div>
+    <div class="section-desc">
+      Inline tabs using <code>.tbl-tabs</code> with <code>.tbl-tab</code> items. Apply <code>.active</code> to the selected tab.
+    </div>
+    <div class="preview">
+      <div class="tbl-tabs">
+        <button class="tbl-tab active">All</button>
+        <button class="tbl-tab">Buy</button>
+        <button class="tbl-tab">Sell</button>
+        <button class="tbl-tab">Swap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ FILTER CHIPS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Filter Chips</div>
+    <div class="section-desc">
+      Filter chips using <code>.tbl-filters.open</code> with <code>.filter-chip</code> items. Apply <code>.active</code> to show the clear button and active state.
+    </div>
+    <div class="preview">
+      <div class="tbl-filters open" style="margin-top:0;">
+        <div class="filter-chip-wrap">
+          <button class="filter-chip active">
+            <span class="fc-label">Type:</span>
+            <span class="fc-val">Buy</span>
+            <span class="fc-clear">&times;</span>
+          </button>
+        </div>
+        <div class="filter-chip-wrap">
+          <button class="filter-chip">
+            <span class="fc-label">Status</span>
+            <span class="fc-chevron">&#x25BE;</span>
+          </button>
+        </div>
+        <div class="filter-chip-wrap">
+          <button class="filter-chip">
+            <span class="fc-label">Asset</span>
+            <span class="fc-chevron">&#x25BE;</span>
+          </button>
+        </div>
+        <button class="add-filter-btn">+ Add filter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ TOOLBAR BUTTONS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Toolbar Buttons</div>
+    <div class="section-desc">
+      Individual toolbar elements: <code>.tbl-search</code>, <code>.tbl-filter-btn</code>, <code>.tbl-export-btn</code>, and <code>.tbl-refresh-btn</code>.
+    </div>
+    <div class="preview">
+      <div class="tbl-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:.4; flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search transactions...">
+      </div>
+      <button class="tbl-filter-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Filter
+      </button>
+      <button class="tbl-filter-btn active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Filter (Active)
+      </button>
+      <button class="tbl-export-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+      <button class="tbl-refresh-btn" aria-label="Refresh">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">Table</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>.table-section</td>
+          <td>Outer card container for the entire table component.</td>
+          <td><code>container</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-topbar</td>
+          <td>Flex column wrapper for title row, toolbar, and filters.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-title-row</td>
+          <td>Horizontal row for title text and action buttons.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-badge</td>
+          <td>Pill badge showing record count next to title.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-export-btn</td>
+          <td>Secondary button for exporting table data.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-tabs</td>
+          <td>Inline tab bar container with muted background.</td>
+          <td><code>container</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-tab</td>
+          <td>Individual tab button inside tabs container.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-tab.active</td>
+          <td>Active/selected tab state with card background.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-toolbar-row</td>
+          <td>Horizontal row for tabs, search, and action buttons.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-search</td>
+          <td>Search input wrapper with icon and border focus ring.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-filter-btn</td>
+          <td>Toggle button to show/hide filter chips.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-filter-btn.active</td>
+          <td>Active filter button state with primary color accent.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-refresh-btn</td>
+          <td>Square icon button for refreshing table data.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-filters</td>
+          <td>Filter chip row, hidden by default.</td>
+          <td><code>container</code></td>
+          <td><code>hidden</code></td>
+        </tr>
+        <tr>
+          <td>.tbl-filters.open</td>
+          <td>Visible filter chip row.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.filter-chip</td>
+          <td>Individual filter chip button.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.filter-chip.active</td>
+          <td>Active filter chip with primary accent and clear button.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.asset-cell</td>
+          <td>Flex cell with coin icon, symbol, and name.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.coin-icon</td>
+          <td>Square icon container for cryptocurrency symbol.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.badge.buy / .badge.sell</td>
+          <td>Transaction type badges with semantic colors.</td>
+          <td><code>variant</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.status-chip</td>
+          <td>Status indicator chip with dot and label.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.status-chip.completed / .pending / .failed</td>
+          <td>Status chip semantic variants.</td>
+          <td><code>variant</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.chg-pos / .chg-neg / .chg-nil</td>
+          <td>Price change indicators (green, red, muted).</td>
+          <td><code>variant</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.pagination</td>
+          <td>Footer row with page info and page buttons.</td>
+          <td><code>container</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.pb</td>
+          <td>Individual pagination button.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>.pb.active</td>
+          <td>Active/current page button with primary background.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.mono</td>
+          <td>Monospace tabular-nums cell for numeric alignment.</td>
+          <td><code>modifier</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>.r</td>
+          <td>Right-align text in th or td cells.</td>
+          <td><code>modifier</code></td>
+          <td><code>false</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+</script>
+</body>
+</html>

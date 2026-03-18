@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Bar — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="filter-bar.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+
+    /* Section */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+
+    /* Preview box */
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+
+    /* Separator */
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+
+    /* API table */
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-sub { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td:nth-child(3) code,
+    .api-table td:nth-child(4) code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    .api-table td:last-child code {
+      background: var(--overlay-8);
+    }
+
+    /* Icon helper (inline SVG icons for demo) */
+    .icon { display: inline-flex; flex-shrink: 0; }
+
+    /* Theme toggle icons */
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Filter Bar</div>
+      <div class="page-desc">Top-level page filter bar with period presets, date range selector, filter tags, and action buttons.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ COMPLETE FILTER BAR ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Complete Filter Bar</div>
+    <div class="section-desc">
+      Full <code>.filter-bar</code> composition with period presets, date range, filter tags, and action buttons.
+    </div>
+    <div class="preview preview--col">
+      <div class="filter-bar">
+        <span class="filter-label">Period:</span>
+        <div class="presets">
+          <button class="preset">24h</button>
+          <button class="preset active">7D</button>
+          <button class="preset">30D</button>
+          <button class="preset">90D</button>
+          <button class="preset">1Y</button>
+          <button class="preset">All</button>
+        </div>
+        <div class="vdiv"></div>
+        <button class="date-range-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Jan 15 - Feb 14, 2024
+        </button>
+        <div class="filter-spacer"></div>
+        <div class="filter-tags">
+          <button class="ftag">BTC</button>
+          <button class="ftag">ETH</button>
+          <button class="ftag">Active</button>
+        </div>
+        <button class="icon-btn" aria-label="Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </button>
+        <button class="export-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ PRESET PILLS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Preset Pills</div>
+    <div class="section-desc">
+      Period selector built with <code>.presets</code> container and <code>.preset</code> buttons. Add <code>.active</code> to mark the selected period.
+    </div>
+    <div class="preview">
+      <div class="presets">
+        <button class="preset active">24h</button>
+        <button class="preset">7D</button>
+        <button class="preset">30D</button>
+        <button class="preset">90D</button>
+        <button class="preset">1Y</button>
+        <button class="preset">All</button>
+      </div>
+    </div>
+    <div class="preview" style="margin-top: 8px">
+      <div class="presets">
+        <button class="preset">24h</button>
+        <button class="preset">7D</button>
+        <button class="preset active">30D</button>
+        <button class="preset">90D</button>
+        <button class="preset">1Y</button>
+        <button class="preset">All</button>
+      </div>
+    </div>
+    <div class="preview" style="margin-top: 8px">
+      <div class="presets">
+        <button class="preset">24h</button>
+        <button class="preset">7D</button>
+        <button class="preset">30D</button>
+        <button class="preset">90D</button>
+        <button class="preset">1Y</button>
+        <button class="preset active">All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ DATE RANGE BUTTON ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Date Range Button</div>
+    <div class="section-desc">
+      Use <code>.date-range-btn</code> with a calendar icon and date text. Hover state highlights the border and background.
+    </div>
+    <div class="preview">
+      <button class="date-range-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Jan 15 - Feb 14, 2024
+      </button>
+      <button class="date-range-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Mar 1 - Mar 31, 2024
+      </button>
+      <button class="date-range-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Last 90 days
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ FILTER TAGS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Filter Tags</div>
+    <div class="section-desc">
+      Removable filter chips using <code>.ftag</code>. Optionally include a close icon inside the tag.
+    </div>
+    <div class="preview">
+      <button class="ftag">BTC</button>
+      <button class="ftag">ETH</button>
+      <button class="ftag">SOL</button>
+      <button class="ftag">Active</button>
+      <button class="ftag">Staking</button>
+    </div>
+    <div class="preview" style="margin-top: 8px">
+      <button class="ftag">
+        BTC
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="ftag">
+        ETH
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="ftag">
+        Active
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ ACTION BUTTONS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Action Buttons</div>
+    <div class="section-desc">
+      Icon-only actions with <code>.icon-btn</code> and labeled actions with <code>.export-btn</code>.
+    </div>
+    <div class="preview">
+      <button class="icon-btn" aria-label="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Filter">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Refresh">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      </button>
+      <div class="sep"></div>
+      <button class="export-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+      <button class="export-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Report
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <div class="api-sub">Filter Bar</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>filter-bar</td>
+          <td>Top-level container. Horizontal flex layout with card background.</td>
+          <td><code>container</code></td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td>filter-label</td>
+          <td>Muted text label preceding a filter group.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>presets</td>
+          <td>Pill-group container for period preset buttons.</td>
+          <td><code>container</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>preset</td>
+          <td>Individual period preset button inside <code>.presets</code>.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>preset.active</td>
+          <td>Marks the currently selected preset pill.</td>
+          <td><code>state</code></td>
+          <td><code>false</code></td>
+        </tr>
+        <tr>
+          <td>vdiv</td>
+          <td>Vertical 1px divider between filter groups.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>date-range-btn</td>
+          <td>Button showing a calendar icon and date range text.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>filter-spacer</td>
+          <td>Flex spacer that pushes right-side content to the end.</td>
+          <td><code>layout</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>filter-tags</td>
+          <td>Container for filter tag chips on the right side.</td>
+          <td><code>container</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>ftag</td>
+          <td>Removable filter tag chip with pill shape.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>icon-btn</td>
+          <td>Square 36px icon-only action button.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+        <tr>
+          <td>export-btn</td>
+          <td>Labeled action button with icon and text.</td>
+          <td><code>element</code></td>
+          <td><code>-</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+  });
+</script>
+</body>
+</html>

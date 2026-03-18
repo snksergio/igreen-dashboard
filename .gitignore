@@ -1,0 +1,7 @@
+node_modules/
+igreendashboard-design-mcp/node_modules/
+.DS_Store
+Thumbs.db
+*.log
+analytics_backup.html
+.claude/

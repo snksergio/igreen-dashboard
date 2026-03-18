@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card — CryptoVault Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../../theme/dark.css" rel="stylesheet">
+  <link href="../../theme/light.css" rel="stylesheet">
+  <link href="card.css" rel="stylesheet">
+  <style>
+    /* Same showcase styles as button/index.html */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: 40px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+    .page-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .page-desc { font-size: 14px; color: var(--muted-foreground); margin-top: 4px; }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--secondary);
+      color: var(--secondary-foreground); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s var(--ease-out);
+    }
+    .theme-toggle:hover { color: var(--foreground); background: var(--accent); }
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-desc { font-size: 13px; color: var(--muted-foreground); margin-bottom: 20px; }
+    .section-desc code {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--muted); font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--fg-secondary);
+    }
+    .preview {
+      background: var(--muted); border-radius: var(--radius-md);
+      padding: 24px 28px; margin-bottom: 8px;
+      display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px;
+    }
+    .preview--col { flex-direction: column; align-items: stretch; }
+    .sep { width: 100%; height: 1px; background: var(--border-separator); margin: 8px 0; }
+    .api-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-bottom: 1px solid var(--border-separator);
+    }
+    .api-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border-separator);
+      vertical-align: middle;
+    }
+    .api-table td:first-child { color: var(--primary); font-weight: 500; }
+    .api-table td code {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: var(--muted); font-size: 11px;
+      font-family: 'SF Mono', Consolas, monospace; color: var(--fg-secondary);
+    }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Card</div>
+      <div class="page-desc">Base card container with header, actions, stat sub-cards, legends, and allocation lists.</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- ════════════════════════ BASE CARD ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Base Card</div>
+    <div class="section-desc">
+      The <code>.card</code> container with <code>.card-head</code> holding a title, subtitle, and action buttons. The card lifts on hover via <code>box-shadow</code> transition.
+    </div>
+    <div class="preview preview--col">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Portfolio Performance</div>
+            <div class="card-sub">Last 30 days overview</div>
+          </div>
+          <div class="card-actions">
+            <button class="ca-btn" aria-label="Refresh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            </button>
+            <button class="ca-btn" aria-label="Download">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+            <span class="more-dots" aria-label="More options">&#x2026;</span>
+          </div>
+        </div>
+        <div style="height: 80px; border-radius: 8px; background: var(--muted); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--fg-muted);">
+          Content area placeholder
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ CARD ACTIONS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Card Actions</div>
+    <div class="section-desc">
+      Use <code>.ca-btn</code> for icon action buttons and <code>.more-dots</code> for the overflow menu trigger. Both are 34px square with hover transitions.
+    </div>
+    <div class="preview">
+      <button class="ca-btn" aria-label="Refresh">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      </button>
+      <button class="ca-btn" aria-label="Download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="ca-btn" aria-label="Settings">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </button>
+      <button class="ca-btn" aria-label="Filter">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      </button>
+      <div class="sep"></div>
+      <span class="more-dots" aria-label="More options">&#x2026;</span>
+      <span class="more-dots" aria-label="More options">&#x22EE;</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ STAT SUB-CARDS ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Stat Sub-Cards</div>
+    <div class="section-desc">
+      Use <code>.perf-stats</code> to wrap <code>.pstat-card</code> items. Values can be colored with <code>.green</code> or <code>.red</code> modifiers on <code>.pstat-val</code>.
+    </div>
+    <div class="preview preview--col">
+      <div class="perf-stats">
+        <div class="pstat-card">
+          <div class="pstat-label">Total Value</div>
+          <div class="pstat-val">
+            $48,352
+            <span class="pstat-pct">USD</span>
+          </div>
+        </div>
+        <div class="pstat-card">
+          <div class="pstat-label">24h Change</div>
+          <div class="pstat-val green">
+            +$1,247
+            <span class="pstat-pct">+2.64%</span>
+          </div>
+        </div>
+        <div class="pstat-card">
+          <div class="pstat-label">7d Change</div>
+          <div class="pstat-val red">
+            -$892
+            <span class="pstat-pct">-1.81%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ PERFORMANCE LEGEND ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Performance Legend</div>
+    <div class="section-desc">
+      Use <code>.perf-legend</code> with <code>.pl-item</code> children. Each item contains a colored <code>.pl-line</code> swatch and a label. Items are interactive with hover color transitions.
+    </div>
+    <div class="preview">
+      <div class="perf-legend">
+        <div class="pl-item">
+          <span class="pl-line" style="background: #22c55e;"></span>
+          Bitcoin
+        </div>
+        <div class="pl-item">
+          <span class="pl-line" style="background: #6366f1;"></span>
+          Ethereum
+        </div>
+        <div class="pl-item">
+          <span class="pl-line" style="background: #f59e0b;"></span>
+          Solana
+        </div>
+        <div class="pl-item">
+          <span class="pl-line" style="background: #ef4444;"></span>
+          Cardano
+        </div>
+        <div class="pl-item">
+          <span class="pl-line" style="background: #8b5cf6;"></span>
+          Polkadot
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ ALLOCATION LIST ════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Allocation List</div>
+    <div class="section-desc">
+      Use <code>.alloc-list</code> with <code>.al-row</code> items. Each row has a color pip, name, percentage, and a change badge using <code>.al-chg.up</code> or <code>.al-chg.dn</code>.
+    </div>
+    <div class="preview preview--col">
+      <div class="alloc-list">
+        <div class="al-row">
+          <div class="al-left">
+            <span class="al-pip" style="background: #f7931a;"></span>
+            <span class="al-name">Bitcoin (BTC)</span>
+          </div>
+          <div class="al-right">
+            <span class="al-pct">42.5%</span>
+            <span class="al-chg up">+3.21%</span>
+          </div>
+        </div>
+        <div class="al-row">
+          <div class="al-left">
+            <span class="al-pip" style="background: #627eea;"></span>
+            <span class="al-name">Ethereum (ETH)</span>
+          </div>
+          <div class="al-right">
+            <span class="al-pct">28.1%</span>
+            <span class="al-chg up">+1.85%</span>
+          </div>
+        </div>
+        <div class="al-row">
+          <div class="al-left">
+            <span class="al-pip" style="background: #00d395;"></span>
+            <span class="al-name">Solana (SOL)</span>
+          </div>
+          <div class="al-right">
+            <span class="al-pct">14.3%</span>
+            <span class="al-chg dn">-2.47%</span>
+          </div>
+        </div>
+        <div class="al-row">
+          <div class="al-left">
+            <span class="al-pip" style="background: #0033ad;"></span>
+            <span class="al-name">Cardano (ADA)</span>
+          </div>
+          <div class="al-right">
+            <span class="al-pct">9.8%</span>
+            <span class="al-chg dn">-0.92%</span>
+          </div>
+        </div>
+        <div class="al-row">
+          <div class="al-left">
+            <span class="al-pip" style="background: #e6007a;"></span>
+            <span class="al-name">Polkadot (DOT)</span>
+          </div>
+          <div class="al-right">
+            <span class="al-pct">5.3%</span>
+            <span class="al-chg up">+0.64%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ API TABLE ════════════════════════ -->
+  <div class="section" style="margin-top: 64px">
+    <div class="api-title">API</div>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>.card</td>
+          <td><code>Base</code></td>
+          <td>Base card container with background, border-radius, padding, and hover shadow.</td>
+        </tr>
+        <tr>
+          <td>.card-head</td>
+          <td><code>Sub</code></td>
+          <td>Flex header row for title area and action buttons.</td>
+        </tr>
+        <tr>
+          <td>.card-title</td>
+          <td><code>Sub</code></td>
+          <td>Card heading text. 15px, weight 600.</td>
+        </tr>
+        <tr>
+          <td>.card-sub</td>
+          <td><code>Sub</code></td>
+          <td>Muted subtitle below the card title.</td>
+        </tr>
+        <tr>
+          <td>.card-actions</td>
+          <td><code>Sub</code></td>
+          <td>Flex container for action buttons in the card header.</td>
+        </tr>
+        <tr>
+          <td>.ca-btn</td>
+          <td><code>Action</code></td>
+          <td>34px square icon button with border and background.</td>
+        </tr>
+        <tr>
+          <td>.more-dots</td>
+          <td><code>Action</code></td>
+          <td>34px square overflow/more menu trigger. Ghost style.</td>
+        </tr>
+        <tr>
+          <td>.perf-stats</td>
+          <td><code>Sub</code></td>
+          <td>Flex row wrapper for stat sub-cards.</td>
+        </tr>
+        <tr>
+          <td>.pstat-card</td>
+          <td><code>Sub</code></td>
+          <td>Individual stat sub-card with muted background and hover accent.</td>
+        </tr>
+        <tr>
+          <td>.pstat-label</td>
+          <td><code>Sub</code></td>
+          <td>Uppercase label inside a stat card.</td>
+        </tr>
+        <tr>
+          <td>.pstat-val</td>
+          <td><code>Sub</code></td>
+          <td>Large numeric value inside a stat card. Tabular-nums enabled.</td>
+        </tr>
+        <tr>
+          <td>.pstat-val.green</td>
+          <td><code>State</code></td>
+          <td>Green (positive) color for the stat value.</td>
+        </tr>
+        <tr>
+          <td>.pstat-val.red</td>
+          <td><code>State</code></td>
+          <td>Red (negative/destructive) color for the stat value.</td>
+        </tr>
+        <tr>
+          <td>.pstat-pct</td>
+          <td><code>Sub</code></td>
+          <td>Muted percentage or unit label beside the stat value.</td>
+        </tr>
+        <tr>
+          <td>.perf-legend</td>
+          <td><code>Sub</code></td>
+          <td>Flex row wrapper for chart legend items.</td>
+        </tr>
+        <tr>
+          <td>.pl-item</td>
+          <td><code>Sub</code></td>
+          <td>Individual legend item with color swatch and label.</td>
+        </tr>
+        <tr>
+          <td>.pl-line</td>
+          <td><code>Sub</code></td>
+          <td>14px wide, 2px tall color swatch in the legend.</td>
+        </tr>
+        <tr>
+          <td>.chart-area</td>
+          <td><code>Sub</code></td>
+          <td>Flex-grow container for chart content.</td>
+        </tr>
+        <tr>
+          <td>.donut-area</td>
+          <td><code>Sub</code></td>
+          <td>Flex-grow container for donut/pie chart. Min-height 120px.</td>
+        </tr>
+        <tr>
+          <td>.alloc-list</td>
+          <td><code>Sub</code></td>
+          <td>Wrapper for allocation list rows.</td>
+        </tr>
+        <tr>
+          <td>.al-row</td>
+          <td><code>Sub</code></td>
+          <td>Individual allocation row with top border separator.</td>
+        </tr>
+        <tr>
+          <td>.al-left</td>
+          <td><code>Sub</code></td>
+          <td>Left side of allocation row (pip + name).</td>
+        </tr>
+        <tr>
+          <td>.al-pip</td>
+          <td><code>Sub</code></td>
+          <td>8px circular color indicator dot.</td>
+        </tr>
+        <tr>
+          <td>.al-name</td>
+          <td><code>Sub</code></td>
+          <td>Asset name text in the allocation row.</td>
+        </tr>
+        <tr>
+          <td>.al-right</td>
+          <td><code>Sub</code></td>
+          <td>Right side of allocation row (percentage + change badge).</td>
+        </tr>
+        <tr>
+          <td>.al-pct</td>
+          <td><code>Sub</code></td>
+          <td>Percentage value. Bold, tabular-nums, right-aligned.</td>
+        </tr>
+        <tr>
+          <td>.al-chg</td>
+          <td><code>Sub</code></td>
+          <td>Change badge with pill shape. Base class for up/down variants.</td>
+        </tr>
+        <tr>
+          <td>.al-chg.up</td>
+          <td><code>State</code></td>
+          <td>Positive change badge. Green text on green-10 background.</td>
+        </tr>
+        <tr>
+          <td>.al-chg.dn</td>
+          <td><code>State</code></td>
+          <td>Negative change badge. Red text on red-10 background.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  document.querySelector('.theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  });
+</script>
+</body>
+</html>

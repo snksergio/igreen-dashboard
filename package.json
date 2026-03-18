@@ -1,0 +1,20 @@
+{
+  "name": "igreen-dashboard",
+  "version": "1.0.0",
+  "description": "CryptoVault Dashboard — Design System with MCP Server for AI-assisted development",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./theme/main.css -o ./dist/styles.css --watch",
+    "build": "npx @tailwindcss/cli -i ./theme/main.css -o ./dist/styles.css --minify",
+    "mcp:start": "node igreendashboard-design-mcp/src/index.js",
+    "mcp:http": "node igreendashboard-design-mcp/src/index.js --http"
+  },
+  "keywords": ["dashboard", "design-system", "mcp", "crypto", "tailwind"],
+  "author": "snksergio",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}
