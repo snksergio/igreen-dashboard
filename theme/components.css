@@ -1230,9 +1230,6 @@ tbody td.mono {
   flex-shrink: 0;
   padding-top: var(--space-sm);
 }
-/* Force consistent button sizing inside action bars */
-.form-actions > .btn { height: 44px; padding: 0 20px; font-size: var(--text-body); font-weight: 600; gap: 8px; }
-.form-actions > .btn svg { width: 18px; height: 18px; }
 
 /* ══════════════════════════════════════
    PRODUCT LIST PAGE
