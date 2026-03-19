@@ -479,7 +479,7 @@ body {
 /* Row 3 — Filter chips (hidden by default, toggle via Filter btn) */
 .tbl-filters {
   display: none; align-items: center; gap: 8px;
-  margin-top: 12px; overflow: hidden;
+  margin-top: 12px; flex-wrap: wrap;
 }
 .tbl-filters.open { display: flex; }
 
@@ -1807,13 +1807,25 @@ tbody td.mono {
   /* Table toolbar: stack on mobile */
   .tbl-toolbar-row { flex-wrap: wrap; gap: var(--space-sm); }
   .tbl-toolbar-spacer { display: none; }
-  .tbl-tabs { width: 100%; }
+  .tbl-tabs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-tab { flex-shrink: 0; }
   .tbl-search { width: 100%; order: -1; }
   .tbl-search input { width: 100%; }
   .tbl-search-full { width: 100%; }
   .tbl-title-row { flex-wrap: wrap; gap: var(--space-sm); }
   .cr-channels { flex-direction: column; gap: var(--space-md); }
   .cr-channel  { flex-direction: row; justify-content: flex-start; }
+
+  /* Chart grids: 1 column on mobile */
+  .ch-grid   { grid-template-columns: 1fr; }
+  .ch-grid-3 { grid-template-columns: 1fr; }
+  .ch-grid-4 { grid-template-columns: 1fr 1fr; }
+
+  /* Stat cards & legends: stack on mobile */
+  .perf-stats   { flex-wrap: wrap; }
+  .pstat-card   { min-width: calc(50% - var(--space-sm)); }
+  .ch-stat      { min-width: calc(50% - var(--space-sm)); }
+  .ch-lg-vals   { gap: var(--space-lg); flex-wrap: wrap; }
 
   /* Mobile topbar: hide breadcrumb, wallet, user-chip; keep title + icons */
   .topbar-center  { display: none; }
@@ -1877,6 +1889,9 @@ tbody td.mono {
   .tbl-toolbar-row { flex-wrap: wrap; gap: var(--space-sm); }
   .drawer { width: 100%; }
   .od-fields { grid-template-columns: 1fr; }
+  .ch-grid-4 { grid-template-columns: 1fr; }
+  .pstat-card { min-width: 100%; }
+  .ch-stat    { min-width: 100%; }
 }
 
 /* ══════════════════════════════════════════════
