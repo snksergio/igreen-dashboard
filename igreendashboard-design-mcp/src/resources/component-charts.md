@@ -308,6 +308,14 @@ Boxes com background `var(--muted)` contendo label + valor + variação. **OBRIG
 
 **Regra:** TODA chart card com indicadores de KPI deve usar `.ch-stat-row` com background `var(--muted)`.
 
+**Precisão tipográfica:** `.ch-stat-val` usa `line-height: 1.2` (não 1 ou 1.5) e `font-variant-numeric: tabular-nums` para alinhamento correto de valores numéricos.
+
+### Grid Row Heights
+| Grid | Height/Min-Height | Nota |
+|------|-------------------|------|
+| `.mid-row` | `height: 380px` | Fixed height para chart + card lado a lado |
+| `.insights-row` | `min-height: 375px` | Min-height para 3-col insights grid |
+
 ---
 
 ## Chart Card Variants

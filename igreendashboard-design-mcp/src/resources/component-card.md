@@ -127,13 +127,20 @@
 ```
 
 ### KPI Values
-| Elemento | Font size | Font weight | Color |
-|----------|-----------|-------------|-------|
-| `.kpi-label` | `var(--text-sm)` (13px) | 500 | `var(--fg-tertiary)` |
-| `.kpi-value` | 22px | 700 | `var(--foreground)` |
-| `.kpi-sub` | `var(--text-caption)` (12px) | 500 | `var(--fg-muted)` |
-| `.kpi-badge.up` | `var(--text-xs)` (11px) | 600 | `var(--primary)` on `var(--primary-10)` |
-| `.kpi-badge.dn` | `var(--text-xs)` (11px) | 600 | `var(--destructive)` on `var(--destructive-10)` |
+| Elemento | Font size | Font weight | Color | Extra |
+|----------|-----------|-------------|-------|-------|
+| `.kpi-label` | `var(--text-sm)` (13px) | 500 | `var(--fg-tertiary)` | `letter-spacing: .1px` |
+| `.kpi-value` | 22px | 700 | `var(--foreground)` | `line-height: 1; letter-spacing: -.5px` |
+| `.kpi-sub` | `var(--text-caption)` (12px) | 500 | `var(--fg-muted)` | — |
+| `.kpi-badge.up` | `var(--text-xs)` (11px) | 600 | `var(--primary)` on `var(--primary-10)` | `height: 24px; line-height: 1; padding: 4px 10px` |
+| `.kpi-badge.dn` | `var(--text-xs)` (11px) | 600 | `var(--destructive)` on `var(--destructive-10)` | `height: 24px; line-height: 1; padding: 4px 10px` |
+
+### KPI Layout Precision
+| Elemento | Propriedades obrigatórias |
+|----------|--------------------------|
+| `.kpi-card` | `justify-content: space-between; align-items: stretch` |
+| `.kpi-left` | `display: flex; flex-direction: column; justify-content: space-between` |
+| `.kpi-spark` | `width: 100px; flex-shrink: 0; display: flex; align-items: flex-end` |
 
 ---
 
@@ -154,13 +161,13 @@ Usados dentro de cards maiores para mostrar métricas secundárias:
 .pstat-card:hover { background: var(--accent); }
 ```
 
-| Elemento | Font size | Color |
-|----------|-----------|-------|
-| `.pstat-label` | `var(--text-xs)` | `var(--fg-muted)`, uppercase |
-| `.pstat-val` | 18px, weight 700 | `var(--fg-strong)` |
-| `.pstat-val.green` | — | `var(--primary)` |
-| `.pstat-val.red` | — | `var(--destructive)` |
-| `.pstat-pct` | `var(--text-sm)` | `var(--fg-muted)` |
+| Elemento | Font size | Color | Extra |
+|----------|-----------|-------|-------|
+| `.pstat-label` | `var(--text-xs)` | `var(--fg-muted)`, uppercase | `letter-spacing: 0.02em` |
+| `.pstat-val` | 18px, weight 700 | `var(--fg-strong)` | `line-height: 1.2; gap: 5px; align-items: baseline` |
+| `.pstat-val.green` | — | `var(--primary)` | — |
+| `.pstat-val.red` | — | `var(--destructive)` | — |
+| `.pstat-pct` | `var(--text-sm)` | `var(--fg-muted)` | — |
 
 ---
 

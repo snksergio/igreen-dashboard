@@ -117,8 +117,18 @@ tbody tr {
   transition: background-color .2s var(--ease-out);
 }
 tbody tr:hover { background: var(--overlay-3); cursor: pointer; }
-tbody td { padding: var(--space-md); font-size: var(--text-body); }
+tbody td { padding: var(--space-md); font-size: var(--text-body); vertical-align: middle; }
 ```
+
+### Alignment & Spacing Precision
+| Seletor | Propriedade | Valor | Nota |
+|---------|-------------|-------|------|
+| `thead th span` | `vertical-align` | `middle` | Alinhamento vertical do texto no header |
+| `tbody td` | `vertical-align` | `middle` | Alinhamento vertical de todas as células |
+| `.tbl-check` | `vertical-align` | `middle` | Alinhamento do checkbox na célula |
+| `.asset-cell` | `gap` | `10px` | Espaço entre ícone e texto |
+| `.tbl-title-left` | `gap` | `10px` | Espaço entre título e badge count |
+| `.tbl-search-full` | `height` | `40px` | Variante full-width do search |
 
 ---
 

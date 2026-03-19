@@ -53,14 +53,52 @@
 - **Disabled:** `--fg-disabled`
 
 ### Espaçamento entre texto
-- **Line-height padrão:** 1.5 para body text, 1.2 para headings
-- **Letter-spacing:** Normal para body, -0.01em para display/title
 - **Margem entre heading e body:** `--space-sm` (8px) ou `--space-md` (12px)
+
+### Line-Height por Contexto (IMPORTANTE — valores exatos)
+
+O sistema usa **8 valores distintos** de line-height. Usar o valor errado causa diferenças visuais perceptíveis.
+
+| Valor | Contexto | Seletores |
+|-------|----------|-----------|
+| `1` | Valores compactos, badges, botões | `.kpi-value`, `.kpi-badge`, `.badge`, `.status-chip`, `.btn`, `.al-chg`, `.tbl-badge`, `.fc-clear`, `.ao-val`, `.tc-flag` |
+| `1.2` | Stat values (KPI secundários) | `.pstat-val`, `.ch-stat-val` |
+| `1.3` | Growth labels | `.cr-growth-label` |
+| `1.4` | Meta text, descrições curtas | `.user-meta`, `.form-nav-desc` |
+| `1.5` | Body text, notas | `.uc-sub`, `.dw-tl-desc`, body default |
+| `1.55` | Comment text | `.dw-comment-text` |
+| `1.6` | Long-form text | `.od-comment-text` |
+| `1.65` | Notes/descrições longas | `.dw-notes` |
+
+**Regra:** Valores de display/KPI (font-size >= 18px) usam `line-height: 1`. Stat values secundários usam `1.2`. Body text usa `1.5`. Nunca use `line-height: normal` ou `line-height: 1.5` em valores numéricos grandes.
+
+### Letter-Spacing por Contexto (IMPORTANTE — valores exatos)
+
+O sistema usa **12 valores distintos** de letter-spacing organizados por contexto visual.
+
+| Valor | Contexto | Seletores |
+|-------|----------|-----------|
+| `-1px` | Valores display grandes (22px+) | `.ao-val`, `.cr-growth-val` |
+| `-.5px` | Valores KPI/stat (18-22px) | `.kpi-value`, `.ov-stat-val` |
+| `-.3px` | Brand, valores médios | `.brand-name`, `.ua-legend-val`, `.ch-lg-val-num`, `.coin-icon` |
+| `-.1px` | Títulos de card (15px) | `.card-title` |
+| `-0.01em` | Títulos de drawer | `.dw-title` |
+| `0` (normal) | Body text | Default — não declare |
+| `.02em` | Stat labels (uppercase, 11px) | `.pstat-label` |
+| `.04em` | Date labels | `.od-tl-date` |
+| `.1px` | KPI labels (13px) | `.kpi-label` |
+| `.2px` | Brand subtitle | `.brand-sub` |
+| `.5px` | Section titles (uppercase) | `.dw-section-title` |
+| `.8px` | Section labels (uppercase, 10px) | `.sec-label` |
+
+**Regra:** Valores numéricos grandes usam letter-spacing negativo (mais apertado). Labels uppercase usam letter-spacing positivo (mais aberto). Body text não declara letter-spacing.
 
 ## Anti-patterns (Não faça)
 
-- ❌ Nunca use fonte diferente de Inter sem aprovação
-- ❌ Nunca use tamanhos fora da escala (ex: 16px, 17px, 19px, 21px, 24px)
-- ❌ Nunca use peso 300 (light) ou 800/900 (extra bold)
-- ❌ Nunca use text-transform: uppercase em blocos de texto (apenas em labels curtos como "MANAGE", "SETTINGS")
-- ❌ Nunca use line-height menor que 1.2
+- Nunca use fonte diferente de Inter sem aprovação
+- Nunca use tamanhos fora da escala (ex: 16px, 17px, 19px, 21px, 24px)
+- Nunca use peso 300 (light) ou 800/900 (extra bold)
+- Nunca use text-transform: uppercase em blocos de texto (apenas em labels curtos como "MANAGE", "SETTINGS")
+- Nunca use line-height menor que 1 (exceto casos documentados)
+- Nunca use `line-height: 1.5` em valores numéricos de KPI (use `1`)
+- Nunca omita letter-spacing em `.kpi-value` (deve ser `-.5px`) ou `.card-title` (deve ser `-.1px`)

@@ -141,9 +141,9 @@ Usado APENAS no topbar e overlays (nunca em cards ou conteúdo).
 ```css
 .topbar {
   background: var(--background-glass); /* rgba com 75% opacity */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-separator);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 ```
 
@@ -156,14 +156,10 @@ Usado APENAS no topbar e overlays (nunca em cards ou conteúdo).
 .body::-webkit-scrollbar { width: 6px; }
 .body::-webkit-scrollbar-track { background: transparent; }
 .body::-webkit-scrollbar-thumb {
-  background: var(--fg-ghost);
-  border-radius: var(--radius-pill);
+  background: var(--overlay-8);
+  border-radius: 3px;
 }
-.body::-webkit-scrollbar-thumb:hover { background: var(--fg-faint); }
-
-/* Light theme override */
-[data-theme="light"] .body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
-[data-theme="light"] .body::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.20); }
+.body::-webkit-scrollbar-thumb:hover { background: var(--overlay-12); }
 
 /* Sidebar: hidden scrollbar */
 .sidebar::-webkit-scrollbar { width: 0; }
@@ -175,12 +171,12 @@ Usado APENAS no topbar e overlays (nunca em cards ou conteúdo).
 |----------|---------|-------|
 | Card body | `20px` | `var(--space-xl)` |
 | Drawer header/body | `24px` horizontal | `var(--space-2xl)` |
-| .body (main scroll area) | `20px` all | `var(--space-xl)` |
+| .body (main scroll area) | `24px` all | `var(--space-2xl)` |
 | Sidebar sections | `12px` horizontal | `var(--space-md)` |
 | Inputs | `0 16px` | `0 var(--space-lg)` |
 | Buttons (md) | `0 16px` | `0 var(--space-lg)` |
 | Table cells (td, th) | `12px 16px` | `var(--space-md) var(--space-lg)` |
-| Badges/chips | `2px 8px` | `2px var(--space-sm)` |
+| Badges/chips | `4px 10px` | — |
 | Filter bar | `12px 20px` | `var(--space-md) var(--space-xl)` |
 
 ## Flex Order (CSS order)

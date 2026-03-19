@@ -35,7 +35,8 @@
 
 ### 7. Spacing da escala
 - Use apenas tokens da escala: `--space-xs` (4), `--space-sm` (8), `--space-md` (12), `--space-lg` (16), `--space-xl` (20), `--space-2xl` (24), `--space-3xl` (32)
-- Nunca use valores arbitrários (5px, 10px, 15px, 18px)
+- Nunca use valores arbitrários para NOVOS componentes
+- **Exceção:** Alguns componentes existentes usam valores fora da escala por necessidade visual (gap: 5px, 6px, 7px, 10px; padding: 3px, 6px, 10px, 14px). Ao recriar esses componentes, use os valores EXATOS documentados no CSS reference de cada componente — não arredonde para a escala
 
 ### 8. Typography da escala (9 tokens)
 - Use apenas tamanhos da escala: `--text-display` (28), `--text-lg` (22), `--text-title` (20), `--text-heading` (18), `--text-subheading` (15), `--text-body` (14), `--text-sm` (13), `--text-caption` (12), `--text-xs` (11)

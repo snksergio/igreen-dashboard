@@ -111,11 +111,11 @@
 ### Sidebar tokens
 | Token | Dark | Light |
 |-------|------|-------|
-| `--sidebar` | `#0e1015` | `#f6f6f8` |
-| `--sidebar-foreground` | `rgba(255,255,255,0.48)` | `rgba(0,0,0,0.50)` |
-| `--sidebar-border` | `rgba(255,255,255,0.06)` | `rgba(0,0,0,0.08)` |
-| `--sidebar-accent` | `rgba(255,255,255,0.06)` | `rgba(0,0,0,0.04)` |
-| `--sidebar-muted` | `rgba(255,255,255,0.28)` | `rgba(0,0,0,0.35)` |
+| `--sidebar` | `#0b0c10` | `#ffffff` |
+| `--sidebar-foreground` | `#4e4e5a` | `#8b8ba0` |
+| `--sidebar-border` | `#1a1c24` | `#e4e5eb` |
+| `--sidebar-accent` | `#14161c` | `#e8ecf1` |
+| `--sidebar-muted` | `#3e3e4a` | `#9e9eb2` |
 
 ---
 
