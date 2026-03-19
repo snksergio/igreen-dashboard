@@ -1800,6 +1800,21 @@ tbody td.mono {
   table { min-width: 700px; }
   .cr-channels { flex-direction: column; gap: var(--space-md); }
   .cr-channel  { flex-direction: row; justify-content: flex-start; }
+
+  /* Mobile topbar: show only menu + title + icons */
+  .topbar-center  { display: none; }
+  .breadcrumb     { display: none; }
+  .user-chip      { display: none; }
+  .topbar-divider { display: none; }
+  .topbar .mobile-title { display: block; flex: 1; }
+}
+
+/* Mobile title — hidden on desktop, visible on mobile */
+.topbar .mobile-title {
+  display: none;
+  font-size: var(--text-subheading);
+  font-weight: 600;
+  color: var(--foreground);
 }
 
 /* ── < 480px: Compact mode ── */

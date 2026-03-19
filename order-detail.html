@@ -158,6 +158,7 @@
       <button class="uc-btn">Get Started</button>
     </div>
   </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- ══════════════════════════════════════
        MAIN
@@ -172,6 +173,7 @@
         </svg>
       </button>
       <div class="topbar-divider"></div>
+      <span class="mobile-title">Order #95954</span>
       <div class="breadcrumb">
         <span class="bc-parent" onclick="location.href='products.html'">Products</span>
         <span class="bc-sep">&rsaquo;</span>
@@ -843,15 +845,40 @@
 
 <!-- ── Scripts ── -->
 <script>
-// ─── SIDEBAR TOGGLE ───
-(function() {
-  var sidebar = document.querySelector('.sidebar');
-  var btn = document.getElementById('sidebarToggle');
-  var saved = localStorage.getItem('cv-sidebar');
-  if (saved === 'collapsed') sidebar.classList.add('collapsed');
-  btn.addEventListener('click', function() {
-    sidebar.classList.toggle('collapsed');
-    localStorage.setItem('cv-sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+// ─── SIDEBAR TOGGLE (desktop + mobile) ───
+(function(){
+  const sb = document.querySelector('.sidebar');
+  const btn = document.getElementById('sidebarToggle');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isMobile = () => window.innerWidth <= 767;
+
+  if (!isMobile() && localStorage.getItem('cv-sidebar') === 'collapsed') {
+    sb.classList.add('collapsed');
+  }
+
+  btn.addEventListener('click', () => {
+    if (isMobile()) {
+      sb.classList.toggle('open');
+      overlay.classList.toggle('active');
+    } else {
+      sb.classList.toggle('collapsed');
+      localStorage.setItem('cv-sidebar',
+        sb.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+    }
+  });
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      sb.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      sb.classList.remove('open');
+      if (overlay) overlay.classList.remove('active');
+    }
   });
 })();
 

@@ -280,12 +280,15 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
   </div>
 </aside>
 
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="main">
   <header class="topbar">
     <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
     </button>
     <div class="topbar-divider"></div>
+    <span class="mobile-title">PAGE_NAME</span>  <!-- ← MUDAR (mesmo texto do bc-current) -->
     <div class="breadcrumb">
       <span class="bc-parent">Overview</span>
       <span class="bc-sep">›</span>
@@ -323,17 +326,55 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
 ### Scripts obrigatórios (antes de `</body>`)
 ```html
 <script>
-  // Sidebar toggle
-  document.getElementById('sidebarToggle').addEventListener('click', () => {
-    document.querySelector('.sidebar').classList.toggle('collapsed');
+// ─── SIDEBAR TOGGLE (desktop + mobile) ───
+(function(){
+  const sb = document.querySelector('.sidebar');
+  const btn = document.getElementById('sidebarToggle');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isMobile = () => window.innerWidth <= 767;
+
+  if (!isMobile() && localStorage.getItem('cv-sidebar') === 'collapsed') {
+    sb.classList.add('collapsed');
+  }
+
+  btn.addEventListener('click', () => {
+    if (isMobile()) {
+      sb.classList.toggle('open');
+      overlay.classList.toggle('active');
+    } else {
+      sb.classList.toggle('collapsed');
+      localStorage.setItem('cv-sidebar',
+        sb.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+    }
   });
-  // Theme toggle
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      sb.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      sb.classList.remove('open');
+      if (overlay) overlay.classList.remove('active');
+    }
+  });
+})();
+
+// ─── THEME TOGGLE ───
+(function() {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('cv-theme') || 'dark';
+  root.setAttribute('data-theme', saved);
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
     localStorage.setItem('cv-theme', next);
   });
+})();
 </script>
 ```
 
@@ -357,4 +398,8 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
 - [ ] Topbar usa glass effect (`backdrop-filter: blur(12px)`)
 - [ ] Glass effect APENAS no topbar, nunca em cards
 - [ ] Toggle button esconde sidebar com transição de width
+- [ ] `.sidebar-overlay` div existe no HTML (após `</aside>`, antes de `.main`)
+- [ ] Sidebar toggle JS lida com desktop (collapse) E mobile (overlay)
+- [ ] Mobile topbar esconde wallet-tags, breadcrumb, user-chip
+- [ ] `.mobile-title` mostra nome da página no mobile
 - [ ] Funciona em dark e light theme

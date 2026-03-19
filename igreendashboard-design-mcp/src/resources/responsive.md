@@ -124,16 +124,33 @@ Todos os grids colapsam para 1 coluna. A sidebar sai da tela com overlay.
   /* Channel revenue stack */
   .cr-channels { flex-direction: column; gap: var(--space-md); }
   .cr-channel  { flex-direction: row; justify-content: flex-start; }
+
+  /* Mobile topbar: show only menu + title + icons */
+  .topbar-center  { display: none; }
+  .breadcrumb     { display: none; }
+  .user-chip      { display: none; }
+  .topbar-divider { display: none; }
+  .topbar .mobile-title { display: block; flex: 1; }
 }
 ```
 
 ### HTML necessário para mobile
 
-Adicionar ANTES do `</div><!-- /app -->`:
+Adicionar `<div class="sidebar-overlay" id="sidebarOverlay"></div>` **logo após** `</aside>`, antes de `<div class="main">`.
 
-```html
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+Adicionar `<span class="mobile-title">PAGE_NAME</span>` no topbar, depois do `.topbar-divider`, antes do `.breadcrumb`.
+
+O CSS base do `.mobile-title` (fora do media query):
+```css
+.topbar .mobile-title {
+  display: none;
+  font-size: var(--text-subheading);
+  font-weight: 600;
+  color: var(--foreground);
+}
 ```
+
+No mobile, o topbar mostra apenas: botão menu, título da página (`.mobile-title`), ícone de notificações, toggle de tema.
 
 Adicionar botão hamburger no topbar (já existe em desktop como `.sidebar-toggle-btn`). No mobile, o script muda o comportamento:
 
@@ -207,8 +224,10 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 
 - [ ] Grids colapsam corretamente em cada breakpoint
 - [ ] Sidebar é offscreen no mobile com overlay
-- [ ] `.sidebar-overlay` div existe no HTML
+- [ ] `.sidebar-overlay` div existe no HTML (após `</aside>`, antes de `.main`)
 - [ ] Toggle funciona em desktop (collapse) e mobile (offscreen)
+- [ ] Mobile topbar esconde wallet-tags, breadcrumb, user-chip, topbar-divider
+- [ ] `.mobile-title` mostra nome da página no mobile
 - [ ] Filter bar faz wrap em telas estreitas
 - [ ] Tabela tem scroll horizontal no mobile
 - [ ] Channel revenue empilha verticalmente no mobile
