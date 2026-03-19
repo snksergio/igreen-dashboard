@@ -1355,19 +1355,24 @@ if (useHttp) {
     });
   });
 
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-  app.all("/mcp", async (req, res) => {
+  // Stateless mode: create a new transport per request
+  app.post("/mcp", async (req, res) => {
     try {
+      const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+      res.on("close", () => transport.close());
+      await server.connect(transport);
       await transport.handleRequest(req, res, req.body);
     } catch (err) {
       console.error("MCP error:", err);
       if (!res.headersSent) {
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ jsonrpc: "2.0", error: { code: -32603, message: "Internal server error" }, id: null });
       }
     }
   });
 
-  await server.connect(transport);
+  // Stateless mode: no sessions to manage
+  app.get("/mcp", (req, res) => res.status(405).json({ error: "Method not allowed. Use POST." }));
+  app.delete("/mcp", (req, res) => res.status(405).json({ error: "Method not allowed. Stateless mode." }));
 
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
