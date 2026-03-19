@@ -117,9 +117,8 @@ Todos os grids colapsam para 1 coluna. A sidebar sai da tela com overlay.
   .filter-bar { flex-wrap: wrap; gap: var(--space-sm); }
   .filter-spacer { display: none; }
 
-  /* Table horizontal scroll */
-  .table-section { overflow-x: auto; }
-  table { min-width: 700px; }
+  /* Table: only .tbl-scroll area scrolls, toolbar + pagination stay visible */
+  .tbl-scroll table { min-width: 700px; }
 
   /* Channel revenue stack */
   .cr-channels { flex-direction: column; gap: var(--space-md); }

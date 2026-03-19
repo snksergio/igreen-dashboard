@@ -230,6 +230,7 @@ Dentro de `<div class="body">`:
     </div>
   </div>
 
+  <div class="tbl-scroll">
   <table>
     <thead>
       <tr>
@@ -251,6 +252,7 @@ Dentro de `<div class="body">`:
       <!-- More rows -->
     </tbody>
   </table>
+  </div>
 
   <div class="pagination">
     <span class="page-info">Showing 1-10 of 248</span>

@@ -24,10 +24,11 @@
 │  │ .filter-chip .filter-chip .filter-chip .add-filter-btn  │ │
 │  └─────────────────────────────────────────────────────────┘ │
 │                                                               │
-│  Layer 4 — table                                             │
+│  Layer 4 — .tbl-scroll (scroll wrapper — only table scrolls) │
 │  ┌─────────────────────────────────────────────────────────┐ │
-│  │ thead: Asset | Type | Amount | Price | Total | Chg | St │ │
-│  │ tbody: rows com hover var(--overlay-3)                   │ │
+│  │ table                                                    │ │
+│  │   thead: Asset | Type | Amount | Price | Total | Chg    │ │
+│  │   tbody: rows com hover var(--overlay-3)                 │ │
 │  └─────────────────────────────────────────────────────────┘ │
 │                                                               │
 │  Layer 5 — .pagination                                       │
@@ -47,6 +48,16 @@
   border-radius: var(--radius-md);
   padding: var(--space-xl) var(--space-2xl);    /* 20px 24px */
   box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scroll wrapper: only the table scrolls, toolbar + pagination stay fixed */
+.tbl-scroll {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 ```
 
@@ -233,7 +244,8 @@ tbody td { padding: var(--space-md); font-size: var(--text-body); vertical-align
     </div>
   </div>
 
-  <!-- Table -->
+  <!-- Table (wrapped in .tbl-scroll so only the table scrolls) -->
+  <div class="tbl-scroll">
   <table>
     <thead>
       <tr>
@@ -266,6 +278,7 @@ tbody td { padding: var(--space-md); font-size: var(--text-body); vertical-align
       <!-- more rows -->
     </tbody>
   </table>
+  </div>
 
   <!-- Pagination -->
   <div class="pagination">
@@ -483,6 +496,7 @@ Dropdown para items por página na pagination bar:
     </div>
   </div>
 
+  <div class="tbl-scroll">
   <table>
     <thead>
       <tr>
@@ -530,6 +544,7 @@ Dropdown para items por página na pagination bar:
       <!-- more rows -->
     </tbody>
   </table>
+  </div>
 
   <div class="pagination">
     <span class="page-info">Showing 1-25 of 312 products</span>
@@ -552,8 +567,27 @@ Dropdown para items por página na pagination bar:
 
 ---
 
+## Responsive
+
+A `.table-section` usa `display: flex; flex-direction: column` para que o toolbar (`.tbl-topbar`) e a paginação (`.pagination`) fiquem sempre visíveis. Apenas a tabela dentro de `.tbl-scroll` faz scroll.
+
+**Estrutura obrigatória:**
+```
+.table-section (flex column)
+  ├── .tbl-topbar        ← fixo, sempre visível
+  ├── .tbl-scroll        ← overflow: auto (só a tabela faz scroll)
+  │     └── table
+  └── .pagination        ← fixo, sempre visível
+```
+
+No mobile (≤ 767px), `.tbl-scroll table` recebe `min-width: 700px` para forçar scroll horizontal. O toolbar e a paginação permanecem em largura natural, sem scroll.
+
+---
+
 ## Checklist
 
+- [ ] Table envolvida em `<div class="tbl-scroll">` (scroll isolado)
+- [ ] `.table-section` usa flex column (toolbar e pagination sempre visíveis)
 - [ ] Table-section usa `var(--card)` background
 - [ ] Thead usa `var(--muted)` background com border-radius nas extremidades
 - [ ] Rows usam `var(--border-separator)` como divisor (não `--border`)
