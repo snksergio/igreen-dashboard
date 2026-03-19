@@ -3,6 +3,21 @@
 > Breakpoints e media queries para o iGreenMCP Design System.
 > Abordagem: desktop-first com `max-width` breakpoints.
 
+## Regras Base (todas as resoluções)
+
+```css
+/* Viewport real em mobile: 100dvh respeita a barra de URL do browser */
+.app    { height: 100vh; height: 100dvh; }
+.drawer { height: 100vh; height: 100dvh; }
+
+/* Filter chips sempre quebram linha quando não cabem */
+.tbl-filters { flex-wrap: wrap; }
+```
+
+> **Por que `100dvh`?** No celular real, `100vh` inclui a área atrás da barra de URL do browser, cortando ~80-100px do fundo da página. `100dvh` (dynamic viewport height) ajusta automaticamente quando a barra aparece/some. O `100vh` fica como fallback para browsers antigos.
+
+---
+
 ## Breakpoints
 
 | Breakpoint | Media Query | Mudanças Principais |
@@ -142,6 +157,15 @@ Todos os grids colapsam para 1 coluna. A sidebar sai da tela com overlay.
   .pstat-card { min-width: calc(50% - var(--space-sm)); }
   .ch-stat    { min-width: calc(50% - var(--space-sm)); }
   .ch-lg-vals { gap: var(--space-lg); flex-wrap: wrap; }
+
+  /* ── Pagination: stack text + buttons ── */
+  .pagination { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .page-btns  { width: 100%; justify-content: center; }
+
+  /* ── Drawer: scroll inteiro no mobile (não só a área de tab) ── */
+  .drawer      { width: 100%; overflow-y: auto; }
+  .dw-body     { overflow: visible; flex: none; }
+  .dw-tabs     { position: sticky; top: 0; z-index: 1; background: var(--card); }
 
   /* Channel revenue stack */
   .cr-channels { flex-direction: column; gap: var(--space-md); }
@@ -317,7 +341,17 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 - [ ] `.form-layout` → 1 coluna no mobile
 - [ ] `.form-row` → 1 coluna no mobile
 
+### Drawer
+- [ ] Drawer ocupa 100% no mobile
+- [ ] Drawer faz scroll inteiro no mobile (não só área de tab)
+- [ ] `.dw-body` com `overflow: visible; flex: none` no mobile
+- [ ] `.dw-tabs` com `position: sticky` no mobile
+
+### Pagination
+- [ ] `.pagination` empilha no mobile (texto em cima, botões embaixo)
+- [ ] `.page-btns` centralizado com `width: 100%`
+
 ### Geral
-- [ ] Drawer ocupa 100% no mobile (< 480px)
+- [ ] `.app` e `.drawer` usam `height: 100dvh` (com fallback `100vh`)
 - [ ] Layout desktop (> 1280px) inalterado
 - [ ] Funciona em dark e light theme em todos os breakpoints

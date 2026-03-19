@@ -178,3 +178,6 @@ Antes de entregar qualquer UI:
 - [ ] `.tbl-filters` tem `flex-wrap: wrap`?
 - [ ] Tabs (`.tbl-tab`, `.od-tab`) têm `flex-shrink: 0`?
 - [ ] Grids/charts colapsam corretamente no mobile?
+- [ ] `.app` e `.drawer` usam `height: 100dvh` (fallback `100vh`)?
+- [ ] Pagination empilha no mobile (texto + botões em linhas separadas)?
+- [ ] Drawer faz scroll inteiro no mobile (não só `.dw-body`)?

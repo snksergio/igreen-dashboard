@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv11', 'ss01';
 }
-.app { width: 100vw; height: 100vh; display: flex; overflow: hidden; }
+.app { width: 100vw; height: 100vh; height: 100dvh; display: flex; overflow: hidden; }
 
 /* ══════════════════════════════════════
    SIDEBAR
@@ -837,7 +837,7 @@ tbody td.mono {
 
 .drawer {
   position: fixed; top: 0; right: 0; z-index: 1000;
-  width: 620px; height: 100vh;
+  width: 620px; height: 100vh; height: 100dvh;
   background: var(--card);
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 40px rgba(0,0,0,0.25);
@@ -1813,6 +1813,10 @@ tbody td.mono {
   .tbl-search input { width: 100%; }
   .tbl-search-full { width: 100%; }
   .tbl-title-row { flex-wrap: wrap; gap: var(--space-sm); }
+  /* Pagination: stack text + buttons */
+  .pagination { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .page-btns  { width: 100%; justify-content: center; }
+
   .cr-channels { flex-direction: column; gap: var(--space-md); }
   .cr-channel  { flex-direction: row; justify-content: flex-start; }
 
@@ -1868,6 +1872,12 @@ tbody td.mono {
   .od-tab      { flex-shrink: 0; }
   .od-header   { flex-direction: column; align-items: flex-start; }
   .od-actions  { width: 100%; overflow-x: auto; }
+
+  /* Drawer: full scroll (not just tab area) */
+  .drawer      { width: 100%; overflow-y: auto; }
+  .dw-body     { overflow: visible; flex: none; }
+  .dw-panel.active { display: block; }
+  .dw-tabs     { position: sticky; top: 0; z-index: 1; background: var(--card); }
 }
 
 /* Mobile title — hidden on desktop, visible via media query above */

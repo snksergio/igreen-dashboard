@@ -231,6 +231,24 @@ document.querySelectorAll('.dw-tab').forEach(tab => {
 
 ---
 
+## Responsive
+
+No mobile (≤ 767px), o drawer muda de comportamento:
+
+```css
+@media (max-width: 767px) {
+  .drawer  { width: 100%; overflow-y: auto; }
+  .dw-body { overflow: visible; flex: none; }
+  .dw-tabs { position: sticky; top: 0; z-index: 1; background: var(--card); }
+}
+```
+
+**Por que?** No desktop, `.dw-body` faz scroll interno (`flex: 1; overflow-y: auto`) mantendo header e tabs fixos. No mobile a área visível fica muito pequena, então o drawer inteiro faz scroll. As tabs ficam `sticky` no topo para manter a navegação acessível.
+
+**Regra:** No mobile, o conteúdo das tabs (`.dw-panel`) ocupa sua altura natural (hug content), sem scroll interno. O scroll é do drawer inteiro.
+
+---
+
 ## Checklist
 
 - [ ] Overlay usa z-index 999, drawer usa 1000
@@ -240,4 +258,8 @@ document.querySelectorAll('.dw-tab').forEach(tab => {
 - [ ] Close via: button, overlay click, Escape key
 - [ ] Tabs usam border-bottom como indicador ativo
 - [ ] Tab badges invertem cor quando ativo
+- [ ] Drawer usa `height: 100dvh` (com fallback `100vh`)
+- [ ] No mobile: drawer faz scroll inteiro (não só `.dw-body`)
+- [ ] No mobile: `.dw-tabs` com `position: sticky; top: 0`
+- [ ] No mobile: `.dw-body` com `overflow: visible; flex: none`
 - [ ] Funciona em dark e light theme
