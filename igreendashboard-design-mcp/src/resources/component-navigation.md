@@ -400,6 +400,7 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
 - [ ] Toggle button esconde sidebar com transição de width
 - [ ] `.sidebar-overlay` div existe no HTML (após `</aside>`, antes de `.main`)
 - [ ] Sidebar toggle JS lida com desktop (collapse) E mobile (overlay)
-- [ ] Mobile topbar esconde wallet-tags, breadcrumb, user-chip
+- [ ] Sidebar no mobile abre FULL (248px com labels), não collapsed (68px icons)
+- [ ] Mobile topbar esconde wallet-tags, breadcrumb, user-chip (título permanece)
 - [ ] `.mobile-title` mostra nome da página no mobile
 - [ ] Funciona em dark e light theme

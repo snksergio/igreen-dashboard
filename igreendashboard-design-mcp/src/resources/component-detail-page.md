@@ -498,3 +498,17 @@ document.querySelectorAll('.od-tab').forEach(tab => {
   });
 });
 ```
+
+---
+
+## Responsive (Mobile)
+
+No mobile (≤ 767px), o layout de 2 colunas colapsa para 1 coluna. As regras já estão no CSS global (`components.css`):
+
+- `.od-grid` → `grid-template-columns: 1fr` (main e side empilham)
+- `.od-fields` → `1fr 1fr` (no mobile), `1fr` (≤ 479px)
+- `.od-fields-2` → `1fr`
+- `.od-tabs` → scroll horizontal se necessário
+- `.od-header` → `flex-direction: column`
+
+Não é necessário adicionar CSS inline. Basta usar as classes padrão.

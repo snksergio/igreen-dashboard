@@ -125,14 +125,47 @@ Todos os grids colapsam para 1 coluna. A sidebar sai da tela com overlay.
   .cr-channels { flex-direction: column; gap: var(--space-md); }
   .cr-channel  { flex-direction: row; justify-content: flex-start; }
 
-  /* Mobile topbar: show only menu + title + icons */
+  /* Mobile topbar: hide breadcrumb, wallet, user-chip; keep title + icons */
   .topbar-center  { display: none; }
   .breadcrumb     { display: none; }
   .user-chip      { display: none; }
   .topbar-divider { display: none; }
-  .topbar .mobile-title { display: block; flex: 1; }
+  .topbar .mobile-title { display: block !important; flex: 1; }
+
+  /* Sidebar open: full width with labels (override 1279px collapse) */
+  .sidebar.open {
+    width: 248px;
+    transform: translateX(0);
+  }
+  .sidebar.open .brand-text,
+  .sidebar.open .sec-label,
+  .sidebar.open .nav-label,
+  .sidebar.open .upgrade-card { display: block; }
+  .sidebar.open .sidebar-brand { justify-content: flex-start; padding: 20px 18px 22px; }
+  .sidebar.open .sidebar-section { padding: 8px 12px; }
+  .sidebar.open .nav-item {
+    justify-content: flex-start; padding: 0 12px;
+    width: auto; height: 40px; margin: 0;
+  }
+  .sidebar.open .nav-item.active { border-radius: var(--radius-sm); }
+  .sidebar.open .nav-item.active::before { display: block; }
+
+  /* Form pages: stack nav + content + rows */
+  .form-layout { grid-template-columns: 1fr; }
+  .form-nav    { position: static; }
+  .form-row    { grid-template-columns: 1fr; }
+
+  /* Detail pages: stack main + side + fields */
+  .od-grid     { grid-template-columns: 1fr; }
+  .od-fields   { grid-template-columns: 1fr 1fr; }
+  .od-fields-2 { grid-template-columns: 1fr; }
+  .od-tabs     { overflow-x: auto; white-space: nowrap; }
+  .od-header   { flex-direction: column; align-items: flex-start; }
+  .od-actions  { width: 100%; overflow-x: auto; }
 }
 ```
+
+> **Regra geral mobile:** Qualquer layout com 2+ colunas (grid ou flex side-by-side) deve colapsar para 1 coluna em <= 767px. Isso inclui: grids de dashboard, form-layout (nav + content), od-grid (main + side), form-row (campos lado a lado), e od-fields.
 
 ### HTML necessário para mobile
 
@@ -215,6 +248,9 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 
   /* Drawer full-width */
   .drawer { width: 100%; }
+
+  /* Detail fields: fully stacked */
+  .od-fields { grid-template-columns: 1fr; }
 }
 ```
 
@@ -223,6 +259,7 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 ## Checklist
 
 - [ ] Grids colapsam corretamente em cada breakpoint
+- [ ] Sidebar abre FULL (248px com labels) no mobile, não collapsed
 - [ ] Sidebar é offscreen no mobile com overlay
 - [ ] `.sidebar-overlay` div existe no HTML (após `</aside>`, antes de `.main`)
 - [ ] Toggle funciona em desktop (collapse) e mobile (offscreen)

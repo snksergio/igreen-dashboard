@@ -425,4 +425,5 @@ Em mobile, `.form-layout` colapsa para 1 coluna e `.form-nav` fica acima do `.fo
 - [ ] Footer usa `.form-actions` com `justify-content: flex-end`
 - [ ] Buttons usam `.btn--outline` (cancel) e `.btn--solid` (save)
 - [ ] Funciona em dark e light theme
-- [ ] Responsive: colapsa em mobile (1 coluna)
+- [ ] Responsive: `.form-layout` colapsa em 1 coluna no mobile (≤ 767px)
+- [ ] Responsive: `.form-row` colapsa campos para 1 coluna no mobile
