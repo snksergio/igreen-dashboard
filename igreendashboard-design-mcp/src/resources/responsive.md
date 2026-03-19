@@ -117,8 +117,31 @@ Todos os grids colapsam para 1 coluna. A sidebar sai da tela com overlay.
   .filter-bar { flex-wrap: wrap; gap: var(--space-sm); }
   .filter-spacer { display: none; }
 
-  /* Table: only .tbl-scroll area scrolls, toolbar + pagination stay visible */
+  /* ── Table responsive (componente mais importante — ~80% das páginas) ── */
+
+  /* Scroll isolado: só a tabela rola, toolbar + pagination ficam fixos */
   .tbl-scroll table { min-width: 700px; }
+
+  /* Toolbar empilha: tabs 100%, search 100%, botões na próxima linha */
+  .tbl-toolbar-row    { flex-wrap: wrap; gap: var(--space-sm); }
+  .tbl-toolbar-spacer { display: none; }
+  .tbl-tabs           { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-tab            { flex-shrink: 0; }
+  .tbl-search         { width: 100%; order: -1; }
+  .tbl-search input   { width: 100%; }
+  .tbl-search-full    { width: 100%; }
+  .tbl-title-row      { flex-wrap: wrap; gap: var(--space-sm); }
+
+  /* ── Chart grids: 1 coluna no mobile ── */
+  .ch-grid   { grid-template-columns: 1fr; }
+  .ch-grid-3 { grid-template-columns: 1fr; }
+  .ch-grid-4 { grid-template-columns: 1fr 1fr; }
+
+  /* Stat cards e legends: wrap em 2 por linha */
+  .perf-stats { flex-wrap: wrap; }
+  .pstat-card { min-width: calc(50% - var(--space-sm)); }
+  .ch-stat    { min-width: calc(50% - var(--space-sm)); }
+  .ch-lg-vals { gap: var(--space-lg); flex-wrap: wrap; }
 
   /* Channel revenue stack */
   .cr-channels { flex-direction: column; gap: var(--space-md); }
@@ -250,6 +273,11 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 
   /* Detail fields: fully stacked */
   .od-fields { grid-template-columns: 1fr; }
+
+  /* Chart grids e stats: 1 coluna */
+  .ch-grid-4  { grid-template-columns: 1fr; }
+  .pstat-card { min-width: 100%; }
+  .ch-stat    { min-width: 100%; }
 }
 ```
 
@@ -257,16 +285,39 @@ Padding reduzido e layout ultra-compacto para smartphones pequenos.
 
 ## Checklist
 
-- [ ] Grids colapsam corretamente em cada breakpoint
+### Sidebar & Topbar
 - [ ] Sidebar abre FULL (248px com labels) no mobile, não collapsed
 - [ ] Sidebar é offscreen no mobile com overlay
 - [ ] `.sidebar-overlay` div existe no HTML (após `</aside>`, antes de `.main`)
 - [ ] Toggle funciona em desktop (collapse) e mobile (offscreen)
 - [ ] Mobile topbar esconde wallet-tags, breadcrumb, user-chip, topbar-divider
 - [ ] `.mobile-title` mostra nome da página no mobile
+
+### Tabela (componente mais importante — ~80% das páginas)
+- [ ] `<table>` envolvida em `<div class="tbl-scroll">` (scroll isolado)
+- [ ] `.table-section` usa `display: flex; flex-direction: column`
+- [ ] Toolbar e paginação SEMPRE visíveis (nunca dentro de `.tbl-scroll`)
+- [ ] Toolbar empilha no mobile: tabs 100%, search 100%, botões na próxima linha
+- [ ] `.tbl-tabs` faz scroll horizontal com `flex-shrink: 0` nos tabs
+- [ ] `.tbl-filters` usa `flex-wrap: wrap` em TODAS as resoluções
+- [ ] `.tbl-search` / `.tbl-search-full` ocupa 100% no mobile
+- [ ] `.tbl-toolbar-spacer` fica `display: none` no mobile
+
+### Grids & Cards
+- [ ] Grids de dashboard colapsam corretamente em cada breakpoint
+- [ ] Chart grids (`.ch-grid`, `.ch-grid-3`) → 1 coluna no mobile
+- [ ] `.ch-grid-4` → 2 colunas no mobile, 1 coluna em ≤ 479px
+- [ ] Stat cards (`.perf-stats`, `.ch-stat-row`) fazem wrap no mobile
 - [ ] Filter bar faz wrap em telas estreitas
-- [ ] Tabela tem scroll horizontal no mobile
 - [ ] Channel revenue empilha verticalmente no mobile
+
+### Detail & Form pages
+- [ ] `.od-grid` → 1 coluna no mobile
+- [ ] `.od-tabs` faz scroll horizontal com `flex-shrink: 0`
+- [ ] `.form-layout` → 1 coluna no mobile
+- [ ] `.form-row` → 1 coluna no mobile
+
+### Geral
 - [ ] Drawer ocupa 100% no mobile (< 480px)
 - [ ] Layout desktop (> 1280px) inalterado
 - [ ] Funciona em dark e light theme em todos os breakpoints

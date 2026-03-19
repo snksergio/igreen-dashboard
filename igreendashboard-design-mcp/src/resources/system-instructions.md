@@ -131,6 +131,35 @@ O sistema usa 4 breakpoints desktop-first. Ver `responsive.md` para detalhes com
 - < 768px: tudo → 1-col, sidebar offscreen com overlay
 - < 480px: padding reduzido, KPI → 1-col, topbar compacto
 
+**Regras gerais de responsividade:**
+- Qualquer layout 2+ colunas → 1 coluna em ≤ 767px
+- Tabs (`flex-shrink: 0`) nunca encolhem — fazem scroll horizontal
+- Filter chips sempre usam `flex-wrap: wrap` (todas as resoluções)
+- Chart grids (`.ch-grid`, `.ch-grid-3`) → 1 coluna no mobile
+- Stat cards (`.perf-stats`, `.ch-stat-row`) fazem wrap no mobile
+
+## Regra #9: Tabela responsiva (Golden Standard)
+
+> A tabela é o componente mais usado (~80% das páginas). Requer atenção especial.
+
+### Estrutura HTML obrigatória
+```html
+<div class="table-section">          <!-- display: flex; flex-direction: column -->
+  <div class="tbl-topbar">...</div>   <!-- FIXO: sempre visível -->
+  <div class="tbl-scroll">            <!-- overflow: auto → SÓ a tabela rola -->
+    <table>...</table>
+  </div>
+  <div class="pagination">...</div>   <!-- FIXO: sempre visível -->
+</div>
+```
+
+### 5 regras invioláveis
+1. **Scroll isolado**: `<table>` SEMPRE dentro de `<div class="tbl-scroll">`. NUNCA `overflow` no `.table-section`
+2. **Toolbar empilha no mobile**: `.tbl-tabs` 100% width → `.tbl-search` 100% width → botões na próxima linha
+3. **Tabs nunca encolhem**: `.tbl-tab { flex-shrink: 0 }` + scroll horizontal se não couber
+4. **Filter chips quebram**: `.tbl-filters { flex-wrap: wrap }` em TODAS as resoluções
+5. **Paginação sempre visível**: `.pagination` fica FORA de `.tbl-scroll`, nunca some ao scrollar
+
 ## Checklist automático
 
 Antes de entregar qualquer UI:
@@ -144,3 +173,8 @@ Antes de entregar qualquer UI:
 - [ ] Theme toggle funciona?
 - [ ] Focus visible em elementos interativos?
 - [ ] Ícones SVG inline com currentColor?
+- [ ] Tabelas usam `.tbl-scroll` wrapper? (scroll isolado)
+- [ ] Toolbar e paginação fora do `.tbl-scroll`? (sempre visíveis)
+- [ ] `.tbl-filters` tem `flex-wrap: wrap`?
+- [ ] Tabs (`.tbl-tab`, `.od-tab`) têm `flex-shrink: 0`?
+- [ ] Grids/charts colapsam corretamente no mobile?

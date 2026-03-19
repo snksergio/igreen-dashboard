@@ -567,27 +567,120 @@ Dropdown para items por página na pagination bar:
 
 ---
 
-## Responsive
+## Responsive — Regras Obrigatórias
 
-A `.table-section` usa `display: flex; flex-direction: column` para que o toolbar (`.tbl-topbar`) e a paginação (`.pagination`) fiquem sempre visíveis. Apenas a tabela dentro de `.tbl-scroll` faz scroll.
+> **A tabela é o componente mais usado do sistema (~80% das páginas).** Toda tabela DEVE seguir estas regras para garantir usabilidade em todas as resoluções.
 
-**Estrutura obrigatória:**
+### Princípio #1: Scroll isolado na tabela
+
+O scroll **NUNCA** deve afetar o container inteiro. Apenas a `<table>` dentro de `.tbl-scroll` faz scroll. O toolbar e a paginação ficam SEMPRE visíveis.
+
+**Estrutura HTML obrigatória:**
+```html
+<div class="table-section">        <!-- flex column -->
+  <div class="tbl-topbar">          <!-- FIXO: sempre visível -->
+    <div class="tbl-title-row">...</div>
+    <div class="tbl-toolbar-row">...</div>
+    <div class="tbl-filters">...</div>
+  </div>
+  <div class="tbl-scroll">          <!-- SCROLL: só a tabela rola -->
+    <table>...</table>
+  </div>
+  <div class="pagination">          <!-- FIXO: sempre visível -->
+    ...
+  </div>
+</div>
 ```
-.table-section (flex column)
-  ├── .tbl-topbar        ← fixo, sempre visível
-  ├── .tbl-scroll        ← overflow: auto (só a tabela faz scroll)
-  │     └── table
-  └── .pagination        ← fixo, sempre visível
+
+**CSS que garante isso:**
+```css
+/* Base — todas as resoluções */
+.table-section { display: flex; flex-direction: column; }
+.tbl-scroll    { overflow: auto; flex: 1; min-height: 0; -webkit-overflow-scrolling: touch; }
+
+/* Mobile — força scroll horizontal na tabela */
+@media (max-width: 767px) {
+  .tbl-scroll table { min-width: 700px; }
+}
 ```
 
-No mobile (≤ 767px), `.tbl-scroll table` recebe `min-width: 700px` para forçar scroll horizontal. O toolbar e a paginação permanecem em largura natural, sem scroll.
+> **NUNCA** colocar `overflow-x: auto` no `.table-section`. O scroll vai no `.tbl-scroll`.
+
+### Princípio #2: Toolbar empilha no mobile
+
+No desktop, `.tbl-toolbar-row` mostra tudo em uma linha (tabs + spacer + search + botões). No mobile, o toolbar empilha verticalmente com cada grupo ocupando sua própria linha.
+
+```
+DESKTOP:
+┌─ [All|Completed|Pending|Failed]  ──────  [🔍 Search] [Filter] [↻] ─┐
+
+MOBILE (≤ 767px):
+┌─ [All] [Completed] [Pending] [Failed]  ─────────────────────────────┐
+├─ [🔍 Search...                                                    ] ┤
+├─ [▼ Filter]  [↓ Export]  [↻]                                       ┤
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**CSS mobile:**
+```css
+@media (max-width: 767px) {
+  .tbl-toolbar-row   { flex-wrap: wrap; gap: var(--space-sm); }
+  .tbl-toolbar-spacer { display: none; }
+  .tbl-tabs           { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-tab            { flex-shrink: 0; }
+  .tbl-search         { width: 100%; order: -1; }
+  .tbl-search input   { width: 100%; }
+  .tbl-search-full    { width: 100%; }
+  .tbl-title-row      { flex-wrap: wrap; gap: var(--space-sm); }
+}
+```
+
+**Regras do empilhamento:**
+1. `.tbl-tabs` → 100% width, primeira linha. Se não couber, faz scroll horizontal (`overflow-x: auto` + `flex-shrink: 0` nos tabs)
+2. `.tbl-search` / `.tbl-search-full` → 100% width, linha própria via `order: -1` (fica acima dos botões)
+3. Botões (filter, export, refresh) → próxima linha, lado a lado
+4. `.tbl-toolbar-spacer` → `display: none` (não empurra elementos)
+5. `.tbl-title-row` → faz wrap se título + badge + botões não couberem
+
+### Princípio #3: Filter chips quebram em múltiplas linhas
+
+Os `.tbl-filters` usam `flex-wrap: wrap` **em TODAS as resoluções** (não é regra mobile-only). Quando os chips de filtro não cabem em uma linha, eles automaticamente quebram para a próxima.
+
+```css
+/* Base — TODAS as resoluções */
+.tbl-filters { flex-wrap: wrap; }
+```
+
+> Isso garante que conforme o usuário adiciona mais filtros, eles sempre ficam visíveis e organizados.
+
+### Princípio #4: Tabs fazem scroll horizontal quando não cabem
+
+Tanto `.tbl-tabs` (tabs da tabela) quanto `.od-tabs` (tabs de detail page) devem fazer scroll horizontal ao invés de encolher ou sumir.
+
+```css
+/* Tabs da tabela */
+.tbl-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tbl-tab  { flex-shrink: 0; }  /* NUNCA encolhe */
+
+/* Tabs de order detail */
+.od-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.od-tab  { flex-shrink: 0; }  /* NUNCA encolhe */
+```
+
+> A regra é: **tabs nunca encolhem**. Se não cabem, scroll horizontal. Nunca desaparecem, nunca ficam cortados.
 
 ---
 
 ## Checklist
 
-- [ ] Table envolvida em `<div class="tbl-scroll">` (scroll isolado)
+- [ ] `<table>` envolvida em `<div class="tbl-scroll">` (scroll isolado)
 - [ ] `.table-section` usa flex column (toolbar e pagination sempre visíveis)
+- [ ] Toolbar empilha no mobile: tabs 100%, search 100%, botões na próxima linha
+- [ ] `.tbl-tabs` faz scroll horizontal com `flex-shrink: 0` nos tabs
+- [ ] `.tbl-filters` usa `flex-wrap: wrap` (todas as resoluções)
+- [ ] `.tbl-search` ocupa 100% width no mobile
+- [ ] `.tbl-toolbar-spacer` fica `display: none` no mobile
+- [ ] Paginação sempre visível (nunca dentro de `.tbl-scroll`)
 - [ ] Table-section usa `var(--card)` background
 - [ ] Thead usa `var(--muted)` background com border-radius nas extremidades
 - [ ] Rows usam `var(--border-separator)` como divisor (não `--border`)

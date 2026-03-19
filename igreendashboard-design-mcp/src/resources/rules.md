@@ -161,7 +161,7 @@ No dark theme, a hierarquia é criada por luminosidade crescente:
 | Prefixo | Significado | Exemplos de classes |
 |---------|-------------|---------------------|
 | `.kpi-` | KPI cards (métricas principais) | `.kpi-grid`, `.kpi-card`, `.kpi-label`, `.kpi-value`, `.kpi-badge`, `.kpi-spark`, `.kpi-footer`, `.kpi-sub` |
-| `.tbl-` | Table (tabela de transações) | `.tbl-topbar`, `.tbl-title-row`, `.tbl-tabs`, `.tbl-tab`, `.tbl-filters`, `.tbl-search`, `.tbl-filter-btn`, `.tbl-export-btn`, `.tbl-refresh-btn`, `.tbl-badge`, `.tbl-date`, `.tbl-col-check`, `.tbl-col-actions` |
+| `.tbl-` | Table (tabela de transações) | `.tbl-topbar`, `.tbl-title-row`, `.tbl-toolbar-row`, `.tbl-toolbar-spacer`, `.tbl-tabs`, `.tbl-tab`, `.tbl-filters`, `.tbl-search`, `.tbl-search-full`, `.tbl-filter-btn`, `.tbl-export-btn`, `.tbl-refresh-btn`, `.tbl-badge`, `.tbl-date`, `.tbl-col-check`, `.tbl-col-actions`, `.tbl-scroll` |
 | `.dw-` | Drawer (modal lateral de detalhe) | `.dw-header`, `.dw-close`, `.dw-coin-icon`, `.dw-title-*`, `.dw-meta`, `.dw-row`, `.dw-label`, `.dw-value`, `.dw-tabs`, `.dw-tab`, `.dw-body`, `.dw-panel`, `.dw-comment-*`, `.dw-attachment`, `.dw-timeline`, `.dw-tl-*` |
 | `.ao-` | Asset Overview (visão geral de ativos) | `.ao-row`, `.ao-info-wrap`, `.ao-info`, `.ao-label`, `.ao-value`, `.ao-chart` |
 | `.tc-` | Traffic/Conversion (mapa + funnel) | `.tc-section`, `.tc-map-dot`, `.tc-item`, `.tc-label`, `.tc-value`, `.tc-bar` |

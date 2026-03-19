@@ -192,7 +192,7 @@ const TOKEN_DB = {
 // ── Create MCP Server ────────────────────────────────────────────────
 const server = new McpServer({
   name: "iGreenMCP Design System",
-  version: "2.5.2",
+  version: "2.5.3",
   description: "Style guide MCP server para garantir consistência visual em projetos criados com IA. 19 resources, 6 tools, 3 prompts. Transport: stdio (IDEs) + HTTP (deploy)."
 });
 
@@ -1347,7 +1347,7 @@ if (useHttp) {
   app.get("/", (req, res) => {
     res.json({
       name: "iGreenMCP Design System MCP",
-      version: "2.5.2",
+      version: "2.5.3",
       status: "running",
       transport: "http",
       resources: Object.keys(RESOURCES).length,
