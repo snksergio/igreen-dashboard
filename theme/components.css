@@ -1808,7 +1808,7 @@ tbody td.mono {
   .tbl-toolbar-row { flex-wrap: wrap; gap: var(--space-sm); }
   .tbl-toolbar-spacer { display: none; }
   .tbl-tabs { width: 100%; }
-  .tbl-search { flex: 1; min-width: 0; }
+  .tbl-search { width: 100%; order: -1; }
   .tbl-search input { width: 100%; }
   .tbl-search-full { width: 100%; }
   .tbl-title-row { flex-wrap: wrap; gap: var(--space-sm); }
