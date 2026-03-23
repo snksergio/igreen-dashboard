@@ -249,6 +249,74 @@ No mobile (≤ 767px), o drawer muda de comportamento:
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do drawer | `--card` | Background do painel lateral |
+| Borda esquerda | `--border` | Borda que separa o drawer do conteúdo |
+| Texto do título | `--foreground` | Cor do título principal |
+| Labels / subtítulos | `--muted-foreground` | Cor de labels e textos secundários |
+| Título font size | `--text-heading` | Tamanho do título (18px) |
+| Labels / valores | `--text-sm` | Tamanho de labels e valores (13px) |
+| Padding interno | `--space-2xl` | Padding principal do drawer (24px) |
+| Botão fechar | `--radius-sm` | Border radius do botão close (8px) |
+| Borda das tabs | `--border-separator` | Bordas top/bottom da barra de tabs |
+| Tab ativa | `--foreground` | Cor do texto e border-bottom da tab ativa |
+| Tab inativa | `--muted-foreground` | Cor do texto das tabs inativas |
+| Fundo do badge | `--muted` | Background dos badges numéricos nas tabs |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="drawer-overlay"></div>
+<div class="drawer">
+  <div class="dw-header">
+    <div class="dw-title">Título</div>
+    <button class="dw-close">✕</button>
+  </div>
+  <div class="dw-tabs">
+    <button class="dw-tab active">Overview</button>
+    <button class="dw-tab">Details</button>
+  </div>
+  <div class="dw-body">...</div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] border-l border-[var(--border)] p-[var(--space-2xl)]">
+  <h2 className="text-[var(--text-heading)] text-[var(--foreground)] font-bold">Título</h2>
+  <span className="text-[var(--text-sm)] text-[var(--muted-foreground)]">Label</span>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-drawer {
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  padding: var(--space-2xl);
+}
+.meu-drawer-title {
+  font-size: var(--text-heading);
+  color: var(--foreground);
+}
+.meu-drawer-label {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+.meu-drawer-tabs {
+  border-top: 1px solid var(--border-separator);
+  border-bottom: 1px solid var(--border-separator);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Overlay usa z-index 999, drawer usa 1000

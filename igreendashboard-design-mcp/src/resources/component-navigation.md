@@ -390,6 +390,79 @@ Use este template como base para **toda nova página**. Altere apenas: `<title>`
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo da sidebar | `--sidebar` | Background do painel lateral de navegação |
+| Fundo do topbar | `--background-glass` | Background com glass effect (rgba 75%) |
+| Nav ativo (texto) | `--foreground` | Cor do texto no item de nav ativo |
+| Nav inativo (texto) | `--fg-muted` | Cor do texto nos itens inativos |
+| Nav hover (fundo) | `--sidebar-accent` | Background no hover do nav item |
+| Focus ring | `--ring` | Cor de foco acessível |
+| Nav label size | `--text-sm` | Font size dos labels de navegação (13px) |
+| Nav padding | `--space-md` | Padding interno do nav item |
+| Nav radius | `--radius-sm` | Border radius do item ativo (8px) |
+| Cor primária | `--primary` | Barra lateral verde e ícone do item ativo |
+| Fundo ativo | `--primary-8` | Background sutil do nav item ativo |
+| Borda da sidebar | `--sidebar-border` | Borda direita da sidebar |
+| Borda do topbar | `--border` | Borda inferior do topbar |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <a class="nav-item active" href="#">
+      <div class="ni-icon"><!-- svg --></div>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a class="nav-item" href="#">
+      <div class="ni-icon"><!-- svg --></div>
+      <span class="nav-label">Analytics</span>
+    </a>
+  </div>
+</aside>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<aside className="w-[248px] bg-[var(--sidebar)] border-r border-[var(--sidebar-border)]">
+  <a className="flex items-center gap-2.5 h-10 px-3 rounded-[var(--radius-sm)] bg-[var(--primary-8)] text-[var(--primary)] font-semibold text-[var(--text-sm)]">
+    Dashboard
+  </a>
+  <a className="flex items-center gap-2.5 h-10 px-3 rounded-[var(--radius-sm)] text-[var(--fg-muted)] text-[var(--text-sm)] hover:bg-[var(--sidebar-accent)]">
+    Analytics
+  </a>
+</aside>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.minha-sidebar {
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+}
+.meu-nav-item {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-sm);
+}
+.meu-nav-item:hover {
+  background: var(--sidebar-accent);
+}
+.meu-nav-item.active {
+  background: var(--primary-8);
+  color: var(--primary);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Sidebar usa `var(--sidebar)` background (diferente de `var(--background)`)

@@ -534,6 +534,66 @@ Toggle on/off com transição animada:
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do input | `--input` | Background de inputs, selects, textareas |
+| Borda do input | `--input-border` | Borda padrão dos campos |
+| Focus ring | `--ring` | Cor da borda em estado de foco |
+| Texto do campo | `--foreground` | Cor do texto digitado |
+| Placeholder | `--fg-ghost` | Cor do texto placeholder |
+| Raio de borda | `--radius-sm` | Border radius dos inputs (8px) |
+| Font size do campo | `--text-body` | Tamanho do texto no input (14px) |
+| Padding horizontal | `--space-lg` | Padding lateral do input (16px) |
+| Gap label-input | `--space-sm` | Espaço entre label e input (8px) |
+| Espaço entre grupos | `--space-lg` | Margin-bottom do form-group (16px) |
+| Erro / validação | `--destructive` | Cor para estados de erro |
+| Label | `--text-sm` | Font size do label (13px) |
+| Cor do label | `--fg-secondary` | Cor do texto do label |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="form-group">
+  <label class="form-label">Nome</label>
+  <input type="text" class="form-input" placeholder="Digite..." />
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="flex flex-col gap-[var(--space-sm)]">
+  <label className="text-[var(--text-sm)] text-[var(--fg-secondary)] font-medium">Nome</label>
+  <input className="h-10 px-[var(--space-lg)] bg-[var(--input)] border border-[var(--input-border)] rounded-[var(--radius-sm)] text-[var(--foreground)] text-[var(--text-body)] focus:border-[var(--ring)] outline-none" />
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-input {
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  font-size: var(--text-body);
+  padding: 0 var(--space-lg);
+  height: 40px;
+}
+.meu-input:focus {
+  border-color: var(--ring);
+  outline: none;
+}
+.meu-input::placeholder {
+  color: var(--fg-ghost);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Input background usa `var(--input)`, nunca hardcoded

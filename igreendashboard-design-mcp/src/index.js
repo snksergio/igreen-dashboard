@@ -11,37 +11,46 @@ const __dirname = dirname(__filename);
 // ── Transport mode: stdio (default for IDEs) or http (for remote deploy) ──
 const useHttp = process.argv.includes("--http") || process.env.MCP_TRANSPORT === "http";
 
-// ── Load resource files ──────────────────────────────────────────────
+// ── Lazy-load resource files (content loaded on first read, not at startup) ──
 function loadResource(filename) {
   return readFileSync(join(__dirname, "resources", filename), "utf-8");
 }
 
 const RESOURCES = {
   // Foundation
-  colors: { content: loadResource("colors.md"), name: "Color tokens", description: "Paleta de cores, superfícies, foregrounds (14 níveis), bordas, overlays, status, sombras, --on-solid" },
-  typography: { content: loadResource("typography.md"), name: "Typography", description: "Escala tipográfica (9 tokens: 11-28px), pesos 400-700, regras de uso de fonte Inter" },
-  layout: { content: loadResource("layout.md"), name: "Layout & Spacing", description: "Spacing scale, border radius, grid patterns, z-index, glass effect, scroll, responsive, transitions" },
-  rules: { content: loadResource("rules.md"), name: "Rules & Principles", description: "15 regras obrigatórias, 6 princípios, z-index system, naming dictionary, icon size hierarchy, anti-patterns de inline style, checklist" },
-  states: { content: loadResource("states.md"), name: "States & Interactions", description: "Hover, active, focus, disabled, loading, open/closed, collapsed, empty/error, form validation, status chip auto-color states" },
+  colors: { file: "colors.md", name: "Color tokens", description: "Paleta de cores, superfícies, foregrounds (14 níveis), bordas, overlays, status, sombras, --on-solid" },
+  typography: { file: "typography.md", name: "Typography", description: "Escala tipográfica (9 tokens: 11-28px), pesos 400-700, regras de uso de fonte Inter" },
+  layout: { file: "layout.md", name: "Layout & Spacing", description: "Spacing scale, border radius, grid patterns, z-index, glass effect, scroll, responsive, transitions" },
+  rules: { file: "rules.md", name: "Rules & Principles", description: "15 regras obrigatórias, naming conventions, regras multi-tecnologia, anti-patterns, checklist" },
+  states: { file: "states.md", name: "States & Interactions", description: "Hover, active, focus, disabled, loading, open/closed, collapsed, empty/error, form validation, status chip auto-color states" },
   // Components
-  "components-overview": { content: loadResource("components-overview.md"), name: "Components Overview", description: "Catálogo completo de componentes com referências cruzadas entre folders e MCP resources" },
-  "component-card": { content: loadResource("component-card.md"), name: "Card Component", description: "Card base, KPI card, stat sub-cards, allocation list, chart containers, padrões de uso" },
-  "component-table": { content: loadResource("component-table.md"), name: "Table Component", description: "5-layer anatomy, cell types, toolbar buttons, filter chip system, pagination" },
-  "component-drawer": { content: loadResource("component-drawer.md"), name: "Drawer Component", description: "620px slide-in modal, overlay, metadata grid, tabs, 4 panel types (details/comments/attachments/activity)" },
-  "component-navigation": { content: loadResource("component-navigation.md"), name: "Navigation Components", description: "Sidebar (248px/68px collapsed), topbar (glass effect), breadcrumb" },
-  "component-forms": { content: loadResource("component-forms.md"), name: "Forms & Inputs", description: "Input base, search, textarea, comment box, select, filter chips" },
-  "component-charts": { content: loadResource("component-charts.md"), name: "Chart Patterns", description: "Chart.js 4.4.0 config, palette, 4 chart types, tooltips, stat rows, chart card variants" },
-  // New resources (v2.0)
-  "system-instructions": { content: loadResource("system-instructions.md"), name: "System Instructions", description: "Regras enraizadas que dispensam instrução do user — aplicadas automaticamente em todo prompt" },
-  "page-templates": { content: loadResource("page-templates.md"), name: "Page Templates", description: "4 templates HTML completos copiáveis: base, tabela, detalhe, gráficos" },
-  "component-detail-page": { content: loadResource("component-detail-page.md"), name: "Detail Page Patterns", description: "Padrões .od-* e .od-detail-*: tabs, grid 2 colunas, detail sections, timeline, tags" },
-  "component-legends": { content: loadResource("component-legends.md"), name: "Chart Legends", description: "3 padrões de legenda (rich, value, simple), doughnut center, stat row, JS helpers" },
-  // New resources (v2.1)
-  "component-analytics-cards": { content: loadResource("component-analytics-cards.md"), name: "Analytics Card Types", description: "6 analytics card types: Segmentation, Order Overview, User Activity, Top Countries, Channel Revenue, Asset Overview — anatomia, CSS, HTML templates" },
-  "responsive": { content: loadResource("responsive.md"), name: "Responsive System", description: "4 breakpoints desktop-first (1279/1023/767/479px), sidebar auto-collapse, mobile offscreen, grid reflow, JS toggle" },
-  // New resources (v2.2)
-  "component-edit-page": { content: loadResource("component-edit-page.md"), name: "Edit Page Template", description: "Form page composition: step nav (.form-nav), form sections, field patterns (input/select/toggle), action footer — full HTML template copiável" },
+  "components-overview": { file: "components-overview.md", name: "Components Overview", description: "Catálogo completo de componentes com referências cruzadas entre folders e MCP resources" },
+  "component-card": { file: "component-card.md", name: "Card Component", description: "Card base, KPI card, stat sub-cards, allocation list, chart containers, tokens de design" },
+  "component-table": { file: "component-table.md", name: "Table Component", description: "5-layer anatomy, cell types, toolbar, filter chips, pagination, 4 princípios responsivos, tokens de design" },
+  "component-drawer": { file: "component-drawer.md", name: "Drawer Component", description: "620px slide-in modal, overlay, metadata grid, tabs, 4 panel types, mobile full-scroll, tokens de design" },
+  "component-navigation": { file: "component-navigation.md", name: "Navigation Components", description: "Sidebar (248px/68px collapsed), topbar (glass effect), breadcrumb, mobile overlay, tokens de design" },
+  "component-forms": { file: "component-forms.md", name: "Forms & Inputs", description: "Input base, search, textarea, comment box, select, filter chips, tokens de design" },
+  "component-charts": { file: "component-charts.md", name: "Chart Patterns", description: "Chart.js 4.4.0 config, palette, 4 chart types, tooltips, stat rows, chart card variants, tokens de design" },
+  // System (v2.0)
+  "system-instructions": { file: "system-instructions.md", name: "System Instructions", description: "Regras enraizadas aplicadas automaticamente — 9 regras + tabela responsiva + checklist" },
+  "page-templates": { file: "page-templates.md", name: "Page Templates", description: "4 templates HTML completos copiáveis: base, tabela, detalhe, gráficos" },
+  "component-detail-page": { file: "component-detail-page.md", name: "Detail Page Patterns", description: "Padrões .od-* e .od-detail-*: tabs, grid 2 colunas, detail sections, timeline, tags, tokens de design" },
+  "component-legends": { file: "component-legends.md", name: "Chart Legends", description: "3 padrões de legenda (rich, value, simple), doughnut center, stat row, JS helpers" },
+  // Analytics & Responsive (v2.1)
+  "component-analytics-cards": { file: "component-analytics-cards.md", name: "Analytics Card Types", description: "6 analytics card types: Segmentation, Order Overview, User Activity, Top Countries, Channel Revenue, Asset Overview" },
+  "responsive": { file: "responsive.md", name: "Responsive System", description: "4 breakpoints desktop-first, regras base (100dvh, flex-wrap), table toolbar stacking, chart grid collapse, drawer/pagination mobile" },
+  // Edit Page (v2.2)
+  "component-edit-page": { file: "component-edit-page.md", name: "Edit Page Template", description: "Form page composition: step nav, form sections, field patterns, action footer, tokens de design" },
 };
+
+// Lazy content cache: file is read only when resource is actually requested
+const _contentCache = {};
+function getResourceContent(key) {
+  if (!_contentCache[key]) {
+    _contentCache[key] = loadResource(RESOURCES[key].file);
+  }
+  return _contentCache[key];
+}
 
 // ── Token lookup data ────────────────────────────────────────────────
 const TOKEN_DB = {
@@ -192,7 +201,7 @@ const TOKEN_DB = {
 // ── Create MCP Server ────────────────────────────────────────────────
 const server = new McpServer({
   name: "iGreenMCP Design System",
-  version: "2.5.4",
+  version: "2.6.0",
   description: "Style guide MCP server para garantir consistência visual em projetos criados com IA. 19 resources, 6 tools, 3 prompts. Transport: stdio (IDEs) + HTTP (deploy)."
 });
 
@@ -208,7 +217,7 @@ for (const [key, resource] of Object.entries(RESOURCES)) {
       contents: [{
         uri: `design://${key}`,
         mimeType: "text/markdown",
-        text: resource.content
+        text: getResourceContent(key)
       }]
     })
   );
@@ -223,7 +232,7 @@ server.resource(
     contents: [{
       uri: "design://full-guide",
       mimeType: "text/markdown",
-      text: Object.values(RESOURCES).map(r => r.content).join("\n\n---\n\n")
+      text: Object.keys(RESOURCES).map(k => getResourceContent(k)).join("\n\n---\n\n")
     }]
   })
 );
@@ -1230,106 +1239,152 @@ projeto/
 server.prompt(
   "new-page",
   "Template para criar uma nova página seguindo o design system",
-  { page_name: z.string().describe("Nome da página (ex: Portfolio, Settings, Reports)") },
-  ({ page_name }) => ({
-    messages: [{
-      role: "user",
-      content: {
-        type: "text",
-        text: `Crie uma nova página chamada "${page_name}" para o dashboard iGreenMCP.
+  {
+    page_name: z.string().describe("Nome da página (ex: Portfolio, Settings, Reports)"),
+    technology: z.string().optional().describe("Tecnologia alvo: html, react-tailwind, react-css, vue, outro (default: html)")
+  },
+  ({ page_name, technology }) => {
+    const tech = (technology || "html").toLowerCase();
+    const techInstruction = tech === "html"
+      ? "Tecnologia: HTML puro — use as classes do design system (.card, .btn--solid, .kpi-card, etc)."
+      : tech.includes("react") && tech.includes("tailwind")
+      ? "Tecnologia: React + Tailwind — use classes arbitrárias do Tailwind com tokens (bg-[var(--card)], text-[var(--text-sm)], etc). NÃO use as classes .card/.btn do HTML."
+      : tech.includes("vue")
+      ? "Tecnologia: Vue — use tokens CSS custom properties (var(--card), var(--radius-md), etc) via style binding ou <style scoped>."
+      : "Tecnologia: CSS puro — use tokens CSS custom properties (var(--card), var(--radius-md), etc) diretamente no CSS.";
+
+    return {
+      messages: [{
+        role: "user",
+        content: {
+          type: "text",
+          text: `Crie uma nova página chamada "${page_name}" para o dashboard iGreenMCP.
+
+${techInstruction}
+
+Antes de começar, identifique a tecnologia e adapte toda a orientação:
+- HTML puro → classes do design system
+- React + Tailwind → tokens via classes arbitrárias
+- Vue / CSS puro → tokens via custom properties
+O resultado visual DEVE ser idêntico independente da tecnologia.
 
 REGRAS OBRIGATÓRIAS:
-1. Copie o HTML da sidebar+topbar do resource 'component-navigation' (seção "HTML Template Copiável") — EXATAMENTE como está
-2. Altere apenas: <title>, breadcrumb (.bc-current), e classe .active no nav-item correspondente
-3. Todas as cores via CSS custom properties (tokens) — NUNCA hex hardcoded
-4. Texto branco sobre fundos sólidos: var(--on-solid) — NUNCA #fff
-5. Dark theme como default, light theme deve funcionar
-6. Font Inter, escala tipográfica: --text-display(28), --text-lg(22), --text-title(20), --text-heading(18), --text-subheading(15), --text-body(14), --text-sm(13), --text-caption(12), --text-xs(11)
-7. Spacing da escala: --space-xs(4) a --space-3xl(32) — nenhum valor arbitrário
-8. Cards com var(--card), border var(--border-structural), var(--radius-md), var(--shadow-card)
-9. SVG inline para ícones (currentColor)
-10. Transições com var(--ease-out)
-11. Focus-visible em todos os elementos interativos
-12. Chart legends SEMPRE custom HTML (nunca Chart.js built-in)
-13. Stat rows com background var(--muted)
-14. Inclua scripts de sidebar toggle e theme toggle antes de </body>
+1. Todas as cores via CSS custom properties (tokens) — NUNCA hex hardcoded
+2. Texto branco sobre fundos sólidos: var(--on-solid) — NUNCA #fff
+3. Dark theme como default, light theme deve funcionar
+4. Font Inter, escala tipográfica: --text-display(28) a --text-xs(11)
+5. Spacing da escala: --space-xs(4) a --space-3xl(32)
+6. Cards com var(--card), var(--border-structural), var(--radius-md), var(--shadow-card)
+7. SVG inline para ícones (currentColor)
+8. Transições com var(--ease-out)
+9. Focus-visible em todos os elementos interativos
+10. Chart legends SEMPRE custom HTML (nunca Chart.js built-in)
+11. Tabelas DEVEM usar .tbl-scroll wrapper (scroll isolado)
+12. Pagination e toolbar FORA do scroll, sempre visíveis
+13. No mobile: toolbar empilha, tabs fazem scroll horizontal (flex-shrink: 0)
+14. Height do app: 100dvh (com fallback 100vh)
 
-TEMPLATES DE REFERÊNCIA (consulte resources):
-- 'page-templates': 4 templates HTML completos (base, tabela, detalhe, gráficos)
-- 'component-navigation': HTML copiável da sidebar+topbar
-- 'system-instructions': Regras completas do design system
-- 'rules': 15 regras obrigatórias + naming conventions + anti-patterns
-
-PÁGINAS DE REFERÊNCIA (padrões reais):
-- analytics.html: KPI grid + tabela + drawer + chart cards
-- products.html: Tabela com toolbar (tabs, search, filter, export) + pagination
-- order-detail.html: Tabs + grid 2 colunas + detail sections
-- market-trends.html: Filter bar + chart cards + 3 tipos de legenda`
-      }
-    }]
-  })
+CONSULTE RESOURCES:
+- 'system-instructions': Regras completas + Regra #9 (tabela responsiva)
+- 'page-templates': 4 templates copiáveis
+- 'component-navigation': Sidebar + topbar
+- 'responsive': 4 breakpoints + regras mobile
+- 'rules': Naming conventions + regras multi-tecnologia`
+        }
+      }]
+    };
+  }
 );
 
 server.prompt(
   "new-component",
   "Template para criar um novo componente seguindo o design system",
-  { component_name: z.string().describe("Nome do componente (ex: Tag, Tooltip, Dropdown)") },
-  ({ component_name }) => ({
-    messages: [{
-      role: "user",
-      content: {
-        type: "text",
-        text: `Crie o componente "${component_name}" seguindo o iGreenMCP Design System.
+  {
+    component_name: z.string().describe("Nome do componente (ex: Tag, Tooltip, Dropdown)"),
+    technology: z.string().optional().describe("Tecnologia alvo: html, react-tailwind, react-css, vue, outro (default: html)")
+  },
+  ({ component_name, technology }) => {
+    const tech = (technology || "html").toLowerCase();
+    const techInstruction = tech === "html"
+      ? "Tecnologia: HTML puro — entregue CSS com classes BEM-like + HTML de exemplo."
+      : tech.includes("react") && tech.includes("tailwind")
+      ? "Tecnologia: React + Tailwind — entregue componente JSX usando classes arbitrárias com tokens (bg-[var(--card)], etc)."
+      : tech.includes("vue")
+      ? "Tecnologia: Vue — entregue componente .vue com <style scoped> usando tokens CSS custom properties."
+      : "Tecnologia: CSS puro — entregue CSS usando tokens custom properties + HTML de exemplo.";
+
+    return {
+      messages: [{
+        role: "user",
+        content: {
+          type: "text",
+          text: `Crie o componente "${component_name}" seguindo o iGreenMCP Design System.
+
+${techInstruction}
 
 REGRAS:
 1. Consulte os resources do MCP para tokens e padrões existentes
-2. Use nomenclatura BEM-like: .${component_name.toLowerCase()} base, .${component_name.toLowerCase()}--variant
-3. Tamanhos: xs, sm, md (default), lg
-4. Cores via tokens (nunca hex hardcoded)
+2. Consulte 'rules' para regras multi-tecnologia e naming conventions
+3. Cores via tokens (nunca hex hardcoded) — funciona em qualquer tecnologia
+4. Tamanhos: xs, sm, md (default), lg
 5. Estados: default, hover, active, focus-visible, disabled
-6. Dark + Light theme
+6. Dark + Light theme (via tokens, funciona automaticamente)
 7. Transições com var(--ease-out)
-8. Border-radius da escala do sistema
-9. Spacing da escala do sistema
+8. Border-radius e spacing da escala do sistema
+9. Responsivo (colapsar/empilhar no mobile)
+10. Se tiver tabs: flex-shrink: 0 + scroll horizontal
+11. Se tiver tabela: usar .tbl-scroll wrapper
 
 Entregue:
-- CSS do componente
-- HTML de exemplo/showcase
-- Documentação de variantes e props`
-      }
-    }]
-  })
+- Código do componente na tecnologia alvo
+- Exemplo de uso
+- Documentação de variantes e tokens usados`
+        }
+      }]
+    };
+  }
 );
 
 server.prompt(
   "review-ui",
   "Revisa código UI contra o design system e sugere correções",
-  { code_description: z.string().describe("Descreva o que o código faz ou cole o código") },
-  ({ code_description }) => ({
-    messages: [{
-      role: "user",
-      content: {
-        type: "text",
-        text: `Revise o seguinte código/componente contra o iGreenMCP Design System:
+  {
+    code_description: z.string().describe("Descreva o que o código faz ou cole o código"),
+    technology: z.string().optional().describe("Tecnologia do código: html, react-tailwind, react-css, vue, outro (default: auto-detect)")
+  },
+  ({ code_description, technology }) => {
+    const tech = technology ? `Tecnologia informada: ${technology}.` : "Detecte a tecnologia automaticamente pelo código.";
+    return {
+      messages: [{
+        role: "user",
+        content: {
+          type: "text",
+          text: `Revise o seguinte código/componente contra o iGreenMCP Design System:
 
 ${code_description}
 
+${tech}
+Consulte 'rules' (seção "Regras para uso multi-tecnologia") para validar conforme a tecnologia.
+
 Use a tool 'validate_css' se houver CSS para validar.
 Consulte os resources para verificar se segue:
-1. Tokens de cor corretos
-2. Escala tipográfica
-3. Escala de spacing
-4. Border-radius da escala
+1. Tokens de cor corretos (nunca hex hardcoded)
+2. Escala tipográfica (--text-xs a --text-display)
+3. Escala de spacing (--space-xs a --space-3xl)
+4. Border-radius da escala (--radius-xs a --radius-pill)
 5. Padrões de componentes
-6. Nomenclatura correta
-7. Estados interativos (hover, focus, disabled)
-8. Suporte dark/light theme
-9. Transições com --ease-out
+6. Estados interativos (hover, focus, disabled)
+7. Suporte dark/light theme
+8. Transições com --ease-out
+9. Tabelas com .tbl-scroll wrapper (scroll isolado)
+10. Responsividade (4 breakpoints)
+11. Height usa 100dvh (não 100vh sozinho)
 
-Liste todas as violações encontradas e sugira correções específicas.`
-      }
-    }]
-  })
+Liste todas as violações encontradas e sugira correções na tecnologia correspondente.`
+        }
+      }]
+    };
+  }
 );
 
 // ── Server Startup ──────────────────────────────────────────────────
@@ -1347,7 +1402,7 @@ if (useHttp) {
   app.get("/", (req, res) => {
     res.json({
       name: "iGreenMCP Design System MCP",
-      version: "2.5.4",
+      version: "2.6.0",
       status: "running",
       transport: "http",
       resources: Object.keys(RESOURCES).length,

@@ -338,6 +338,64 @@ Lista horizontal de legendas de chart:
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do card | `--card` | Background de todos os cards |
+| Borda estrutural | `--border-structural` | Borda sutil entre cards |
+| Raio de borda | `--radius-md` | Border radius do card (12px) |
+| Sombra | `--shadow-card` | Sombra padrão do card |
+| Sombra hover | `--shadow-card-hover` | Sombra elevada no hover |
+| Texto principal | `--foreground` | Cor do texto principal (valores, nomes) |
+| Texto secundário | `--fg-muted` | Subtítulos, labels, descrições |
+| Padding interno | `--space-xl` / `--space-2xl` | Espaçamento interno do card (20px / 24px) |
+| Título do card | `--text-subheading` | Font size do título (15px) |
+| Fundo stat | `--muted` | Background dos stat sub-cards |
+| Gap do grid | `--space-lg` | Espaçamento entre KPI cards (16px) |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">Título</div>
+    <div class="card-sub">Subtítulo</div>
+  </div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-xl)] shadow-[var(--shadow-card)]">
+  <h3 className="text-[var(--text-subheading)] text-[var(--foreground)]">Título</h3>
+  <p className="text-[var(--fg-muted)]">Subtítulo</p>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+.meu-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+.meu-card-stat {
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-lg);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Card usa `var(--card)` background (nunca hex)

@@ -671,6 +671,74 @@ Tanto `.tbl-tabs` (tabs da tabela) quanto `.od-tabs` (tabs de detail page) devem
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do container | `--card` | Background da table-section |
+| Raio de borda | `--radius-md` | Border radius do container (12px) |
+| Sombra | `--shadow-card` | Sombra do container |
+| Fundo do thead | `--muted` | Background do header da tabela |
+| Divisor de rows | `--border-separator` | Border entre linhas do tbody |
+| Hover de row | `--overlay-3` | Background sutil no hover da row |
+| Texto do thead | `--text-xs` | Font size do header (11px, uppercase) |
+| Texto do tbody | `--text-body` | Font size das células (14px) |
+| Padding de célula | `--space-md` | Padding interno das células |
+| Texto de search/filtros | `--text-sm` | Font size de tabs, search, botões (13px) |
+| Fundo do input | `--input` | Background do campo de busca |
+| Borda do input | `--input-border` | Borda do campo de busca |
+| Focus ring | `--ring` | Cor de foco no search |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="table-section">
+  <div class="tbl-topbar">
+    <div class="tbl-toolbar-row">
+      <div class="tbl-search"><input type="text" placeholder="Search..." /></div>
+    </div>
+  </div>
+  <div class="tbl-scroll">
+    <table>...</table>
+  </div>
+  <div class="pagination">...</div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-xl)_var(--space-2xl)] shadow-[var(--shadow-card)]">
+  <table>
+    <thead className="bg-[var(--muted)]">
+      <tr><th className="text-[var(--text-xs)] p-[var(--space-md)]">Header</th></tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-[var(--border-separator)] hover:bg-[var(--overlay-3)]">
+        <td className="text-[var(--text-body)] p-[var(--space-md)]">Cell</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.minha-tabela {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+.minha-tabela thead { background: var(--muted); }
+.minha-tabela tbody tr { border-top: 1px solid var(--border-separator); }
+.minha-tabela tbody tr:hover { background: var(--overlay-3); }
+.minha-tabela td { padding: var(--space-md); font-size: var(--text-body); }
+```
+
+---
+
 ## Checklist
 
 - [ ] `<table>` envolvida em `<div class="tbl-scroll">` (scroll isolado)

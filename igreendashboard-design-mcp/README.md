@@ -1,26 +1,38 @@
-# iGreenMCP Design System — Servidor MCP (v2.5.3)
+# iGreenMCP Design System — Servidor MCP (v2.6.0)
 
 > Servidor Model Context Protocol que expoe o iGreenMCP Design System para agentes de IA.
 > Deploy automatico via Railway a cada push na branch `main`.
+> Funciona com qualquer tecnologia: HTML, React, Vue, Tailwind, CSS puro.
 
-## Instalacao Rapida (Cloud)
+## Instalacao Rapida (Cloud) — URL unica para o time
 
-O servidor esta rodando em producao no Railway. Use um dos comandos abaixo para conectar:
+O servidor esta rodando em producao no Railway. Ninguem precisa clonar o repo ou configurar caminhos locais — basta conectar a URL.
 
 ### Claude Code (CLI) — mais rapido
 ```bash
-claude mcp add igreen-design-mcp --transport sse https://igreen-dashboard-production.up.railway.app/sse
+claude mcp add igreen-design-mcp --transport http --url https://igreen-dashboard-production.up.railway.app/mcp
 ```
 
-### Claude Desktop / Cursor / IDEs
-Adicione ao seu `claude_desktop_config.json` ou configuracao MCP da IDE:
+### Claude Desktop
+Adicione ao `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "igreen-design-mcp": {
-      "transport": "sse",
-      "url": "https://igreen-dashboard-production.up.railway.app/sse"
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-proxy", "--transport", "http", "https://igreen-dashboard-production.up.railway.app/mcp"]
+    }
+  }
+}
+```
+
+### Cursor
+```json
+{
+  "mcpServers": {
+    "igreen-design-mcp": {
+      "url": "https://igreen-dashboard-production.up.railway.app/mcp"
     }
   }
 }
@@ -164,14 +176,47 @@ npm run start:http # transporte HTTP na porta 8080
 - **3 Prompts** — `new-page`, `new-component`, `review-ui`
 - **24+ Tipos de componente** — card, button, table, drawer, badge, chart, navigation, forms, detail-page, edit-page, legends, etc.
 
-## Deploy
+## Deploy Remoto — URL unica para o time (recomendado)
 
-Usa o `Dockerfile` incluido. Auto-deploy via Railway conectado ao repo `snksergio/igreen-dashboard` (branch `main`, root `/igreendashboard-design-mcp`).
+Ao inves de cada pessoa clonar o repo e configurar o caminho local,
+faca deploy do servidor MCP uma vez e distribua a URL para o time.
+
+### Railway (recomendado)
+1. Acesse [railway.app](https://railway.app) e crie um novo projeto
+2. Conecte o repositorio GitHub (`snksergio/igreen-dashboard`)
+3. Configure o Root Directory como `igreendashboard-design-mcp`
+4. Railway detecta o Dockerfile automaticamente
+5. Apos o deploy, copie a URL gerada (ex: `https://igreen-dashboard-production.up.railway.app`)
+
+### Distribuir para o time
+
+Basta compartilhar o comando de instalacao:
+```bash
+claude mcp add igreen-design-mcp --transport http --url https://igreen-dashboard-production.up.railway.app/mcp
+```
+
+Ninguem mais precisa clonar o repo ou configurar caminhos locais.
+
+### Docker (self-hosted)
 
 ```bash
 docker build -t igreen-design-mcp .
 docker run -p 8080:8080 igreen-design-mcp
 ```
+
+## Multi-tecnologia
+
+O design system funciona com qualquer tecnologia. Os resources orientam por **tokens de design** (CSS custom properties), nao apenas por classes HTML.
+
+| Tecnologia | Como usar os tokens |
+|------------|-------------------|
+| HTML puro | Classes do design system (`.card`, `.btn--solid`, etc) |
+| React + Tailwind | Classes arbitrarias (`bg-[var(--card)]`, etc) |
+| React + CSS Modules | Custom properties no CSS (`background: var(--card)`) |
+| Vue | Style binding ou CSS puro (`var(--card)`) |
+| Qualquer outro | CSS custom properties diretamente |
+
+Os prompts `new-page`, `new-component` e `review-ui` perguntam a tecnologia alvo e adaptam a orientacao automaticamente.
 
 ## Licenca
 

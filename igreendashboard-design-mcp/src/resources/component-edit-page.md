@@ -413,6 +413,94 @@ Em mobile, `.form-layout` colapsa para 1 coluna e `.form-nav` fica acima do `.fo
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do card | `--card` | Background das sections e nav lateral |
+| Fundo do input | `--input` | Background de inputs e selects |
+| Borda do input | `--input-border` | Borda padrão dos campos de formulário |
+| Focus ring | `--ring` | Cor da borda em estado de foco |
+| Labels | `--foreground` | Cor dos títulos de seção e labels |
+| Font size labels | `--text-sm` | Tamanho dos labels de campo (13px) |
+| Font size inputs | `--text-body` | Tamanho do texto nos inputs (14px) |
+| Padding seção | `--space-2xl` | Padding interno das sections (24px) |
+| Gap entre seções | `--space-xl` | Espaçamento entre sections (20px) |
+| Raio do input | `--radius-sm` | Border radius dos inputs (8px) |
+| Raio do card | `--radius-md` | Border radius das sections (12px) |
+| Sombra | `--shadow-card` | Sombra das sections |
+| Botão primário | `--primary` | Background do botão de submit |
+| Texto do botão | `--on-solid` | Cor do texto em botões sólidos |
+| Fundo do nav ativo | `--primary-10` | Background do step ativo na navegação |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="form-layout">
+  <div class="form-nav">
+    <div class="form-nav-item active">
+      <div class="form-nav-icon"><!-- svg --></div>
+      <div class="form-nav-text">
+        <div class="form-nav-title">Step 1</div>
+        <div class="form-nav-desc">Descrição</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-content">
+    <div class="form-section">
+      <h2 class="form-section-title">Seção</h2>
+      <div class="form-group">
+        <label class="form-label">Campo</label>
+        <input type="text" class="form-input" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--outline">Cancelar</button>
+      <button class="btn btn--solid">Salvar</button>
+    </div>
+  </div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-2xl)] shadow-[var(--shadow-card)]">
+  <h2 className="text-[var(--text-subheading)] text-[var(--foreground)] font-semibold">Seção</h2>
+  <label className="text-[var(--text-sm)] text-[var(--foreground)]">Campo</label>
+  <input className="bg-[var(--input)] border border-[var(--input-border)] rounded-[var(--radius-sm)] text-[var(--text-body)] focus:border-[var(--ring)]" />
+  <button className="bg-[var(--primary)] text-[var(--on-solid)] rounded-[var(--radius-sm)]">Salvar</button>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.minha-section {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-card);
+}
+.meu-input {
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body);
+}
+.meu-input:focus {
+  border-color: var(--ring);
+}
+.meu-btn-submit {
+  background: var(--primary);
+  color: var(--on-solid);
+  border-radius: var(--radius-sm);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Page title usa `.form-page-title` com `var(--text-title)`

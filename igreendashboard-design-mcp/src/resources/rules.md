@@ -251,6 +251,72 @@ O CSS define tamanho de ícone automaticamente por classe do container. Use `vie
 
 ---
 
+## Regras para uso multi-tecnologia
+
+### Principio central
+O design system e definido por **tokens**, nao por classes. Classes sao uma
+implementacao do token em HTML. Em qualquer tecnologia, o resultado visual deve
+ser identico.
+
+### Hierarquia de fidelidade
+1. **Tokens de design** (obrigatorio em qualquer tecnologia)
+2. **Espacamentos e grid** (obrigatorio)
+3. **Estados interativos** — hover, focus, disabled (obrigatorio)
+4. **Classes CSS do design system** (obrigatorio apenas em HTML puro)
+5. **Nomes de componentes e estrutura interna** (recomendado, nao obrigatorio)
+
+### O que NAO pode variar entre tecnologias
+- Cores (sempre via tokens CSS custom properties)
+- Espacamento (sempre via tokens `--space-*`)
+- Tipografia (sempre via tokens `--text-*`)
+- Raios de borda (sempre via tokens `--radius-*`)
+- Sombras (sempre via tokens `--shadow-*`)
+- Estados de status: success (`--primary`), warning (`--warning`), error (`--destructive`), info (`--info`)
+
+### O que PODE variar entre tecnologias
+- Nome das classes CSS
+- Estrutura do markup HTML
+- Como os componentes sao importados
+- Biblioteca de componentes usada
+
+### Exemplos por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="card">
+  <div class="card-head">
+    <span class="card-title">Titulo</span>
+  </div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-xl)] shadow-[var(--shadow-card)]">
+  <h3 className="text-[var(--text-subheading)] font-semibold text-[var(--foreground)]">Titulo</h3>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+.meu-card-title {
+  font-size: var(--text-subheading);
+  font-weight: 600;
+  color: var(--foreground);
+}
+```
+
+> **Regra:** O CSS gerado pela tool `generate_theme_css` contem TODOS os tokens necessarios.
+> Importe esse arquivo no seu projeto e todos os `var(--token)` funcionam automaticamente.
+
+---
+
 ## Checklist de Qualidade
 
 Antes de entregar qualquer componente, verifique:

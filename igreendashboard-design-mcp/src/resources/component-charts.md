@@ -432,6 +432,80 @@ document.querySelector('.theme-toggle').addEventListener('click', () => {
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do card | `--card` | Background do chart card |
+| Raio de borda | `--radius-md` | Border radius do card (12px) |
+| Sombra | `--shadow-card` | Sombra do card de chart |
+| Fundo stat row | `--muted` | Background dos indicadores (stat boxes) |
+| Valor do stat | `--foreground` | Cor do valor numérico principal |
+| Label do stat | `--fg-muted` | Cor dos labels e legendas |
+| Stat value size | `--text-heading` | Font size do valor stat (18px) |
+| Stat label size | `--text-xs` | Font size do label stat (11px) |
+| Padding interno | `--space-lg` / `--space-xl` | Padding do card e stat boxes |
+| Cor positiva | `--primary` | Linhas, barras e valores positivos |
+| Cor negativa | `--destructive` | Linhas, barras e valores negativos |
+| Cor secundária | `--chart-2` | Segunda série de dados |
+| Cor de alerta | `--warning` | Dados de atenção/pendente |
+| Grid do chart | `--border-separator` | Cor das linhas de grid horizontal |
+| Ticks do eixo | `--fg-ghost` | Cor dos rótulos dos eixos |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="ch-card">
+  <div class="ch-head"><div class="card-title">Chart Title</div></div>
+  <div class="ch-stat-row">
+    <div class="ch-stat">
+      <div class="ch-stat-label">TOTAL</div>
+      <div class="ch-stat-val">$48,352</div>
+    </div>
+  </div>
+  <div class="chart-area"><canvas id="myChart"></canvas></div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-xl)] shadow-[var(--shadow-card)]">
+  <div className="bg-[var(--muted)] rounded-[var(--radius-sm)] p-[var(--space-md)_var(--space-lg)]">
+    <div className="text-[var(--text-xs)] text-[var(--fg-muted)]">TOTAL</div>
+    <div className="text-[var(--text-heading)] text-[var(--foreground)] font-bold">$48,352</div>
+  </div>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-chart-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+.meu-stat-box {
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-lg);
+}
+.meu-stat-val {
+  font-size: var(--text-heading);
+  color: var(--foreground);
+  font-weight: 700;
+}
+.meu-stat-label {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+```
+
+---
+
 ## Checklist
 
 - [ ] Chart.js 4.4.0 via CDN ou npm

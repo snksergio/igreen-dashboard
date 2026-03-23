@@ -486,6 +486,81 @@
 
 ---
 
+## Tokens de Design
+
+Use estes tokens independente da tecnologia (HTML, React, Vue, etc):
+
+| Propriedade | Token | Uso |
+|-------------|-------|-----|
+| Fundo do card | `--card` | Background dos cards de seção |
+| Divisores | `--border-separator` | Bordas entre rows, seções e tabs |
+| Títulos | `--foreground` | Cor de títulos e valores principais |
+| Labels | `--fg-muted` | Cor de labels, subtítulos, datas |
+| Fundo de campos | `--muted` | Background de product rows e field grids |
+| Título de seção | `--text-subheading` | Font size de títulos de card (15px) |
+| Labels de campo | `--text-sm` | Font size de labels e valores (13px) |
+| Valores de campo | `--text-body` | Font size de textos principais (14px) |
+| Título da página | `--text-title` | Font size do header (20px) |
+| Gap do grid | `--space-xl` | Espaçamento entre cards e colunas (20px) |
+| Raio de borda | `--radius-md` | Border radius dos cards (12px) |
+| Sombra | `--shadow-card` | Sombra dos cards de seção |
+| Tab ativa | `--foreground` | Cor e border-bottom da tab ativa |
+| Tab inativa | `--fg-muted` | Cor do texto das tabs inativas |
+
+### Como usar por tecnologia
+
+**HTML (classes do design system):**
+```html
+<div class="od-grid">
+  <div class="od-main">
+    <div class="od-card">
+      <div class="od-card-head"><h3 class="od-card-title">Seção</h3></div>
+      <div class="od-fields">
+        <div>
+          <div class="od-field-label">Label</div>
+          <div class="od-field-value">Valor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**React + Tailwind (classes arbitrarias):**
+```jsx
+<div className="bg-[var(--card)] rounded-[var(--radius-md)] p-[var(--space-xl)] shadow-[var(--shadow-card)]">
+  <h3 className="text-[var(--text-subheading)] text-[var(--foreground)] font-semibold">Seção</h3>
+  <div className="text-[var(--text-sm)] text-[var(--fg-muted)]">LABEL</div>
+  <div className="text-[var(--text-body)] text-[var(--foreground)]">Valor</div>
+</div>
+```
+
+**Vue / CSS puro (custom properties):**
+```css
+.meu-detail-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+.meu-detail-title {
+  font-size: var(--text-subheading);
+  color: var(--foreground);
+  font-weight: 600;
+}
+.meu-field-label {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+}
+.meu-field-value {
+  font-size: var(--text-body);
+  color: var(--foreground);
+}
+```
+
+---
+
 ## JavaScript — Tab switching
 
 ```javascript
