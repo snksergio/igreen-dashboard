@@ -74,6 +74,16 @@ A pasta `igreendashboard-design-mcp/` contem um **servidor Model Context Protoco
 
 ## Instalacao
 
+### Instalacao Rapida (Recomendado — sem instalar nada)
+
+O servidor MCP ja esta deployado na nuvem. Basta adicionar a URL ao seu editor:
+
+```
+https://igreen-dashboard-production.up.railway.app/mcp
+```
+
+Veja abaixo como configurar em cada ferramenta.
+
 ### Claude Desktop
 
 Adicione ao seu `claude_desktop_config.json`:
@@ -91,14 +101,27 @@ Adicione ao seu `claude_desktop_config.json`:
 
 > **Dica:** Substitua `C:/CAMINHO/COMPLETO/` pelo caminho absoluto real do repo clonado.
 
+**Ou conecte direto na nuvem (sem clonar o repo):**
+
+```json
+{
+  "mcpServers": {
+    "igreen-design": {
+      "type": "streamable-http",
+      "url": "https://igreen-dashboard-production.up.railway.app/mcp"
+    }
+  }
+}
+```
+
 ### Claude Code (CLI)
 
 ```bash
 # Projeto local (transporte stdio)
 claude mcp add igreen-design -- node /caminho/para/igreendashboard-design-mcp/src/index.js
 
-# Ou via HTTP (se deployado)
-claude mcp add igreen-design --transport http --url https://SUA-URL-DEPLOY/mcp
+# Via HTTP remoto (recomendado — sem instalar nada)
+claude mcp add --transport http igreen-design https://igreen-dashboard-production.up.railway.app/mcp
 ```
 
 ### Cursor IDE
@@ -111,6 +134,19 @@ Adicione ao `.cursor/mcp.json` do seu projeto:
     "igreen-design": {
       "command": "node",
       "args": ["/caminho/para/igreendashboard-design-mcp/src/index.js"]
+    }
+  }
+}
+```
+
+**Ou via HTTP (sem clonar o repo):**
+
+```json
+{
+  "mcpServers": {
+    "igreen-design": {
+      "type": "streamable-http",
+      "url": "https://igreen-dashboard-production.up.railway.app/mcp"
     }
   }
 }
@@ -130,7 +166,7 @@ A maioria dos editores compativeis com MCP suportam transporte **stdio** ou **HT
 
 **HTTP (deployado):**
 ```
-URL: https://SUA-URL-DEPLOY/mcp
+URL: https://igreen-dashboard-production.up.railway.app/mcp
 ```
 
 ---
