@@ -74,19 +74,60 @@ A pasta `igreendashboard-design-mcp/` contem um **servidor Model Context Protoco
 
 ## Instalacao
 
-### Instalacao Rapida (Recomendado — sem instalar nada)
+### Claude Code (CLI) — Recomendado
 
-O servidor MCP ja esta deployado na nuvem. Basta adicionar a URL ao seu editor:
+A forma mais rapida de comecar. Um unico comando conecta o design system ao Claude Code via nuvem — nao precisa clonar o repo nem instalar dependencias.
+
+**Passo 1 — Adicionar o MCP server:**
+
+```bash
+claude mcp add --transport http igreen-design https://igreen-dashboard-production.up.railway.app/mcp
+```
+
+**Passo 2 — Reiniciar o Claude Code:**
+
+Feche e abra uma nova sessao do Claude Code para que o servidor MCP seja carregado.
+
+**Passo 3 — Verificar a conexao:**
+
+Ao iniciar a nova sessao, o Claude Code vai listar os MCPs conectados. Voce deve ver `igreen-design` com os 19 resources, 6 tools e 3 prompts disponiveis.
+
+**Passo 4 — Comecar a usar:**
+
+Agora basta pedir ao Claude para criar paginas seguindo o design system:
 
 ```
-https://igreen-dashboard-production.up.railway.app/mcp
+"Crie uma pagina de Clientes com KPI cards e tabela seguindo o design system iGreenMCP."
 ```
 
-Veja abaixo como configurar em cada ferramenta.
+O Claude vai automaticamente consultar os tokens, componentes e regras do design system para gerar codigo consistente.
 
-### Claude Desktop
+> **Dica:** Para instalar no escopo do projeto (acessivel por todos que clonarem o repo), adicione `--scope project`:
+> ```bash
+> claude mcp add --transport http --scope project igreen-design https://igreen-dashboard-production.up.railway.app/mcp
+> ```
 
-Adicione ao seu `claude_desktop_config.json`:
+---
+
+### Outras Ferramentas
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
+
+**Via nuvem (recomendado):** adicione ao `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "igreen-design": {
+      "type": "streamable-http",
+      "url": "https://igreen-dashboard-production.up.railway.app/mcp"
+    }
+  }
+}
+```
+
+**Via local (stdio):** clone o repo e aponte para o arquivo:
 
 ```json
 {
@@ -99,9 +140,16 @@ Adicione ao seu `claude_desktop_config.json`:
 }
 ```
 
-> **Dica:** Substitua `C:/CAMINHO/COMPLETO/` pelo caminho absoluto real do repo clonado.
+> Substitua `C:/CAMINHO/COMPLETO/` pelo caminho absoluto real do repo clonado.
 
-**Ou conecte direto na nuvem (sem clonar o repo):**
+</details>
+
+<details>
+<summary><strong>Cursor IDE</strong></summary>
+
+Adicione ao `.cursor/mcp.json` do seu projeto:
+
+**Via nuvem (recomendado):**
 
 ```json
 {
@@ -114,19 +162,7 @@ Adicione ao seu `claude_desktop_config.json`:
 }
 ```
 
-### Claude Code (CLI)
-
-```bash
-# Projeto local (transporte stdio)
-claude mcp add igreen-design -- node /caminho/para/igreendashboard-design-mcp/src/index.js
-
-# Via HTTP remoto (recomendado — sem instalar nada)
-claude mcp add --transport http igreen-design https://igreen-dashboard-production.up.railway.app/mcp
-```
-
-### Cursor IDE
-
-Adicione ao `.cursor/mcp.json` do seu projeto:
+**Via local (stdio):**
 
 ```json
 {
@@ -139,22 +175,17 @@ Adicione ao `.cursor/mcp.json` do seu projeto:
 }
 ```
 
-**Ou via HTTP (sem clonar o repo):**
+</details>
 
-```json
-{
-  "mcpServers": {
-    "igreen-design": {
-      "type": "streamable-http",
-      "url": "https://igreen-dashboard-production.up.railway.app/mcp"
-    }
-  }
-}
-```
-
-### Windsurf / Cline / Outras IDEs
+<details>
+<summary><strong>Windsurf / Cline / Outras IDEs</strong></summary>
 
 A maioria dos editores compativeis com MCP suportam transporte **stdio** ou **HTTP**:
+
+**HTTP (recomendado):**
+```
+https://igreen-dashboard-production.up.railway.app/mcp
+```
 
 **Stdio (local):**
 ```json
@@ -164,10 +195,7 @@ A maioria dos editores compativeis com MCP suportam transporte **stdio** ou **HT
 }
 ```
 
-**HTTP (deployado):**
-```
-URL: https://igreen-dashboard-production.up.railway.app/mcp
-```
+</details>
 
 ---
 
